@@ -1,0 +1,38 @@
+{
+  "name": "fec",
+  "version": "1.0.0",
+  "description": "FEC project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack serve --watch",
+    "build": "webpack",
+    "dev-mode": "webpack --mode development --watch",
+    "client-dev": "npx nodemon ./client/src/index.jsx --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/The-Jonas-Brothers/fec.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/The-Jonas-Brothers/fec/issues"
+  },
+  "homepage": "https://github.com/The-Jonas-Brothers/fec#readme",
+  "devDependencies": {
+    "@babel/core": "^7.17.12",
+    "@babel/preset-env": "^7.17.12",
+    "@babel/preset-react": "^7.17.12",
+    "babel-loader": "^8.2.5",
+    "html-webpack-plugin": "^5.5.0",
+    "webpack": "^5.72.1",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.9.0"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0"
+  }
+}
