@@ -1,9 +1,13 @@
 import React from 'react';
+import RatingsAndReviews from './Reviews/RatingsAndReviews.jsx';
 
 const App = () => {
   return (
     <div>
-      HELLO YALL
+      Esmy's ratings and review settings below
+
+      <RatingsAndReviews product_id={65631}/>
+
     </div>
   )
 
