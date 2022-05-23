@@ -1,15 +1,15 @@
 import React from 'react';
 
 class RelatedProducts extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = {
       variable: 'Hello!'
     }
   }
 
-  render() {
-    return(
+  render () {
+    return (
       <p>{this.state.variable}</p>
     )
   }
