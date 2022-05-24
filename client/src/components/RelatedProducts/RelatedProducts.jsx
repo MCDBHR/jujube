@@ -1,18 +1,16 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
-class RelatedProducts extends React.Component {
-  constructor (props) {
-    super(props);
-    this.state = {
-      variable: 'Hello!'
-    }
-  }
+//Need to only have the API key in the server / backend side, its not safe anywhere in react
 
-  render () {
-    return (
-      <p>{this.state.variable}</p>
-    )
-  }
+const RelatedProducts = (props) => {
+  useEffect(() => {
+      console.log('Related Products mounted once')
+  }, [])
+  return (
+    <div>
+      <p>Hello!</p>
+    </div>
+  )
 }
 
 export default RelatedProducts;

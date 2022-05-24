@@ -8,7 +8,7 @@
     "dev": "webpack serve",
     "build": "webpack",
     "dev-mode": "webpack --mode development --watch",
-    "client-dev": "npx nodemon ./client/src/index.jsx --watch"
+    "client-dev": "npx nodemon ./server/index.js --watch"
   },
   "repository": {
     "type": "git",
