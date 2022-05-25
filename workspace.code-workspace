@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../rfp2204-fullstack-review"
+		},
+		{
+			"path": "../rfp2204-toy-problems"
+		}
+	],
+	"settings": {}
+}

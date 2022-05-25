@@ -1,8 +1,7 @@
 import React, {useState, useEffect} from 'react'; // import useState
 import axios from 'axios';
 import styled from 'styled-components';
-import { format } from 'date-fns';
-
+import { format, parseISO } from "date-fns";
 
 
 const StyledReview = styled.div`
@@ -35,13 +34,12 @@ const Review = ({review}) => {
       var starRender = solidStars + clearStars;
     }
 
-
   return (
     <StyledReview>
         <div>
           <Header>
             <section>{starRender}</section>
-            <section> {reviewer_name}, {date} </section>
+            <section> {reviewer_name},  {format(parseISO(date), 'PPP')}</section>
           </Header>
         </div>
         <h1> {summary} </h1>

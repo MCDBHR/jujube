@@ -1,31 +1,11 @@
 import React, {useState, useEffect} from 'react'; // import useState
-import axios from 'axios';
+//import axios from 'axios';
 import Review from './Review.jsx';
+import Ratings from './Ratings.jsx';
 
-const Reviews = ({product_id}) => {
-  console.log(product_id);
-  const [reviews, setReviews] = useState([]);
-  const [order, setOrder] = useState("relevant");
+
+const Reviews = ({reviews, order, setOrder}) => {
   let [numberToRender, setNumberToRender] = useState(2);
-
-
-
-  useEffect(() => {
-    let config = {
-      headers: {'Authorization': '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'},
-      params: {'product_id': product_id,
-                    'sort' : order,
-                    'count': 9999}
-    };
-    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/rfp/reviews', config)
-      .then((reviews) => {
-        console.log(reviews);
-        let reviewsList = reviews.data.results;
-        setReviews(reviewsList);
-      })
-  }, [order]);
-
-
 
   const handleOrderChange = (event) => {
     setOrder(event.target.value)
@@ -34,7 +14,7 @@ const Reviews = ({product_id}) => {
   const addToRender = (event) => {
     setNumberToRender(numberToRender += 2);
   }
-
+  console.log(reviews);
   return (
     <div>
        <div>

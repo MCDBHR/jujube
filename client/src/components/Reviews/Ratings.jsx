@@ -1,27 +1,15 @@
 import React, {useState, useEffect} from 'react'; // import useState
 import axios from 'axios';
-import CharacteristicBar from './ratingComponents/CharacteristicBar.jsx'
+import CharacteristicBar from './ratingComponents/CharacteristicBar.jsx';
+import RatingBar from './ratingComponents/RatingBar.jsx';
 
-const Ratings = ({product_id}) => {
-  const [characteristics, setCharacteristics] = useState({});
-  const [ratings, setRatings] = useState({});
-  const [recommended, setRecommended] = useState({});
+const Ratings = ({characteristics, ratings, recommended}) => {
+
   let [displayRating, setDisplayRating] = useState(0);
   let [recommendedRating, setRecommendedRating] = useState(0)
-  useEffect(() => {
-    let config = {
-      headers: {'Authorization': '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'},
-      params: {'product_id': product_id}
-    };
-    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/rfp/reviews/meta', config)
-      .then((reviews) => {
-        console.log(reviews, 'meta data');
-        setCharacteristics(reviews.data.characteristics);
-        setRatings(reviews.data.ratings);
-        setRecommended(reviews.data.recommended)
-      })
-  }, []);
 
+
+  //temporary star feature, will later replace with star component
   useEffect(() => {
 
     let starRating = Object.keys(ratings);
@@ -41,15 +29,13 @@ const Ratings = ({product_id}) => {
     setRecommendedRating(recommendedAverage)
 
   })
-  console.log(characteristics, 'there are the characteristics');
+
   return (
     <div>
       <h1>RATINGS {displayRating}</h1>
       <div>
-        {/* {characteristics.Comfort.value} */}
-        {/* {characteristics.Fit.value}
-        {characteristics.Length.value}
-        {characteristics.Quality.value} */}
+        <RatingBar data={ratings}/>
+        <CharacteristicBar data={characteristics}/>
       </div>
       <p> {recommendedRating}% recommends this product</p>
     </div>
