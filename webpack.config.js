@@ -1,14 +1,9 @@
 const path = require('path');
 
 module.exports = {
-<<<<<<< HEAD
   target: 'web',
   mode: "development",
   entry: path.join(__dirname, "client", "src", "index.jsx"),
-=======
-  mode: 'development',
-  entry: './client/src/index.jsx',
->>>>>>> main
   output: {
     path: path.join(__dirname, "/client/dist");,
     filename: 'bundle.js',

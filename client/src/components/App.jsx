@@ -1,14 +1,10 @@
-<<<<<<< HEAD
-import React from 'react';
-import RatingsAndReviews from './Reviews/RatingsAndReviews.jsx';
-=======
 import React, { useState, useEffect }  from 'react';
 import Overview from './Overview'
 import axios from 'axios';
 import { Nav } from './style/NavStyle.js';
 import FlexContainer from './style/Flexbox.js';
 import AppContainer from './style/AppContainer.js';
->>>>>>> main
+import RatingsAndReviews from './Reviews/RatingsAndReviews.jsx';
 
 const App = () => {
   const [product, setProduct] = useState([]);
@@ -19,13 +15,6 @@ const App = () => {
   }, []);
   const [overview,related,styles,reviews,reviewsMeta] = product;
   return (
-<<<<<<< HEAD
-    <div>
-      Esmy's ratings and review settings below
-
-      <RatingsAndReviews product_id={65631}/>
-
-=======
     <div style={{ position: 'relative' }}>
       <Nav>
         Jonas Brother
@@ -38,10 +27,10 @@ const App = () => {
           styles={styles}
           reviews={reviews}
         />
+        <RatingsAndReviews product_id={65631}/>
         </FlexContainer>
       </AppContainer>
       }
->>>>>>> main
     </div>
   )
 }
