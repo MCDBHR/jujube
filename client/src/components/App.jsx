@@ -1,37 +1,25 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from 'axios';
-import RelatedProducts from './RelatedProducts/RelatedProducts.jsx'
+import RelatedProduct from './RelatedProducts/RelatedProduct.jsx';
+import FavoriteProduct from './RelatedProducts/FavoriteProduct.jsx';
 
-// class App extends React.Component {
-//   constructor(props){
-//     super(props);
-//   }
+export const MainProductContext = React.createContext();
 
-//   componentDidMount() {
-//     console.log('DID OUR COMPONENT MOUNT TWICE?!')
-//     // axios.get('/products')
-//     //   .then(result => console.log(result))
-//     //   .catch(err => console.log(err));
-//   }
-
-//   render() {
-//     return(
-//       <div>
-//         <RelatedProducts/>
-//       </div>
-//     )
-//   }
-
-// }
-
-const App = () => {
+const App = (props) => {
+  const [products, setProducts] = useState({});
   useEffect(() => {
-    console.log('App Mounted');
+    axios.get('/products/65631')
+     .then(result => setProducts(result.data))
+     .catch(err => console.log(err));
   }, [])
 
     return (
       <div>
-        <RelatedProducts/>
+        {products.id} product
+        <MainProductContext.Provider value={products}>
+          {Object.keys(products).length && <RelatedProduct/>}
+        </MainProductContext.Provider>
+          {localStorage.getItem('favItems') && <FavoriteProduct/>}
       </div>
     )
 }

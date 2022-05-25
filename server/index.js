@@ -10,9 +10,18 @@ const publicPath = path.join(__dirname, '../client', 'dist');
 app.use(express.static(publicPath));
 app.use(express.json());
 
-app.get('/products', (req, res) => {
-  console.log('we are in controller')
-  getAtelier()
+app.get('/products/:id', (req, res) => {
+  const id = req.params.id;
+
+  getAtelier(id)
+    .then(results => res.status(200).send(results.data))
+    .catch(err => res.status(400).send(err))
+})
+
+app.get('/products/:id/related', (req, res) => {
+  console.log(req.params, 'We re in here');
+  const id = req.params.id;
+  getAtelier(id, 'related')
     .then(results => res.status(200).send(results.data))
     .catch(err => res.status(400).send(err))
 })
