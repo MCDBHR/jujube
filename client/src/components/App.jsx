@@ -18,7 +18,7 @@ const App = () => {
       <Nav>
         Jonas Brother
       </Nav>
-      {!product.length ? null :
+      {!!product.length &&
       <AppContainer>
         <FlexContainer direction="column" gap="3em">
         <Overview

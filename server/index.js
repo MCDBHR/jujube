@@ -5,6 +5,7 @@ const PORT = 3000 || process.env.PORT;
 const axios = require('axios');
 const bodyParser = require('body-parser');
 const apiURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/';
+const apiHeaders = { headers: {'Authorization': process.env.TOKEN}}
 app.use(express.static('client/dist'));
 app.use(express.json());
 app.use(bodyParser.json());
@@ -16,7 +17,7 @@ app.listen(PORT, () => {
 //get all products
 app.get('/products', async (req, res) => {
  try {
-   const response = await axios.get(`${apiURL}products`, { headers: {'Authorization': process.env.TOKEN}});
+   const response = await axios.get(`${apiURL}products`,apiHeaders);
    res.status(200).send(response.data)
  } catch(err){res.send(err)}
 });
@@ -26,11 +27,11 @@ app.get('/products', async (req, res) => {
 app.get('/products/:product_id',async (req,res) => {
   const id = req.params.product_id;
   try{
-    const overview = await axios.get(`${apiURL}products/${id}`,{ headers: {'Authorization': process.env.TOKEN}});
-    const related = await axios.get(`${apiURL}products/${id}/related`,{ headers: {'Authorization': process.env.TOKEN}});
-    const styles = await axios.get(`${apiURL}products/${id}/styles`,{ headers: {'Authorization': process.env.TOKEN}});
-    const reviews = await axios.get(`${apiURL}reviews/?product_id=${id}`,{ headers: {'Authorization': process.env.TOKEN}});
-    const metaReview = await axios.get(`${apiURL}reviews/meta/?product_id=${id}`, { headers: {'Authorization': process.env.TOKEN}})
+    const overview = await axios.get(`${apiURL}products/${id}`,apiHeaders);
+    const related = await axios.get(`${apiURL}products/${id}/related`,apiHeaders);
+    const styles = await axios.get(`${apiURL}products/${id}/styles`,apiHeaders);
+    const reviews = await axios.get(`${apiURL}reviews/?product_id=${id}`,apiHeaders);
+    const metaReview = await axios.get(`${apiURL}reviews/meta/?product_id=${id}`, apiHeaders)
     const combined = [];
     await combined.push(overview.data,related.data,styles.data,reviews.data,metaReview.data)
     res.status(200).send(combined)
@@ -42,7 +43,7 @@ app.get('/products/:product_id',async (req,res) => {
 //add To Cart
 app.post('/cart', async (req, res) => {
   try {
-    const response = await axios.post(`${apiURL}cart`, req.body, { headers: {'Authorization': process.env.TOKEN}});
+    const response = await axios.post(`${apiURL}cart`, req.body, apiHeaders);
     res.status(201).send(response)
   }catch(err) {
     res.send(err)
@@ -53,7 +54,7 @@ app.post('/cart', async (req, res) => {
 //reviews meta
 app.get('/reviews/:product_id', (req, res) => {
   const id = req.params.product_id
-  axios.get(`${apiURL}reviews/meta/?product_id=${id}`, { headers: {'Authorization': process.env.TOKEN}})
+  axios.get(`${apiURL}reviews/meta/?product_id=${id}`, apiHeaders)
   .then((results)=> {res.status(200).send(results.data)})
   .catch((err) => { res.status(500).send(err);});
 });
@@ -63,7 +64,7 @@ app.get('/reviews/:product_id', (req, res) => {
 //from client end: axios.put('/report/review/?id=1135681')
 app.put('/report/review/:id', (req, res) => {
   var id =  req.params.id;
-  axios.put(`${apiURL}reviews/${id}/report`, id, { headers: {'Authorization': process.env.TOKEN}})
+  axios.put(`${apiURL}reviews/${id}/report`, id,  apiHeaders)
   .then((data)=> { res.status(200).send(data.data)})
   .catch((err) => {res.status(500).send(err);});
 });
