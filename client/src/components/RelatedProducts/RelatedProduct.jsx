@@ -15,7 +15,8 @@ const RelatedProduct = () => {
       .then(results => {
         const relatedProductsId = results.data;
 
-        const relatedProductsPromise = relatedProductsId.map(id => axios.get(`/products/${id}`))
+        const relatedProductsPromise =
+        relatedProductsId.map(id => axios.get(`/products/${id}`))
 
         //Promise returns all related objects
         Promise.all(relatedProductsPromise)
