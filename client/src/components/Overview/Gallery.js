@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { FaArrowAltCircleUp, FaArrowAltCircleDown} from 'react-icons/fa';
+import { AiOutlineArrowUp, AiOutlineArrowDown} from 'react-icons/Ai';
+import {BsArrowsFullscreen}from 'react-icons/Bs';
 import Thumbnails from './Thumbnails.js';
 import {
   SlideImage,
@@ -12,7 +13,8 @@ import {
   ThumbnailArrowContainer,
   ThumbnailControlsContainer,
   CarouselContent,
-  CarouselContentWrapper} from '../style/Carousel.js'
+  CarouselContentWrapper,
+  FullScreenButtonContainer} from '../style/Carousel.js'
 
 /*-------------Main Function------------------*/
 const Gallery = ({defaultStyle,expandedHandler,expanded}) => {
@@ -84,7 +86,7 @@ const handleMouseHover = (event) => {
 const transformOrigin = {
   transformOrigin: `${mouseX}% ${mouseY}%`,
 };
-//img style
+//main img
 const mainStyle = {
   backgroundRepeat: 'no-repeat',
   backgroundPosition: 'center',
@@ -106,20 +108,20 @@ const galleryContainerStyle = {
           onClick={prevMainImg}
           aria-label="previous-image"
         >
+
         </ArrowButton>
         )}
         <ThumbnailControlsContainer>
         {
             length > 6 && (
+
               <ThumbnailArrowContainer
                 disabled={isDisabled}
                 onClick={prevImg}
                 aria-label="previous-thumbnail"
               >
-                {/* <FontAwesomeIcon
-                  icon={solid('arrow-up')}
-                  className="thumbnail-control"
-                /> */}
+
+                <AiOutlineArrowUp />
               </ThumbnailArrowContainer>
             )
           }
@@ -146,26 +148,24 @@ const galleryContainerStyle = {
                 onClick={nextImg}
                 aria-label="next-thumbnail"
               >
-                {/* <FontAwesomeIcon
-                  icon={solid('arrow-down')}
-                  className="thumbnail-control"
-                /> */}
+               <AiOutlineArrowDown />
               </ThumbnailArrowContainer>
             )
           }
         </ThumbnailControlsContainer>
 
 
-{/*
+
         <FullScreenButtonContainer
-          onClick={handleExpand}
+          onClick={expandedHandler}
           disabled={isDisabled}
           aria-label="expand-image"
         >
-          <FontAwesomeIcon
+          {/* <FontAwesomeIcon
             icon={solid('expand')}
-          />
-        </FullScreenButtonContainer> */}
+          /> */}
+          <BsArrowsFullscreen />
+        </FullScreenButtonContainer>
 
           <CarouselContentWrapper>
           <CarouselContent

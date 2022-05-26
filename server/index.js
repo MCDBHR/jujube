@@ -18,7 +18,7 @@ app.listen(PORT, () => {
 //get all products
 app.get('/products', async (req, res) => {
  try {
-   const response = await axios.get(`${apiURL}products`,apiHeaders);
+   const response = await axios.get(`${apiURL}products`, apiHeaders);
    res.status(200).send(response.data)
  } catch(err){res.send(err)}
 });
@@ -28,14 +28,15 @@ app.get('/products', async (req, res) => {
 //We should split it into multiple get controllers?
 app.get('/products/:product_id', async (req, res) => {
   const id = req.params.product_id;
-  try {
-    const overview = await axios.get(`${apiURL}products/${id}`, apiHeaders);
-    const related = await axios.get(`${apiURL}products/${id}/related`, apiHeaders);
-    const styles = await axios.get(`${apiURL}products/${id}/styles`, apiHeaders);
-    const reviews = await axios.get(`${apiURL}reviews/?product_id=${id}`, apiHeaders);
-    const metaReview = await axios.get(`${apiURL}reviews/meta/?product_id=${id}`, apiHeaders)
+  try{
+    console.log('products with id');
+    const overview = await axios.get(`${apiURL}products/${id}`,apiHeaders);
+    const related = await axios.get(`${apiURL}products/${id}/related`,apiHeaders);
+    const styles = await axios.get(`${apiURL}products/${id}/styles`,apiHeaders);
+    const reviews = await axios.get(`${apiURL}reviews/?product_id=${id}`,apiHeaders);
+
     const combined = [];
-    await combined.push(overview.data,related.data,styles.data,reviews.data,metaReview.data)
+    await combined.push(overview.data,related.data,styles.data,reviews.data)
     res.status(200).send(combined)
   } catch(err) {
     res.status(400).send(err)
@@ -59,12 +60,44 @@ app.post('/cart', async (req, res) => {
   }
 })
 
-/*Reviews */
-//reviews meta
-app.get('/reviews/:product_id', (req, res) => {
-  const id = req.params.product_id
-  axios.get(`${apiURL}reviews/meta/?product_id=${id}`, apiHeaders)
-  .then((results)=> {res.status(200).send(results.data)})
+/* ===================== REVIEWS AND RATINGS ========================= */
+/*Reviews get all and by sort*/
+app.get('/reviews/', (req, res) => {
+  const id = req.query.product_id
+  const sort = req.query.sort
+  const count = req.query.count
+  console.log(id, sort, count, 'over here');
+  let config = {
+    headers: {'Authorization': process.env.AUTH_TOKEN},
+    params: {
+      'product_id': id,
+      'sort': sort,
+      'count': count
+    }
+  }
+  axios.get(`${apiURL}reviews/`, config)
+  .then((results) => {
+    res.status(200).send(results.data.results)})
+
+  .catch((err) => {
+    res.send(err);
+  })
+})
+
+// get reviews meta for one product
+app.get('/reviews/meta', (req, res) => {
+  const id = req.query.product_id
+  console.log('this is the id:', id);
+  let config = {
+    headers: {'Authorization': process.env.AUTH_TOKEN},
+    params: {
+      'product_id': id
+    }
+  }
+  console.log(id, 'this is the ID');
+  axios.get(`${apiURL}reviews/meta`, config)
+  .then((results)=> {
+    res.status(200).send(results.data)})
   .catch((err) => { res.status(500).send(err);});
 });
 
