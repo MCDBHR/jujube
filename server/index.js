@@ -9,6 +9,7 @@ const apiHeaders = { headers: {'Authorization': process.env.TOKEN}}
 app.use(express.static('client/dist'));
 app.use(express.json());
 app.use(bodyParser.json());
+//app.use(express.urlencoded({extended: true}))
 app.listen(PORT, () => {
   console.log(`Server listening on port: ${PORT}`);
 })
@@ -24,21 +25,29 @@ app.get('/products', async (req, res) => {
 
 
 //get one products
-app.get('/products/:product_id',async (req,res) => {
+//We should split it into multiple get controllers?
+app.get('/products/:product_id', async (req, res) => {
   const id = req.params.product_id;
-  try{
-    const overview = await axios.get(`${apiURL}products/${id}`,apiHeaders);
-    const related = await axios.get(`${apiURL}products/${id}/related`,apiHeaders);
-    const styles = await axios.get(`${apiURL}products/${id}/styles`,apiHeaders);
-    const reviews = await axios.get(`${apiURL}reviews/?product_id=${id}`,apiHeaders);
+  try {
+    const overview = await axios.get(`${apiURL}products/${id}`, apiHeaders);
+    const related = await axios.get(`${apiURL}products/${id}/related`, apiHeaders);
+    const styles = await axios.get(`${apiURL}products/${id}/styles`, apiHeaders);
+    const reviews = await axios.get(`${apiURL}reviews/?product_id=${id}`, apiHeaders);
     const metaReview = await axios.get(`${apiURL}reviews/meta/?product_id=${id}`, apiHeaders)
     const combined = [];
     await combined.push(overview.data,related.data,styles.data,reviews.data,metaReview.data)
     res.status(200).send(combined)
-  }catch(err) {
+  } catch(err) {
     res.status(400).send(err)
   }
 })
+
+// app.get('/products/:product_id/related', async (req, res) => {
+//   const id = req.params.product_id;
+//   try {
+//     const related = await axios.get(`${apiURL}products/${id}/related`, apiHeaders);
+//   }
+// })
 
 //add To Cart
 app.post('/cart', async (req, res) => {
