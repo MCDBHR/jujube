@@ -5,7 +5,7 @@ const PORT = 3000 || process.env.PORT;
 const axios = require('axios');
 const bodyParser = require('body-parser');
 const apiURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/';
-const apiHeaders = { headers: {'Authorization': process.env.TOKEN}}
+const apiHeaders = { headers: {'Authorization': process.env.AUTH_TOKEN}}
 app.use(express.static('client/dist'));
 app.use(express.json());
 app.use(bodyParser.json());
