@@ -19,28 +19,21 @@ const RatingsAndReviews = ({product_id}) => {
   const [recommended, setRecommended] = useState({});
 
   useEffect(() => {
-    let config = {
-      headers: {'Authorization': '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'},
-      params: {'product_id': product_id,
-                    'sort' : order,
-                    'count': 9999}
-    };
-    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/rfp/reviews', config)
-      .then((reviews) => {
-        console.log(reviews);
-        let reviewsList = reviews.data.results;
-        setReviews(reviewsList);
+    axios.get('/reviews/', {params: {'product_id': product_id, 'sort' : order, 'count': 9999}})
+    .then((results) => {
+      setReviews(results.data)
+    })
+    .then(()=> {
+      axios.get('/reviews/meta', {params: {'product_id': product_id}})
+      .then((metaData) => {
+        console.log(metaData, 'this is meta data');
+        setCharacteristics(metaData.data.characteristics);
+        setRatings(metaData.data.ratings);
+        setRecommended(metaData.data.recommended);
       })
-      .then(() => {
-        axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/rfp/reviews/meta', config)
-          .then((reviews) => {
-            console.log(reviews);
-            setCharacteristics(reviews.data.characteristics);
-            setRatings(reviews.data.ratings);
-            setRecommended(reviews.data.recommended)
-          })
-      })
+    })
   }, [order]);
+
 
 
   if (reviews && characteristics !== {}) {

@@ -8,12 +8,14 @@ import RatingsAndReviews from './Reviews/RatingsAndReviews.jsx';
 
 const App = () => {
   const [product, setProduct] = useState([]);
+
+
   useEffect(() => {
     axios.get('/products/40348').then((res) => {
       setProduct(res.data);
     });
   }, []);
-  const [overview,related,styles,reviews,reviewsMeta] = product;
+  const [overview,related,styles,reviews] = product;
   return (
     <div style={{ position: 'relative' }}>
       <Nav>
@@ -27,7 +29,7 @@ const App = () => {
           styles={styles}
           reviews={reviews}
         />
-        <RatingsAndReviews product_id={65631}/>
+        <RatingsAndReviews product_id={40348}/>
         </FlexContainer>
       </AppContainer>
       }
