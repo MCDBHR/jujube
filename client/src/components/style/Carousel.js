@@ -210,6 +210,38 @@ const CarouselContent = styled.div`
     }
   `}
 `;
+const FullScreenButtonContainer = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  width: 48px;
+  position: absolute;
+  top: 2.5%;
+  right: 2.5%;
+  z-index: 5;
+  cursor: pointer;
+  color: black;
+  transition: all .2s ease;
+  background-color: rgba(255,255,255,.75);
+  padding: .5em;
+  border-radius: 100%;
+  border: none;
+  font-weight: bold;
+
+  @media (max-height: 1100px) {
+    height: 36px;
+    width: 36px;
+  }
+
+  &:hover {
+    background-color: rgb(246,246,246)
+  }
+
+  &:focus {
+    outline: none;
+  }
+`;
 
 export {
   SlideImage,
@@ -223,5 +255,6 @@ export {
   ThumbnailArrowContainer,
   ThumbnailControlsContainer,
   CarouselContentWrapper,
-  CarouselContent
+  CarouselContent,
+  FullScreenButtonContainer
 }
