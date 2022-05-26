@@ -21,6 +21,7 @@ const FavoriteProduct = () => {
 
   return (
     <div style={{display: "flex", flexDirection: "row", justifyContent: "space-evenly"}}>
+      <h2>Favorite Products</h2>
       {favItems.map(item => <FavoriteCard key={item.id} favItem={item}/>)}
     </div>
   )
