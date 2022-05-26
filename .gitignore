@@ -1,9 +1,4 @@
 node_modules
 dist
 .env
-<<<<<<< HEAD
-config.js
 **/node_modules
-=======
-**/node_modules
->>>>>>> main
