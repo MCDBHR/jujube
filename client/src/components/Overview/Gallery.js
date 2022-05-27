@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { AiOutlineArrowUp, AiOutlineArrowDown} from 'react-icons/Ai';
+import { AiOutlineArrowUp, AiOutlineArrowDown,AiOutlineArrowLeft,AiOutlineArrowRight} from 'react-icons/Ai';
 import {BsArrowsFullscreen}from 'react-icons/Bs';
 import Thumbnails from './Thumbnails.js';
 import {
@@ -86,6 +86,7 @@ const handleMouseHover = (event) => {
 const transformOrigin = {
   transformOrigin: `${mouseX}% ${mouseY}%`,
 };
+
 //main img
 const mainStyle = {
   backgroundRepeat: 'no-repeat',
@@ -97,6 +98,8 @@ const mainStyle = {
 const galleryContainerStyle = {
   overflow: 'hidden',
 };
+
+
   return(
     <CarouselContainer>
       <CarouselWrapper>
@@ -106,9 +109,9 @@ const galleryContainerStyle = {
           disabled={isDisabled}
           style={{ left: '18px' }}
           onClick={prevMainImg}
-          aria-label="previous-image"
+          aria-label="previous-Main-image"
         >
-
+          <AiOutlineArrowLeft />
         </ArrowButton>
         )}
         <ThumbnailControlsContainer>
@@ -118,7 +121,7 @@ const galleryContainerStyle = {
               <ThumbnailArrowContainer
                 disabled={isDisabled}
                 onClick={prevImg}
-                aria-label="previous-thumbnail"
+                aria-label="last-thumbnail"
               >
 
                 <AiOutlineArrowUp />
@@ -159,11 +162,8 @@ const galleryContainerStyle = {
         <FullScreenButtonContainer
           onClick={expandedHandler}
           disabled={isDisabled}
-          aria-label="expand-image"
+          aria-label="expand-Main-image"
         >
-          {/* <FontAwesomeIcon
-            icon={solid('expand')}
-          /> */}
           <BsArrowsFullscreen />
         </FullScreenButtonContainer>
 
@@ -186,6 +186,19 @@ const galleryContainerStyle = {
             />
           </CarouselContent>
           </CarouselContentWrapper>
+          {
+          currentMain < (length - 1)
+          && (
+            <ArrowButton
+              disabled={isDisabled}
+              style={{ right: '18px' }}
+              onClick={nextMainImg}
+              aria-label="next-Main-image"
+            >
+            <AiOutlineArrowRight />
+            </ArrowButton>
+          )
+        }
       </CarouselWrapper>
     </CarouselContainer>
 
@@ -194,25 +207,3 @@ const galleryContainerStyle = {
 }
 
 export default Gallery;
-
-// <FaChevronUp
-//         onClick={prevImg}
-//       />
-//       {thumbnailsImg.map((img, index) => {
-//         return (
-//           <div key={index}>
-//             {index === thumbIndex && (
-//               <SlideImage src={img} alt="" />
-//             )}
-//           </div>
-//         );
-//       })}
-//         <FaChevronDown
-//         onClick={nextImg}
-//       />
-
-
-// {/* {thumbnails.map((imgs,i) => {
-//       return <img src={imgs} key={i} />
-//     })} */}
-//  // <Thumbnails thumbs={thumbnailsImg}/>

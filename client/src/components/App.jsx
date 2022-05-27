@@ -7,13 +7,9 @@ import AppContainer from './style/AppContainer.js';
 import RatingsAndReviews from './Reviews/RatingsAndReviews.jsx';
 import RelatedProduct from './RelatedProducts/RelatedProduct.jsx';
 import FavoriteProduct from './RelatedProducts/FavoriteProduct.jsx';
-
 export const MainProductContext = React.createContext();
-
 const App = () => {
   const [product, setProduct] = useState([]);
-
-
   useEffect(() => {
     axios.get('/products/40344').then((res) => {
       //returns an array of all URL calls
@@ -24,7 +20,7 @@ const App = () => {
   return (
     <div style={{ position: 'relative' }}>
       <Nav>
-        Jonas Brother
+        The Jonas Brothers
       </Nav>
       {!!product.length &&
       <AppContainer>
@@ -34,8 +30,6 @@ const App = () => {
           styles={styles}
           reviews={reviews}
         />
-
-        <RatingsAndReviews product_id={40348}/>
          <div>
         {overview.id} product
         <MainProductContext.Provider value={overview}>
@@ -43,11 +37,11 @@ const App = () => {
         </MainProductContext.Provider>
           {localStorage.getItem('favItems') && <FavoriteProduct/>}
         </div>
+        <RatingsAndReviews product_id={40348}/>
         </FlexContainer>
       </AppContainer>
       }
     </div>
   )
 }
-
 export default App;
