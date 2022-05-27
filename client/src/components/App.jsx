@@ -8,10 +8,11 @@ import RatingsAndReviews from './Reviews/RatingsAndReviews.jsx';
 import RelatedProduct from './RelatedProducts/RelatedProduct.jsx';
 import FavoriteProduct from './RelatedProducts/FavoriteProduct.jsx';
 
-export const MainProductContext = React.createContext();
+export const SetFavItemsContext = React.createContext();
 
 const App = () => {
   const [product, setProduct] = useState([]);
+  const [favItems, setFavItems] = useState([]);
 
 
   useEffect(() => {
@@ -19,6 +20,11 @@ const App = () => {
       //returns an array of all URL calls
       setProduct(res.data);
     });
+
+    //Setting Favorite Item state
+    const parsedItems = JSON.parse(localStorage.getItem('favItems'));
+    setFavItems(parsedItems);
+
   }, []);
   const [overview,related,styles,reviews] = product;
   return (
@@ -34,15 +40,15 @@ const App = () => {
           styles={styles}
           reviews={reviews}
         />
-
-        <RatingsAndReviews product_id={40348}/>
          <div>
         {overview.id} product
-        <MainProductContext.Provider value={overview}>
+        <SetFavItemsContext.Provider value={setFavItems}>
           {Object.keys(overview).length && <RelatedProduct relatedItems={related}/>}
-        </MainProductContext.Provider>
+        </SetFavItemsContext.Provider>
           {localStorage.getItem('favItems') && <FavoriteProduct/>}
         </div>
+
+        <RatingsAndReviews product_id={40348}/>
         </FlexContainer>
       </AppContainer>
       }

@@ -12,12 +12,11 @@ import axios from 'axios';
 
 
 const FavoriteProduct = () => {
-  const [favItems, setFavItems] = useState([])
-  useEffect(() => {
-    const parsedItems = JSON.parse(localStorage.getItem('favItems'));
-
-    setFavItems(parsedItems);
-  }, [])
+  // const [favItems, setFavItems] = useState([])
+  // useEffect(() => {
+  //   const parsedItems = JSON.parse(localStorage.getItem('favItems'));
+  //   setFavItems(parsedItems);
+  // }, [])
 
   return (
     <div style={{display: "flex", flexDirection: "row", justifyContent: "space-evenly"}}>

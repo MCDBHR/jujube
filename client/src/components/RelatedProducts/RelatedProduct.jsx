@@ -1,5 +1,5 @@
 import React, {useEffect, useContext, useState} from 'react';
-import {MainProductContext} from '../App.jsx';
+
 import RelatedCard from './RelatedCard.jsx'
 import FavoriteCard from './FavoriteCard.jsx'
 import axios from 'axios';
@@ -7,7 +7,7 @@ import axios from 'axios';
 
 
 const RelatedProduct = (props) => {
-  const mainProduct = useContext(MainProductContext);
+
   const [relatedProducts, setRelatedProducts] = useState([]);
 
   useEffect(() => {
@@ -30,24 +30,16 @@ const RelatedProduct = (props) => {
       // })
       // .catch(err => console.log(err))
 
-      //[1234,1234,1234,1234]
       const relatedProductsPromise =
       props.relatedItems.map(id => axios.get(`/products/${id}/`));
-      [[[],[],[]],[[],[],[]]]
+
       Promise.all(relatedProductsPromise)
         .then(results => {
-          //[[['overview'],[],[]],[],[]]
-          //const [product] = results.data;
-          console.log(results)
           const arrayOverview = results.map(productArray => {
             return productArray.data[0]
           })
           setRelatedProducts(arrayOverview);
-
-          console.log(arrayOverview, 'arrayOverview');
-
         })
-
   }, [])
 
   return (
