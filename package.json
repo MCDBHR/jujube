@@ -4,7 +4,7 @@
   "description": "FEC project",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "build": "webpack --config webpack.config.js -w",
     "react-dev": "webpack --mode development --watch",
     "server-dev": "npx nodemon server server/index.js --watch",
@@ -26,8 +26,11 @@
     "@babel/core": "^7.17.12",
     "@babel/preset-env": "^7.17.12",
     "@babel/preset-react": "^7.17.12",
+    "@testing-library/react": "^13.2.0",
     "babel-loader": "^8.2.5",
     "html-webpack-plugin": "^5.5.0",
+    "jest": "^28.1.0",
+    "supertest": "^6.2.3",
     "webpack": "^5.72.1",
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.9.0"

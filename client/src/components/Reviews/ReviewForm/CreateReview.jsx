@@ -23,6 +23,7 @@ export const CreateReview = ({characteristics}) => {
       <Body />
       <PhotoUpload/>
       <UsernameEmail />
+      <button>submit review</button>
     </div>
   );
 };

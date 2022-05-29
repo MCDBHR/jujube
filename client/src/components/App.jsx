@@ -24,7 +24,7 @@ const App = () => {
   return (
     <div style={{ position: 'relative' }}>
       <Nav>
-        Jonas Brother
+        The Jonas Brothers
       </Nav>
       {!!product.length &&
       <AppContainer>
@@ -34,8 +34,6 @@ const App = () => {
           styles={styles}
           reviews={reviews}
         />
-
-        <RatingsAndReviews product_id={40348}/>
          <div>
         {overview.id} product
         <MainProductContext.Provider value={overview}>
@@ -43,6 +41,7 @@ const App = () => {
         </MainProductContext.Provider>
           {localStorage.getItem('favItems') && <FavoriteProduct/>}
         </div>
+        <RatingsAndReviews product_id={40348}/>
         </FlexContainer>
       </AppContainer>
       }
