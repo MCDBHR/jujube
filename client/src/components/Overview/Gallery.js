@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { AiOutlineArrowUp, AiOutlineArrowDown,AiOutlineArrowLeft,AiOutlineArrowRight} from 'react-icons/Ai';
 import {BsArrowsFullscreen}from 'react-icons/Bs';
-import Thumbnails from './Thumbnails.js';
 import {
   SlideImage,
   CarouselContainer,

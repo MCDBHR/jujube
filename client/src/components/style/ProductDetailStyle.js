@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import FlexContainer from './Flexbox';
+import Flexbox from './Flexbox';
 
-const ProductDetailsContainer = styled(FlexContainer)`
+const ProductDetailsContainer = styled(Flexbox)`
   @media (max-width: 1010px) {
     flex-direction: row-reverse;
     justify-content: space-between;

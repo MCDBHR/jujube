@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-const axios = require('axios');
-import FlexContainer from '../style/Flexbox';
-import StarRatings from '../style/StarRatings.js'
+import Flexbox from '../style/Flexbox';
 import ProductDetailsContainer from '../style/ProductDetailStyle'
 import styled from 'styled-components';
-import StarGenerator from './StarGenerator'
+import StarGenerator from './StarGenerator';
+import {AiFillTwitterSquare,AiFillInstagram,AiFillFacebook} from 'react-icons/Ai';
+const axios = require('axios');
 const LinkStyle = styled.a`
   text-decoration: none;
   color: inherit;
@@ -32,7 +32,7 @@ const ProductDetail = ({overview,reviews,metaReview}) => {
 
   return(
     <ProductDetailsContainer direction="column" gap="1.5em">
-      <FlexContainer direction="column" gap="0">
+      <Flexbox direction="column" gap="0">
         <span style={{
           fontSize: '.85em',
           opacity: '.8',
@@ -48,13 +48,16 @@ const ProductDetail = ({overview,reviews,metaReview}) => {
           fontStyle:'italic'
         }}
         >{description}</span>
-      </FlexContainer>
-      <FlexContainer direction="column" gap="0">
+      </Flexbox>
+      <Flexbox direction="column" gap="0">
         <div>
           <StarGenerator ratings={metaReview.ratings} />
+          <AiFillTwitterSquare />
+          <AiFillInstagram />
+          <AiFillFacebook />
         </div>
         {!!reviewsCount && <LinkStyle style={{ fontSize: '.8em' }} href="#reviews">Read {reviewsCount} reviews</LinkStyle>}
-      </FlexContainer>
+      </Flexbox>
     </ProductDetailsContainer>
   )
 }

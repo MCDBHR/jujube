@@ -1,14 +1,8 @@
 import React from 'react';
-import { BsImages } from 'react-icons/bs';
-import FlexContainer from '../style/Flexbox';
+import Flexbox from '../style/Flexbox';
 import styled from 'styled-components';
 import StyleEntry from './StyleEntry'
 
-/*----------Styling---------- */
-const PriceContainer = styled.div`
-borderBottom: 2px solid rgba(200,200,200,.75;
-marginTop: 1em
-`;
 
 
 const SelectStyle = ({styles,defaultStyle,handleStyleChange}) => {
@@ -31,7 +25,7 @@ const SelectStyle = ({styles,defaultStyle,handleStyleChange}) => {
   };
 
   return(
-    <FlexContainer direction="column" gap="1em">
+    <Flexbox direction="column" gap="1em">
       {/* FOR price */}
     <div
         style={{
@@ -58,7 +52,7 @@ const SelectStyle = ({styles,defaultStyle,handleStyleChange}) => {
         {defaultStyle.name}
       </span>
 
-      <FlexContainer
+      <Flexbox
         direction="row"
         wrap="wrap"
         gap=".5em"
@@ -87,8 +81,8 @@ const SelectStyle = ({styles,defaultStyle,handleStyleChange}) => {
             />
           )
         })}
-      </FlexContainer>
-    </FlexContainer>
+      </Flexbox>
+    </Flexbox>
   )
 };
 

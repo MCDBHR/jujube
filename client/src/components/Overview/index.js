@@ -51,7 +51,7 @@ const Overview = ({overview,styles,reviews,metaReview}) => {
   </ProductDetailContainer>
 </OverviewContainer>
 </Flexbox>
-    </main>
+</main>
   )
 }
 

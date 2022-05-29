@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import FlexContainer from '../style/Flexbox';
+import Flexbox from '../style/Flexbox';
 import styled,{ css } from 'styled-components';
-
 /*===============Styling======================= */
 const Button = styled.button`
   color: black;
@@ -207,15 +206,15 @@ const addToCart = () => {
 //after added
 let msg;
 if(postCartStatus){
-  msg = `🎉🎉🎉 Woohoo! You will have ${quantity} of ${defaultStyle.name} at Size ${sizeList[sizeIndex]}!!`
+  msg = `🎉🎉🎉 Woohoo! Added ${quantity} ${defaultStyle.name} at Size ${sizeList[sizeIndex]}!!`
 } else {
   msg = `Nothing in the Cart`
 }
 
 return (
-  <FlexContainer direction="column" gap="1em">
+  <Flexbox direction="column" gap="1em">
     <span>Current Size: {sizeList[sizeIndex]}</span>
-    <FlexContainer direction="row" gap=".5em" wrap="wrap">
+    <Flexbox direction="row" gap=".5em" wrap="wrap">
     {skuList.map((id, index) => (
       <Button
       key={index}
@@ -229,15 +228,15 @@ return (
       </Button>
     ))
     }
-    </FlexContainer>
-      <FlexContainer direction="column" gap="1em">
-        <FlexContainer
+    </Flexbox>
+      <Flexbox direction="column" gap="1em">
+        <Flexbox
           direction="column"
           gap="1em"
           align="center"
           style={{ position: 'relative' }}
         >
-          <FlexContainer
+          <Flexbox
             direction="row"
             gap="1em"
             align="center"
@@ -265,15 +264,15 @@ return (
               disabled={sizeIndex === null || quantity === 0}>
                 Add to Cart
             </CartButoon>
-          </FlexContainer>
+          </Flexbox>
           <CartMsg
           postCartStatus={postCartStatus}
           >
             {msg}
           </CartMsg>
-        </FlexContainer>
-      </FlexContainer>
-  </FlexContainer>
+        </Flexbox>
+      </Flexbox>
+  </Flexbox>
 )
 }
 

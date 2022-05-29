@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import FlexContainer from '../style/Flexbox';
+import Flexbox from '../style/Flexbox';
 import {AiFillStar,AiOutlineStar} from 'react-icons/Ai'
 
 /*-----------STYLING----------------*/
@@ -51,7 +51,7 @@ const StarGenerator= ({ratings}) => {
   const barWidth = `${100 - (average / 5) * 100}%`;
 
   return(
-    <FlexContainer direction="row" justify="flex-start" align="center" gap=".5em">
+    <Flexbox direction="row" justify="flex-start" align="center" gap=".5em">
       <RatingBox >
       <StarsContainer>
       <AiFillStar />
@@ -69,8 +69,8 @@ const StarGenerator= ({ratings}) => {
       <AiOutlineStar />
       </StarsContainer>
       </RatingBox>
-      <span style={{ fontWeight: 'bold',color:'grey' }}>Rating: {average.toFixed(1)}</span>
-    </FlexContainer>
+      <span style={{ fontWeight: 'bold',color:'black' }}>Rating: {average.toFixed(1)}</span>
+    </Flexbox>
   )
 
 }
