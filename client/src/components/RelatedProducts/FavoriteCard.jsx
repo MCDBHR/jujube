@@ -1,6 +1,15 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
+import {SetFavItemsContext} from '../App.jsx';
+
 
 const FavoriteCard = (props) => {
+  const setFavItems = useContext(SetFavItemsContext);
+
+  const removeFavItem = () => {
+    props.deleteFavProduct(props.favItem.id);
+  }
+
+
   return(
     <div style={{border: '1px solid black', display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "flex-start" }}>
       <div style={{width: "200px"}}>
@@ -10,6 +19,7 @@ const FavoriteCard = (props) => {
          <div>{props.favItem.category}</div>
          <div>{props.favItem.name}</div>
          <div>$ {props.favItem.default_price}</div>
+         <button onClick={removeFavItem}>Delete</button>
       </div>
 
     </div>

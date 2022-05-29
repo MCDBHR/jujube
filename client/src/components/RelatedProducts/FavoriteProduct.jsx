@@ -11,7 +11,7 @@ import axios from 'axios';
 //Need to only have the API key in the server / backend side, its not safe anywhere in react
 
 
-const FavoriteProduct = () => {
+const FavoriteProduct = (props) => {
   // const [favItems, setFavItems] = useState([])
   // useEffect(() => {
   //   const parsedItems = JSON.parse(localStorage.getItem('favItems'));
@@ -21,7 +21,8 @@ const FavoriteProduct = () => {
   return (
     <div style={{display: "flex", flexDirection: "row", justifyContent: "space-evenly"}}>
       <h2>Favorite Products</h2>
-      {favItems.map(item => <FavoriteCard key={item.id} favItem={item}/>)}
+      {console.log(props.favItems,'favItems being passed down')}
+      {props.favItems.map(item => <FavoriteCard key={item.id} deleteFavProduct={props.deleteFavProduct} favItem={item}/>)}
     </div>
   )
 }

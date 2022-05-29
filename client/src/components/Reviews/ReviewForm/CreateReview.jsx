@@ -12,7 +12,6 @@ import UsernameEmail from './UsernameEmail.jsx';
 export const CreateReview = ({characteristics}) => {
   //should pass an setState to children, so when onSubmit, it passes all the data to the onSubmit handler
 
-  console.log(characteristics, 'success in passing prop');
   //render the modal JSX in the portal div.
   return (
     <div>

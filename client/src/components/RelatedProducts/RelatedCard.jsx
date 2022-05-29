@@ -1,14 +1,14 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {SetFavItemsContext} from '../App.jsx';
 
 
 const RelatedCard = (props) => {
   const setFavItems = useContext(SetFavItemsContext);
   const handleOnClickFav = (e) => {
-    // To remove localStorage Items
+    //To remove localStorage Items
     // localStorage.removeItem('favItems');
     // return;
-    //
+
 
     if(!localStorage.getItem('favItems')) {
       localStorage.setItem('favItems', JSON.stringify([props.relatedProduct]));
@@ -27,7 +27,7 @@ const RelatedCard = (props) => {
 
       if(!hasDuplicateItem) {
         parsedItems.push(props.relatedProduct);
-        setFavItems(props.relatedproduct);
+        setFavItems(parsedItems);
         localStorage.setItem('favItems', JSON.stringify(parsedItems));
       }
 

@@ -10,9 +10,9 @@ const CharacteristicBar= ({data}) => {
   return (
     //for each of the items
     <div>
-      {characteristicArray.map((characteristic) => {
+      {characteristicArray.map((characteristic, index) => {
         return (
-          <div>
+          <div key={index}>
             <p>{characteristic}</p>
             <b>{data[characteristic].value}</b>
           </div>

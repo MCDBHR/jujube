@@ -20,12 +20,25 @@ const App = () => {
       //returns an array of all URL calls
       setProduct(res.data);
     });
-
     //Setting Favorite Item state
     const parsedItems = JSON.parse(localStorage.getItem('favItems'));
     setFavItems(parsedItems);
-
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem('favItems', JSON.stringify(favItems));
+  }, [favItems])
+  //Watch video on try catch or use useEffect
+  const deleteFavProduct = (id) => {
+    try {
+      const removedProduct = favItems.filter(product => (product.id !== id));
+      setFavItems(removedProduct);
+    } catch(err) {
+      console.log(err, "error here")
+    }
+  }
+
+
   const [overview,related,styles,reviews] = product;
   return (
     <div style={{ position: 'relative' }}>
@@ -44,8 +57,8 @@ const App = () => {
         {overview.id} product
         <SetFavItemsContext.Provider value={setFavItems}>
           {Object.keys(overview).length && <RelatedProduct relatedItems={related}/>}
+          {!!favItems.length && <FavoriteProduct deleteFavProduct={deleteFavProduct} favItems={favItems}/>}
         </SetFavItemsContext.Provider>
-          {localStorage.getItem('favItems') && <FavoriteProduct/>}
         </div>
 
         <RatingsAndReviews product_id={40348}/>

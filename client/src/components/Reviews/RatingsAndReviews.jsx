@@ -26,7 +26,7 @@ const RatingsAndReviews = ({product_id}) => {
     .then(()=> {
       axios.get('/reviews/meta', {params: {'product_id': product_id}})
       .then((metaData) => {
-        console.log(metaData, 'this is meta data');
+
         setCharacteristics(metaData.data.characteristics);
         setRatings(metaData.data.ratings);
         setRecommended(metaData.data.recommended);
