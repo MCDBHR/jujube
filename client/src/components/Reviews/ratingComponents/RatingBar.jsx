@@ -2,42 +2,67 @@ import React, {useState, useEffect} from 'react'; // import useState
 import axios from 'axios';
 import styled from 'styled-components';
 
-// styled bar
-// const bar = styled.div`
-//   width: 50px
-//   height: 10px
-//   border: 1px
-// `
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`
+const BarContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin: 0.5em 0 0.5em 0;
+`;
 
-// styled data in bar
+const Bar = styled.div`
+  display: flex;
+  background-color: #e6e6e6;
+  color: white;
+  height: 0.9em;
+  width: 100%;
+`;
+
+const FilledData = styled.div`
+  background-color: #9bde90;
+  z-index:2;
+  width: ${({width}) => width}%;
+  height: 0.9em;
+  `
+const StarRatingNum = styled.div`
+  font-size: .7em;
+  width: %;
+  text-decoration: underline;
+`;
 
 const RatingBar = ({data}) => {
-  // takes in an object as a prop
-  // sets an array of the keys
-  let ratingArray = Object.keys(data);
+  let [largestRating, setLargestRating] = useState(0)
+
+  let dataValues = Object.values(data);
+  let dataKeys = Object.keys(data);
+
+  for (let value of dataValues) {
+    value = parseInt(value);
+    if (largestRating < value) {
+      setLargestRating(value);
+    }
+  }
 
   return (
-    //for each of the items
-    <div>
-      {ratingArray.map((rating) => {
+
+    <Container>
+      {dataKeys.map((key) => {
         return (
-          <div>
-            <div class="row">
-            <div class="data">
-            <div>{rating} star</div>
-            </div>
-            </div>
-            <div class="progressBar">
-            <div class="progressContainer">
-            </div>
-            </div>
-            <div class="data right">
-            <div>{data[rating]}</div>
-            </div>
-          </div>
+          <BarContainer>
+            <StarRatingNum>{`${key} stars`} </StarRatingNum>
+            <Bar>
+              <FilledData width={(data[key]) / largestRating * 100}></FilledData>
+            </Bar>
+          </BarContainer>
+
+
         )
       })}
-    </div>
+
+    </Container>
   )
 
 }
