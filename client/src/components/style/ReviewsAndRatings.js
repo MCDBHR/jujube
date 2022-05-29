@@ -3,18 +3,22 @@ import Flexbox from '../style/Flexbox.js';
 
 const RRFlexContainer = styled.div`
   display: flex;
+  flex-direction: row;
   justify.content: space-inbetween;
-`
+`;
 const RatingsStyle = styled.div`
   flex: 0.3;
   flex-direction: row;
+  padding: 10px;
 `;
 
 const ReviewsStyle = styled.div`
   flex: .7;
   flex-direction: row;
-  overflow-y: scroll;
+  height: 500px;
+  overflow: scroll;
   scrollbar-width: thin;
+  padding: 10px;
 `
 const ModalBackground = styled.div`
   position: fixed;

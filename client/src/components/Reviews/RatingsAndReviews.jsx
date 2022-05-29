@@ -16,6 +16,7 @@ import {
 
 
 const RatingsAndReviews = ({ product_id }) => {
+
   //------------REVIEWS STATE---------------
   const [reviews, setReviews] = useState(null);
   const [order, setOrder] = useState("relevant");
@@ -51,7 +52,7 @@ const RatingsAndReviews = ({ product_id }) => {
     }
   }
 
-  if (reviews && characteristics !== {}) {
+  if (reviews && Object.keys(characteristics).length !== 0) {
     return (
       <RRFlexContainer>
         <RatingsStyle>

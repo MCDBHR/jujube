@@ -19,7 +19,6 @@ const Thumbnails =({thumbs}) => {
   };
   return (
     <div>
-      {console.log(thumbs)}
       <img src={thumbs[0]}/>
     </div>
     // <StyledSlider>

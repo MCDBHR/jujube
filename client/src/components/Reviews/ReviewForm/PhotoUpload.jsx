@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react'; // import useState
 
 const PhotoUpload = () => {
-  let [PhotoCount, setPhotoCount] = useState(0);
-  let [Photos, setPhotos] = useState([]);
+  let [photoCount, setPhotoCount] = useState(0);
+  let [photos, setPhotos] = useState([]);
 
   // const onFileChange = (e) => {
   //   setPhotoCount(PhotoCount + 1);
@@ -12,7 +12,7 @@ const PhotoUpload = () => {
   // }
 
 
-  if (PhotoCount < 5) {
+  if (photoCount < 5) {
     return (
       <div>
         <form action="/action_page.php">

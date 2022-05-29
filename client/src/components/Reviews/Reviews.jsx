@@ -14,7 +14,6 @@ const Reviews = ({reviews, order, setOrder, showModal}) => {
   const addToRender = (event) => {
     setNumberToRender(numberToRender += 2);
   }
-  console.log(reviews);
   return (
     <div>
        <div>
