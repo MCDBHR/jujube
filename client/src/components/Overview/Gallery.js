@@ -95,10 +95,6 @@ const mainStyle = {
   backgroundImage: `url(${images[currentMain]})`,
 }
 
-const galleryContainerStyle = {
-  overflow: 'hidden',
-};
-
 
   return(
     <CarouselContainer>
@@ -117,13 +113,11 @@ const galleryContainerStyle = {
         <ThumbnailControlsContainer>
         {
             length > 6 && (
-
               <ThumbnailArrowContainer
                 disabled={isDisabled}
                 onClick={prevImg}
                 aria-label="last-thumbnail"
               >
-
                 <AiOutlineArrowUp />
               </ThumbnailArrowContainer>
             )
@@ -156,9 +150,6 @@ const galleryContainerStyle = {
             )
           }
         </ThumbnailControlsContainer>
-
-
-
         <FullScreenButtonContainer
           onClick={expandedHandler}
           disabled={isDisabled}
@@ -169,7 +160,7 @@ const galleryContainerStyle = {
 
           <CarouselContentWrapper>
           <CarouselContent
-            style={galleryContainerStyle}
+            style={{overflow: 'hidden'}}
             ref={carouselSelect}
             onClick={handleZoom}
             onMouseMove={handleMouseHover}

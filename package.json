@@ -12,6 +12,9 @@
     "start": "npx nodemon server/index.js -w",
     "client-dev": "npx webpack --watch"
   },
+  "jest":{
+    "testEnvironment": "jsdom"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/The-Jonas-Brothers/fec.git"

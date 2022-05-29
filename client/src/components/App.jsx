@@ -16,7 +16,7 @@ const App = () => {
       setProduct(res.data);
     });
   }, []);
-  const [overview,related,styles,reviews] = product;
+  const [overview,related,styles,reviews,metaReview] = product;
   return (
     <div style={{ position: 'relative' }}>
       <Nav>
@@ -29,15 +29,16 @@ const App = () => {
           overview={overview}
           styles={styles}
           reviews={reviews}
+          metaReview={metaReview}
         />
-         <div>
+         {/* <div>
         {overview.id} product
         <MainProductContext.Provider value={overview}>
           {Object.keys(overview).length && <RelatedProduct relatedItems={related}/>}
         </MainProductContext.Provider>
           {localStorage.getItem('favItems') && <FavoriteProduct/>}
         </div>
-        <RatingsAndReviews product_id={40348}/>
+        <RatingsAndReviews product_id={40348}/> */}
         </FlexContainer>
       </AppContainer>
       }

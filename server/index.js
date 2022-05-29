@@ -29,14 +29,13 @@ app.get('/products', async (req, res) => {
 app.get('/products/:product_id', async (req, res) => {
   const id = req.params.product_id;
   try{
-    console.log('products with id');
     const overview = await axios.get(`${apiURL}products/${id}`,apiHeaders);
     const related = await axios.get(`${apiURL}products/${id}/related`,apiHeaders);
     const styles = await axios.get(`${apiURL}products/${id}/styles`,apiHeaders);
     const reviews = await axios.get(`${apiURL}reviews/?product_id=${id}`,apiHeaders);
-
+    const metaReview = await axios.get(`${apiURL}reviews/meta/?product_id=${id}`, apiHeaders);
     const combined = [];
-    await combined.push(overview.data,related.data,styles.data,reviews.data)
+    await combined.push(overview.data,related.data,styles.data,reviews.data,metaReview.data)
     res.status(200).send(combined)
   } catch(err) {
     res.status(400).send(err)
@@ -54,7 +53,7 @@ app.get('/products/:product_id', async (req, res) => {
 app.post('/cart', async (req, res) => {
   try {
     const response = await axios.post(`${apiURL}cart`, req.body, apiHeaders);
-    res.status(201).send(response)
+    res.status(201).send(response.data)
   }catch(err) {
     res.send(err)
   }
@@ -94,7 +93,7 @@ app.get('/reviews/meta', (req, res) => {
       'product_id': id
     }
   }
-  console.log(id, 'this is the ID');
+
   axios.get(`${apiURL}reviews/meta`, config)
   .then((results)=> {
     res.status(200).send(results.data)})

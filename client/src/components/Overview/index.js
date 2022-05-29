@@ -10,7 +10,7 @@ import ProductDetailContainer from '../style/ProductStyle.js';
 
 
 /*------------------MAIN FUNCTION -----------------*/
-const Overview = ({overview,styles,reviews}) => {
+const Overview = ({overview,styles,reviews,metaReview}) => {
 
   //set up default style
   const [defaultStyle, setSelectedStyle] = useState(styles.results[0]);
@@ -43,6 +43,10 @@ const Overview = ({overview,styles,reviews}) => {
     <ProductsInfo
     overview={overview}
     reviews={reviews}
+    styles={styles}
+    defaultStyle={defaultStyle}
+    metaReview={metaReview}
+    handleStyleChange={(style) => setSelectedStyle(style)}
     />
   </ProductDetailContainer>
 </OverviewContainer>
