@@ -43,12 +43,26 @@ app.get('/products/:product_id', async (req, res) => {
   }
 })
 
-// app.get('/products/:product_id/related', async (req, res) => {
-//   const id = req.params.product_id;
-//   try {
-//     const related = await axios.get(`${apiURL}products/${id}/related`, apiHeaders);
-//   }
-// })
+app.get('/products/:product_id/one', async (req, res) => {
+  const id = req.params.product_id;
+  try {
+    const product = await axios.get(`${apiURL}products/${id}`, apiHeaders);
+    res.status(200).send(product.data);
+  } catch (err) {
+    res.status(400).send(err);
+  }
+})
+
+app.get('/products/:product_id/styles', async (req, res) => {
+  const id = req.params.product_id;
+    try {
+    const productStyle = await axios.get(`${apiURL}products/${id}/styles`, apiHeaders);
+    console.log(productStyle.data, 'STYLES DATA HERE')
+    res.status(200).send(productStyle.data);
+  } catch (err) {
+    res.status(400).send(err);
+  }
+})
 
 //add To Cart
 app.post('/cart', async (req, res) => {

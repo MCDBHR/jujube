@@ -1,4 +1,4 @@
-import React, { useState, useEffect}  from 'react';
+import React, { useState, useEffect, useRef}  from 'react';
 import Overview from './Overview'
 import axios from 'axios';
 import { Nav } from './style/NavStyle.js';
@@ -8,15 +8,19 @@ import RatingsAndReviews from './Reviews/RatingsAndReviews.jsx';
 import RelatedProduct from './RelatedProducts/RelatedProduct.jsx';
 import FavoriteProduct from './RelatedProducts/FavoriteProduct.jsx';
 
+
 export const SetFavItemsContext = React.createContext();
 
-const App = () => {
+const App = (props) => {
   const [product, setProduct] = useState([]);
   const [favItems, setFavItems] = useState([]);
 
+  const [overview, related, styles, reviews] = product;
+
 
   useEffect(() => {
-    axios.get('/products/40344').then((res) => {
+    console.log(props, 'PROPS HERE')
+    axios.get('/products/40347').then((res) => {
       //returns an array of all URL calls
       setProduct(res.data);
     });
@@ -25,10 +29,44 @@ const App = () => {
     setFavItems(parsedItems);
   }, []);
 
+  //Every time favItem state changes, also update localStorage to reflect
   useEffect(() => {
     localStorage.setItem('favItems', JSON.stringify(favItems));
   }, [favItems])
-  //Watch video on try catch or use useEffect
+
+  const addFavProduct = () => {
+
+    const overviewWithImg = {...overview, thumbnailURL: styles.results[0].photos[0].thumbnail_url}
+
+    if(!favItems.length) {
+      localStorage.setItem('favItems', JSON.stringify([overviewWithImg]));
+      setFavItems([overviewWithImg]);
+    } else {
+      //We need to check if the item has already been favorited
+      //If had a large data structure we could use a hash table
+      let hasDuplicateItem = false;
+      for(let i = 0; i < favItems.length; i++) {
+        if(favItems[i].id === overview.id) {
+          hasDuplicateItem = true;
+          break;
+        }
+      }
+
+      if(!hasDuplicateItem) {
+        //Re-renders state with new product
+        console.log("WE ARE REDOING")
+        setFavItems((prevState) => {
+          console.log(prevState, 'prev State');
+          return prevState.concat(overviewWithImg);
+        });
+        //localStorage.setItem('favItems', JSON.stringify(parsedItems));
+      }
+
+    }
+
+
+  }
+
   const deleteFavProduct = (id) => {
     try {
       const removedProduct = favItems.filter(product => (product.id !== id));
@@ -39,7 +77,7 @@ const App = () => {
   }
 
 
-  const [overview,related,styles,reviews] = product;
+
   return (
     <div style={{ position: 'relative' }}>
       <Nav>
@@ -54,10 +92,9 @@ const App = () => {
           reviews={reviews}
         />
          <div>
-        {overview.id} product
         <SetFavItemsContext.Provider value={setFavItems}>
           {Object.keys(overview).length && <RelatedProduct relatedItems={related}/>}
-          {!!favItems.length && <FavoriteProduct deleteFavProduct={deleteFavProduct} favItems={favItems}/>}
+          {<FavoriteProduct addFavProduct={addFavProduct} deleteFavProduct={deleteFavProduct} favItems={favItems}/>}
         </SetFavItemsContext.Provider>
         </div>
 
