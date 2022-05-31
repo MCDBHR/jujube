@@ -7,15 +7,14 @@ import CharacteristicDataTable from '../ReviewForm/CharacteristicDataTable.js'
 
 const RatingsBarContainer = styled.div`
   display: flex;
-
   flex-direction: column;
-  padding: 0.5em 1 0.5em 1;
+  margin: 1em 0 1em 0;
 `;
 
 const Bar = styled.div`
   background-color: #e6e6e6;
   height: 0.5em;
-  margin: 0.5em 0 0.5em 0;
+  margin: 0.1em 0 0.5em 0;
 `;
 
 const Arrow = styled.div`

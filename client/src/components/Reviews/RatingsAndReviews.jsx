@@ -20,6 +20,7 @@ const RatingsAndReviews = ({ product_id }) => {
   //------------REVIEWS STATE---------------
   const [reviews, setReviews] = useState(null);
   const [order, setOrder] = useState("relevant");
+  const [displayRatingFilter, setDisplayRatingFilter] = useState([]);
 
   //------------RATINGS STATE ----------------
   const [characteristics, setCharacteristics] = useState({});
@@ -54,23 +55,34 @@ const RatingsAndReviews = ({ product_id }) => {
 
   if (reviews && Object.keys(characteristics).length !== 0) {
     return (
-      <RRFlexContainer>
-        <RatingsStyle>
-          <Ratings characteristics={characteristics} ratings={ratings} recommended={recommended} />
-        </RatingsStyle>
-        <ReviewsStyle>
-          <Reviews reviews={reviews} order={order} setOrder={setOrder} showModal={handleShowModal} />
-        </ReviewsStyle>
+      <div id='ratings-reviews'>
+        <RRFlexContainer>
+          <RatingsStyle>
+            <Ratings characteristics={characteristics}
+                     ratings={ratings}
+                     recommended={recommended}
+                     setDisplayRatingFilter={setDisplayRatingFilter}
+                     displayRatingFilter={displayRatingFilter}/>
+          </RatingsStyle>
+          <ReviewsStyle>
+            <Reviews reviews={reviews}
+                     order={order}
+                     setOrder={setOrder}
+                     showModal={handleShowModal}
+                     filter={displayRatingFilter} />
+          </ReviewsStyle>
 
-        {showModal ?
-          <>
-            <ModalBackground onClick={handleShowModal}></ModalBackground>
-            <ModalStyle> <CreateReview characteristics={characteristics} />
-            </ModalStyle>
-          </>
-          : null}
+          {showModal ?
+            <>
+              <ModalBackground onClick={handleShowModal}></ModalBackground>
+              <ModalStyle> <CreateReview characteristics={characteristics} />
+              </ModalStyle>
+            </>
+            : null}
 
-      </RRFlexContainer>
+        </RRFlexContainer>
+
+      </div>
     )
   } else {
     return (

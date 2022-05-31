@@ -15,9 +15,6 @@ const RatingsStyle = styled.div`
 const ReviewsStyle = styled.div`
   flex: .7;
   flex-direction: row;
-  height: 500px;
-  overflow: scroll;
-  scrollbar-width: thin;
   padding: 10px;
 `
 const ModalBackground = styled.div`

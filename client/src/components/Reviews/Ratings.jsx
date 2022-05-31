@@ -1,16 +1,28 @@
-import React, {useState, useEffect} from 'react'; // import useState
+import React, { useState, useEffect } from 'react'; // import useState
 import axios from 'axios';
 import CharacteristicBar from './ratingComponents/CharacteristicBar.jsx';
 import RatingBar from './ratingComponents/RatingBar.jsx';
 import StarRating from './ratingComponents/StarRating.jsx';
+import styled from 'styled-components';
 
-const Ratings = ({characteristics, ratings, recommended}) => {
+const RatingAndStarsContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`
+const DisplayText = styled.h1`
+  font-size: 40px;
+  letter-spacing: 3px;
+  margin: 0;
+
+`
+const Ratings = ({ characteristics, ratings, recommended, setDisplayRatingFilter, displayRatingFilter}) => {
+
 
   let [displayRating, setDisplayRating] = useState(0);
+  let [displayText, setDisplayText] = useState(0);
   let [recommendedRating, setRecommendedRating] = useState(0)
 
-
-  //temporary star feature, will later replace with star component
   useEffect(() => {
 
     let starRating = Object.keys(ratings);
@@ -22,23 +34,31 @@ const Ratings = ({characteristics, ratings, recommended}) => {
     }
     let number = (Math.round((starTotal / total) * 4) / 4).toFixed(2);
     setDisplayRating(number);
+    let recommendedAverageDisplay = Math.round(number * 10) / 10;
+    setDisplayText(recommendedAverageDisplay);
 
     let recommendYes = parseInt(recommended.true);
     let recommendNo = parseInt(recommended.false);
     let recTotal = recommendNo + recommendYes;
     let recommendedAverage = Math.round((recommendYes / recTotal * 100).toFixed(3));
-    setRecommendedRating(recommendedAverage)
+    setRecommendedRating(recommendedAverage);
 
   })
 
   return (
     <div>
-      <StarRating data={displayRating}/>
-      <div>
-        <RatingBar data={ratings}/>
-        <CharacteristicBar data={characteristics}/>
-      </div>
+      <RatingAndStarsContainer>
+        <DisplayText>{displayText}</DisplayText>
+        <StarRating data={displayRating} />
+      </RatingAndStarsContainer>
       <p> {recommendedRating}% recommends this product</p>
+      <div>
+        <RatingBar data={ratings}
+                   setDisplayRatingFilter={setDisplayRatingFilter}
+                   displayRatingFilter={displayRatingFilter}/>
+        <CharacteristicBar data={characteristics} />
+      </div>
+
     </div>
   )
 

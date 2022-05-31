@@ -15,7 +15,10 @@ const Header = styled.section`
   justify-content:space-between;
 `
 const Review = ({review}) => {
-  //const [reviews, setReviews] = useState([]);
+  const [fullBody, setFullBody] = useState(null);
+  const [defaultBody, setDefaultBody] = useState(null);
+  const [hideFullBody, setHideFullBody] = useState(true);
+
   const {review_id,
     rating,
     summary,
@@ -34,6 +37,18 @@ const Review = ({review}) => {
       var starRender = solidStars + clearStars;
     }
 
+    useEffect (() => {
+      if (body.length > 250) {
+        let sliced = body.slice(0, 251);
+        setDefaultBody(sliced);
+        setFullBody(body);
+        setHideFullBody(true);
+      } else {
+        setFullBody(body);
+        setHideFullBody(false);
+      }
+    }, [fullBody])
+
   return (
     <StyledReview>
         <div>
@@ -42,8 +57,21 @@ const Review = ({review}) => {
             <section> {reviewer_name},  {format(parseISO(date), 'PPP')}</section>
           </Header>
         </div>
-        <h1> {summary} </h1>
-        <p> {body ? body : ''} </p>
+        <h3> {summary} </h3>
+        <div>
+          {hideFullBody ?
+            <div>
+              {defaultBody}
+              <p onClick={() => setHideFullBody(false)}><u>Show more</u></p>
+            </div>
+              :
+            <div>
+              {fullBody}
+            </div>
+          }
+        </div>
+
+        {/* <p> {body ? body : ''} </p> */}
         <p>{recommend ? "✓ I recommend this product" : "no"}</p>
         <p>helpful: {helpfulness}</p>
 

@@ -6,7 +6,6 @@ const ProductDetail = ({overview,reviews}) => {
 
   return(
     <FlexContainer direction="column" gap="0">
-      {console.log(reviews)}
         <span style={{
           fontSize: '.85em',
           opacity: '.8',
