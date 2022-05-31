@@ -31,6 +31,7 @@ const RatingsAndReviews = ({ product_id }) => {
   const [formData, setFormData] = useState({});
 
   useEffect(() => {
+    console.log('order has changed');
     axios.get('/reviews/', { params: { 'product_id': product_id, 'sort': order, 'count': 9999 } })
       .then((results) => {
         setReviews(results.data)

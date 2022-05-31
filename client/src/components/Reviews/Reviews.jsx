@@ -18,10 +18,10 @@ const Reviews = ({ reviews, order, setOrder, showModal, filter }) => {
   let [numberToRender, setNumberToRender] = useState(2);
   let [showMoreButton, setShowMoreButton] = useState(true);
   let [reviewsToRender, setReviewsToRender] = useState(reviews);
-  let [filterLength, setFilterLength] = useState(0);
+  let [allReviews, setAllReviews] = useState(null);
 
   const handleOrderChange = (event) => {
-    setOrder(event.target.value)
+    setOrder(event.target.value);
   }
 
   const addToRender = (event) => {
@@ -30,6 +30,9 @@ const Reviews = ({ reviews, order, setOrder, showModal, filter }) => {
       setShowMoreButton(false);
     }
   }
+  useEffect(() => {
+    setReviewsToRender(reviews);
+  }, [reviews])
 
   useEffect (() => {
     if (filter.length !== 0 ) {
@@ -45,12 +48,11 @@ const Reviews = ({ reviews, order, setOrder, showModal, filter }) => {
     }
   }, [filter])
 
-
   return (
     <Container>
       <div>
         <label>
-          <b> {reviews.length} Reviews   --- sort by:</b>
+          <b> {reviewsToRender.length} Reviews   --- sort by:</b>
           <select value={order} onChange={handleOrderChange}>
             <option value="relevant">relevance</option>
             <option value="helpful">helpfulness</option>

@@ -71,7 +71,6 @@ const RatingBar = ({ data, setDisplayRatingFilter, displayRatingFilter }) => {
               let modified = [...displayRatingFilter];
               modified.splice(index, 1);
               setDisplayRatingFilter(modified);
-              console.log(displayRatingFilter);
             }
           }}>
             <StarRatingNum>{`${key} stars`} </StarRatingNum>

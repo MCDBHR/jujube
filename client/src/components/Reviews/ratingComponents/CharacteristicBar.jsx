@@ -52,7 +52,7 @@ const CharacteristicBar= ({data}) => {
             <UnderText>
               {
                 CharacteristicDataTable[characteristic].filter((text, index) => {
-                  return index % 2 === 0;
+                  return index === 0 || index === 4;
                 }).map((text) => <div>{text}</div>)
               }
 
