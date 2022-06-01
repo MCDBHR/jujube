@@ -12,6 +12,9 @@
     "start": "npx nodemon server/index.js -w",
     "client-dev": "npx webpack --watch"
   },
+  "jest":{
+    "testEnvironment": "jsdom"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/The-Jonas-Brothers/fec.git"
@@ -26,6 +29,16 @@
     "@babel/core": "^7.17.12",
     "@babel/preset-env": "^7.17.12",
     "@babel/preset-react": "^7.17.12",
+    "@testing-library/dom": "^8.13.0",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.2.0",
+    "@types/jest": "^27.5.1",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-loader": "^8.2.5",
+    "html-webpack-plugin": "^5.5.0",
+    "jest": "^28.1.0",
+    "ts-jest": "^28.0.3",
+    "typescript": "^4.7.2",
     "@testing-library/react": "^13.2.0",
     "babel-loader": "^8.2.5",
     "html-webpack-plugin": "^5.5.0",
@@ -36,11 +49,13 @@
     "webpack-dev-server": "^4.9.0"
   },
   "dependencies": {
+    "@babel/preset-flow": "^7.17.12",
     "axios": "^0.27.2",
     "date-fns": "^2.28.0",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "font-awesome": "^4.7.0",
+    "jest-environment-jsdom": "^28.1.0",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-icons": "^4.3.1",

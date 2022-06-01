@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
- const FlexContainer = styled.div`
+ const Flexbox = styled.div`
   position: relative;
   display: flex;
   flex-direction: ${(props) => props.direction};
@@ -15,4 +15,4 @@ import styled, { css } from 'styled-components';
 
 `;
 
-export default FlexContainer;
+export default Flexbox;
