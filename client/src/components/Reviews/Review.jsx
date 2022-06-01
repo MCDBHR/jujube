@@ -11,7 +11,7 @@ const StyledReview = styled.div`
 `
 const Header = styled.section`
   display: flex;
-  color: blue;
+  color: #9bde90;
   justify-content:space-between;
 `
 const Review = ({review}) => {

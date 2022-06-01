@@ -4,7 +4,7 @@ import Review from './Review.jsx';
 import Ratings from './Ratings.jsx';
 
 
-const Reviews = ({reviews, order, setOrder}) => {
+const Reviews = ({reviews, order, setOrder, showModal}) => {
   let [numberToRender, setNumberToRender] = useState(2);
 
   const handleOrderChange = (event) => {
@@ -14,7 +14,6 @@ const Reviews = ({reviews, order, setOrder}) => {
   const addToRender = (event) => {
     setNumberToRender(numberToRender += 2);
   }
-  console.log(reviews);
   return (
     <div>
        <div>
@@ -34,6 +33,7 @@ const Reviews = ({reviews, order, setOrder}) => {
         })}
       </div>
         <button onClick={addToRender}> See more! </button>
+        <button onClick={showModal}>Add Review +</button>
     </div>
   )
 

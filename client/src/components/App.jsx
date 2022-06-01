@@ -19,7 +19,6 @@ const App = () => {
   const [overview,related,styles,reviews,metaReview] = product;
   return (
     <div style={{ position: 'relative' }}>
-
       <Nav>
         <Navheader>The Jonas Brothers</Navheader>
         <NavList>

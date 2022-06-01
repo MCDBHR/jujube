@@ -68,7 +68,6 @@ app.get('/reviews/', (req, res) => {
   const id = req.query.product_id
   const sort = req.query.sort
   const count = req.query.count
-  console.log(id, sort, count, 'over here');
   let config = {
     headers: {'Authorization': process.env.AUTH_TOKEN},
     params: {
@@ -89,14 +88,12 @@ app.get('/reviews/', (req, res) => {
 // get reviews meta for one product
 app.get('/reviews/meta', (req, res) => {
   const id = req.query.product_id
-  console.log('this is the id:', id);
   let config = {
     headers: {'Authorization': process.env.AUTH_TOKEN},
     params: {
       'product_id': id
     }
   }
-
   axios.get(`${apiURL}reviews/meta`, config)
   .then((results)=> {
     res.status(200).send(results.data)})
