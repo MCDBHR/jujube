@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Flexbox from '../style/Flexbox';
 import styled,{ css } from 'styled-components';
+import Modal from "./Modal";
 /*===============Styling======================= */
 const Button = styled.button`
   color: black;
@@ -132,23 +133,17 @@ position: relative;
   border-radius: 0;
 }
 `;
-const CartMsg = styled.span`
-    ${(props) => props.postCartStatus ? css`
-    color: green;
-    font-size: 0.9em;
-    ` : css`
-    color: red
-    `};
-    fontSize: 1rem;
-    ${(props) => props.postCartStatus ? css`
-    visibility: visible
-    ` : css`
-    visibility: hidden
-    `};
-    position: absolute;
-    bottom: -50%;
-    transform: translateY(100%);
-`;
+
+const CartWrapper = styled.div`
+  position: fixed;
+  width: 500px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  backgroundColor: white;
+  padding: 50px;
+  zIndex: 1000
+`
 /*===============Main Function======================= */
 const SizeAndCarts = ({defaultStyle}) => {
 //States
@@ -156,7 +151,7 @@ const [skuIndex, setSkuIndex] = useState(0);
 const [quantity, setQuantity] = useState(0);
 const [sizeIndex, setSizeIndex] = useState(null);
 const [postCartStatus, setPostCartStatus] = useState(null);
-
+const [cartShow, setCartShow] = useState(false);
 //Style List
 const styleSkus = defaultStyle.skus;
   const skuList = Object.keys(styleSkus).reduce((list, skuId) => {
@@ -206,13 +201,13 @@ const addToCart = () => {
 //after added
 let msg;
 if(postCartStatus){
-  msg = `🎉🎉🎉 Woohoo! Added ${quantity} ${defaultStyle.name} at Size ${sizeList[sizeIndex]}!!`
+  msg = `🎉🎉🎉  Woohoo!  Added ${quantity} ${defaultStyle.name} at Size ${sizeList[sizeIndex]} to your Cart.`
 } else {
   msg = `Nothing in the Cart`
 }
 
 return (
-  <Flexbox direction="column" gap="1em">
+  <Flexbox direction="column" gap="1em" >
     <span>Current Size: {sizeList[sizeIndex]}</span>
     <Flexbox direction="row" gap=".5em" wrap="wrap">
     {skuList.map((id, index) => (
@@ -259,17 +254,18 @@ return (
               onClick={() => {
                 if (quantity > 0) {
                   addToCart();
+                  setCartShow(true);
                 }
               }}
               disabled={sizeIndex === null || quantity === 0}>
                 Add to Cart
             </CartButoon>
           </Flexbox>
-          <CartMsg
-          postCartStatus={postCartStatus}
-          >
-            {msg}
-          </CartMsg>
+          <CartWrapper>
+          {cartShow && <Modal
+          setCartShow={setCartShow}
+          msg={msg}/>}
+          </CartWrapper>
         </Flexbox>
       </Flexbox>
   </Flexbox>

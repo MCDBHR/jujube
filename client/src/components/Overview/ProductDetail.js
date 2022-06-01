@@ -29,7 +29,15 @@ const ProductDetail = ({overview,reviews,metaReview}) => {
       setReviewsCount(res.data.length);
     });
   }, []);
-
+  const twitterClick = () => {
+    window.open('https://twitter.com/intent/tweet', 'Twitter')
+  }
+  const fbClick = () => {
+    window.open('https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fparse.com', 'Facebook');
+  }
+  const insClick = () => {
+    window.open('https://www.pinterest.com/pin-builder/', 'Pinterest');
+  }
   return(
     <ProductDetailsContainer direction="column" gap="1.5em">
       <Flexbox direction="column" gap="0">
@@ -52,11 +60,11 @@ const ProductDetail = ({overview,reviews,metaReview}) => {
       <Flexbox direction="column" gap="0">
         <div>
           <StarGenerator ratings={metaReview.ratings} />
-          <AiFillTwitterSquare />
-          <AiFillInstagram />
-          <AiFillFacebook />
+          <AiFillTwitterSquare onClick={twitterClick}/>
+          <AiFillFacebook onClick={fbClick}/>
+          <AiFillInstagram onClick={insClick}/>
         </div>
-        {!!reviewsCount && <LinkStyle style={{ fontSize: '.8em' }} href="#reviews">Read {reviewsCount} reviews</LinkStyle>}
+        {!!reviewsCount && <LinkStyle style={{ fontSize: '.8em' }} href="#ratings-reviews">Read {reviewsCount} reviews</LinkStyle>}
       </Flexbox>
     </ProductDetailsContainer>
   )

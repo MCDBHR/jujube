@@ -42,12 +42,15 @@ app.get('/products/:product_id', async (req, res) => {
   }
 })
 
-// app.get('/products/:product_id/related', async (req, res) => {
-//   const id = req.params.product_id;
-//   try {
-//     const related = await axios.get(`${apiURL}products/${id}/related`, apiHeaders);
-//   }
-// })
+//get Cart
+app.get('/cart', async (req, res) => {
+  try {
+    const response = await axios.get(`${apiURL}cart`, apiHeaders);
+    res.status(201).send(response.data)
+  }catch(err) {
+    res.send(err)
+  }
+})
 
 //add To Cart
 app.post('/cart', async (req, res) => {

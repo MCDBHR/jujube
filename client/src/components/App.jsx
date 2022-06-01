@@ -31,14 +31,14 @@ const App = () => {
           reviews={reviews}
           metaReview={metaReview}
         />
-         {/* <div>
+         <div>
         {overview.id} product
         <MainProductContext.Provider value={overview}>
           {Object.keys(overview).length && <RelatedProduct relatedItems={related}/>}
         </MainProductContext.Provider>
           {localStorage.getItem('favItems') && <FavoriteProduct/>}
         </div>
-        <RatingsAndReviews product_id={40348}/> */}
+        <RatingsAndReviews product_id={40348}/>
         </FlexContainer>
       </AppContainer>
       }
