@@ -61,38 +61,38 @@ const Gallery = ({defaultStyle,expandedHandler,expanded}) => {
   }
 
 //handle zoom
-const [zoom, setZoom] = useState(false);
-const zoomScale = 1.75;
-const handleZoom = () => {
-  setZoom((prevState) => !prevState)
-}
-const isDisabled = zoom;
+  const [zoom, setZoom] = useState(false);
+  const zoomScale = 1.75;
+  const handleZoom = () => {
+    setZoom((prevState) => !prevState)
+  }
+  const isDisabled = zoom;
 
 //handle mouse hover
-const carouselSelect = useRef(null);
-const [mouseX, setMouseX] = useState(null);
-const [mouseY, setMouseY] = useState(null);
-const handleMouseHover = (event) => {
-  const DOMRect = carouselSelect.current.getBoundingClientRect();
-    const {
-      height, width, left: offsetLeft, top: offsetTop,
-    } = DOMRect;
-    const x = ((event.pageX - offsetLeft) / width) * 100;
-    const y = ((event.pageY - offsetTop) / height) * 100;
-    setMouseX(x);
-    setMouseY(y);
-}
-const transformOrigin = {
-  transformOrigin: `${mouseX}% ${mouseY}%`,
-};
+  const carouselSelect = useRef(null);
+  const [mouseX, setMouseX] = useState(null);
+  const [mouseY, setMouseY] = useState(null);
+  const handleMouseHover = (event) => {
+    const DOMRect = carouselSelect.current.getBoundingClientRect();
+      const {
+        height, width, left: offsetLeft, top: offsetTop,
+      } = DOMRect;
+      const x = ((event.pageX - offsetLeft) / width) * 100;
+      const y = ((event.pageY - offsetTop) / height) * 100;
+      setMouseX(x);
+      setMouseY(y);
+  }
+  const transformOrigin = {
+    transformOrigin: `${mouseX}% ${mouseY}%`,
+  };
 
-//main img
-const mainStyle = {
-  backgroundRepeat: 'no-repeat',
-  backgroundPosition: 'center',
-  transition: 'transform .2s ease-out',
-  backgroundImage: `url(${images[currentMain]})`,
-}
+  //main img
+  const mainStyle = {
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
+    transition: 'transform .2s ease-out',
+    backgroundImage: `url(${images[currentMain]})`,
+  }
 
 
   return(
@@ -106,8 +106,8 @@ const mainStyle = {
           onClick={prevMainImg}
           aria-label="previous-Main-image"
         >
-          <AiOutlineArrowLeft />
-        </ArrowButton>
+            <AiOutlineArrowLeft />
+          </ArrowButton>
         )}
         <ThumbnailControlsContainer>
         {

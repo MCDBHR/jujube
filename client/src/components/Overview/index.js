@@ -25,38 +25,35 @@ const Overview = ({overview,styles,reviews,metaReview}) => {
   };
 
   return(
-    <main>
-<Flexbox direction="column">
-<OverviewContainer
-  direction="row"
-  justify="center"
-  >
-  <GalleryContainer
-  expanded={isExpanded}>
-    <Gallery
-      defaultStyle={defaultStyle}
-      expandedHandler={handleExpand}
-      expanded={isExpanded}
-    />
-  </GalleryContainer>
-  <ProductDetailContainer expanded={isExpanded}>
-    <ProductsInfo
-    overview={overview}
-    reviews={reviews}
-    styles={styles}
-    defaultStyle={defaultStyle}
-    metaReview={metaReview}
-    handleStyleChange={(style) => setSelectedStyle(style)}
-    />
-  </ProductDetailContainer>
-</OverviewContainer>
-</Flexbox>
-</main>
+    <main id="overview">
+      <Flexbox direction="column">
+      <OverviewContainer
+        direction="row"
+        justify="center"
+        >
+        <GalleryContainer
+        expanded={isExpanded}>
+          <Gallery
+            defaultStyle={defaultStyle}
+            expandedHandler={handleExpand}
+            expanded={isExpanded}
+          />
+        </GalleryContainer>
+        <ProductDetailContainer expanded={isExpanded}>
+          <ProductsInfo
+            overview={overview}
+            reviews={reviews}
+            styles={styles}
+            defaultStyle={defaultStyle}
+            metaReview={metaReview}
+            handleStyleChange={(style) => setSelectedStyle(style)}
+          />
+        </ProductDetailContainer>
+      </OverviewContainer>
+      </Flexbox>
+    </main>
   )
 }
-
-
-
 
 export default Overview;
 

@@ -35,7 +35,7 @@ const App = () => {
           styles={styles}
           reviews={reviews}
           metaReview={metaReview}
-          id="overview"
+
         />
          <div>
         {overview.id} product

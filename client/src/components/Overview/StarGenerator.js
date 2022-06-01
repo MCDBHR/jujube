@@ -53,34 +53,25 @@ const StarGenerator= ({ratings}) => {
   return(
     <Flexbox direction="row" justify="flex-start" align="center" gap=".5em">
       <RatingBox >
-      <StarsContainer>
-      <AiFillStar />
-      <AiFillStar />
-      <AiFillStar />
-      <AiFillStar />
-      <AiFillStar />
-      </StarsContainer>
+        <StarsContainer>
+          <AiFillStar />
+          <AiFillStar />
+          <AiFillStar />
+          <AiFillStar />
+          <AiFillStar />
+        </StarsContainer>
       <Bar width={barWidth} id="bar"/>
-      <StarsContainer>
-      <AiOutlineStar />
-      <AiOutlineStar />
-      <AiOutlineStar />
-      <AiOutlineStar />
-      <AiOutlineStar />
-      </StarsContainer>
+        <StarsContainer>
+          <AiOutlineStar />
+          <AiOutlineStar />
+          <AiOutlineStar />
+          <AiOutlineStar />
+          <AiOutlineStar />
+        </StarsContainer>
       </RatingBox>
       <span style={{ fontWeight: 'bold',color:'black' }}>Rating: {average.toFixed(1)}</span>
     </Flexbox>
   )
-
 }
-
-
-
-
-
-
-
-
 
 export default StarGenerator;
