@@ -30,19 +30,6 @@ const RatingsAndReviews = ({ product_id }) => {
   const [formData, setFormData] = useState({});
 
   useEffect(() => {
-<<<<<<< HEAD
-    axios.get('/reviews/', {params: {'product_id': product_id, 'sort' : order, 'count': 9999}})
-    .then((results) => {
-      setReviews(results.data)
-    })
-    .then(()=> {
-      axios.get('/reviews/meta', {params: {'product_id': product_id}})
-      .then((metaData) => {
-
-        setCharacteristics(metaData.data.characteristics);
-        setRatings(metaData.data.ratings);
-        setRecommended(metaData.data.recommended);
-=======
     axios.get('/reviews/', { params: { 'product_id': product_id, 'sort': order, 'count': 9999 } })
       .then((results) => {
         setReviews(results.data)
@@ -54,9 +41,8 @@ const RatingsAndReviews = ({ product_id }) => {
             setRatings(metaData.data.ratings);
             setRecommended(metaData.data.recommended);
           })
->>>>>>> main
       })
-  }, [order]);
+  }, [order,product_id]);
 
   const handleShowModal = (e) => {
     if (showModal === false) {
