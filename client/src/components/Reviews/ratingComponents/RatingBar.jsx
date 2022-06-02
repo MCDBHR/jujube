@@ -61,9 +61,9 @@ const RatingBar = ({ data, setDisplayRatingFilter, displayRatingFilter }) => {
 
   return (
     <Container>
-      {dataKeys.map((key) => {
+      {dataKeys.map((key, i) => {
         return (
-          <BarContainer onClick={() => {
+          <BarContainer key={i} onClick={() => {
             let index = displayRatingFilter.indexOf(key);
             if (index === -1) {
               setDisplayRatingFilter([...displayRatingFilter, key])

@@ -6,9 +6,26 @@ import React, {useState, useEffect} from 'react'; // import useState
 import axios from 'axios';
 import CharacteristicDataTable from './CharacteristicDataTable.js';
 
-const Characteristics = ({characteristics}) => {
+const Characteristics = ({characteristics, choiceObj, setChoiceObj}) => {
 
   let characteristicArray = Object.keys(characteristics);
+
+  const onClickHandler = (e) => {
+    let value = parseInt(e.target.value);
+    let key = e.target.id;
+    if (choiceObj[key] !== undefined) {
+      let copy = {...choiceObj}
+      copy[key] = value;
+      setChoiceObj(copy)
+    } else {
+      setChoiceObj({...choiceObj, [key]: value});
+    }
+
+  }
+
+  useEffect(() => {
+    console.log(choiceObj, 'this is the in the useEffect')
+  },[choiceObj])
 
   if (characteristicArray.length !== 0) {
     return (
@@ -16,14 +33,19 @@ const Characteristics = ({characteristics}) => {
         { characteristicArray.map((characteristic) => {
           let tabledata = CharacteristicDataTable[characteristic];
           return (
-            <div>
-              <div>
-                <label><input type="radio" name="radioset" value={tabledata[0]}/>{tabledata[0]}</label>
-                <label><input type="radio" name="radioset" value={tabledata[1]}/>{tabledata[1]}</label>
-                <label><input type="radio" name="radioset" value={tabledata[2]}/>{tabledata[2]}</label>
-                <label><input type="radio" name="radioset" value={tabledata[3]}/>{tabledata[3]}</label>
-                <label><input type="radio" name="radioset" value={tabledata[4]}/>{tabledata[4]}</label>
-              </div>
+            <div key={characteristics[characteristic].id}>
+              <small><b>{characteristic}</b></small>
+              <form>
+                <label><input name="choice" type="radio" id={characteristics[characteristic].id} value='1'onClick={onClickHandler}/><small>{tabledata[0]}</small></label>
+
+                <label><input name="choice" type="radio" id={characteristics[characteristic].id} value='2' onClick={onClickHandler}/><small>{tabledata[1]}</small></label>
+
+                <label><input name="choice" type="radio" id={characteristics[characteristic].id} value='3' onClick={onClickHandler}/><small>{tabledata[2]}</small></label>
+
+                <label><input name="choice" type="radio" id={characteristics[characteristic].id} value='4' onClick={onClickHandler}/><small>{tabledata[3]}</small></label>
+
+                <label><input name="choice" type="radio" id={characteristics[characteristic].id} value='5' onClick={onClickHandler}/><small>{tabledata[4]}</small></label>
+              </form>
             </div>
           )
         })}

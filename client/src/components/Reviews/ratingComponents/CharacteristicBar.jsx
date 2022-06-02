@@ -35,29 +35,25 @@ const UnderText = styled.div`
 
 
 const CharacteristicBar= ({data}) => {
-  // takes in an object as a prop
-  // sets an array of the keys
   let characteristicArray = Object.keys(data);
-
   return (
-    //for each of the items
     <div>
-      {characteristicArray.map((characteristic) => {
+      {characteristicArray.map((characteristic, i) => {
         return (
-          <RatingsBarContainer>
-              <small>{characteristic}</small>
-            <Bar>
-              <Arrow pos={data[characteristic].value}></Arrow>
-            </Bar>
-            <UnderText>
-              {
-                CharacteristicDataTable[characteristic].filter((text, index) => {
-                  return index === 0 || index === 4;
-                }).map((text) => <div>{text}</div>)
-              }
+            <RatingsBarContainer key={characteristic.concat(i)}>
+                <small>{characteristic}</small>
+              <Bar>
+                <Arrow pos={data[characteristic].value}></Arrow>
+              </Bar>
+              <UnderText>
+                {
+                  CharacteristicDataTable[characteristic].filter((text, index) => {
+                    return index === 0 || index === 4;
+                  }).map((text) => <div key={text}>{text}</div>)
+                }
+              </UnderText>
+            </RatingsBarContainer>
 
-            </UnderText>
-          </RatingsBarContainer>
         )
       })}
     </div>

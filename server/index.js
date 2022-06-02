@@ -4,10 +4,12 @@ const app = express();
 const PORT = 3000 || process.env.PORT;
 const axios = require('axios');
 const bodyParser = require('body-parser');
+app.use(express.urlencoded({ extended: true }));
 const apiURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/';
 const apiHeaders = { headers: {'Authorization': process.env.AUTH_TOKEN}}
 app.use(express.static('client/dist'));
 app.use(express.json());
+
 app.use(bodyParser.json());
 //app.use(express.urlencoded({extended: true}))
 app.listen(PORT, () => {
@@ -95,8 +97,19 @@ app.get('/reviews/meta', (req, res) => {
   axios.get(`${apiURL}reviews/meta`, config)
   .then((results)=> {
     res.status(200).send(results.data)})
-  .catch((err) => { res.status(500).send(err);});
+  .catch((err) => { res.status(500).send(err)});
 });
+
+app.post('/reviews', (req, res) => {
+  let config = {
+    headers: {'Authorization': process.env.AUTH_TOKEN},
+    params: req.body
+  }
+  axios.post(`${apiURL}reviews`, config)
+  .then((results) => {
+    res.status(201).send(results.data)})
+  .catch((err) => {res.status(500).send(err)});
+})
 
 
 //review_id:1135681
@@ -105,9 +118,8 @@ app.put('/report/review/:id', (req, res) => {
   var id =  req.params.id;
   axios.put(`${apiURL}reviews/${id}/report`, id,  apiHeaders)
   .then((data)=> { res.status(200).send(data.data)})
-  .catch((err) => {res.status(500).send(err);});
+  .catch((err) => {res.status(500).send(err)});
 });
-
 
 
 

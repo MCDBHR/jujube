@@ -18,6 +18,7 @@ const Review = ({review}) => {
   const [fullBody, setFullBody] = useState(null);
   const [defaultBody, setDefaultBody] = useState(null);
   const [hideFullBody, setHideFullBody] = useState(true);
+  const [hasPhotos, setHasPhotos] = useState(false);
 
   const {review_id,
     rating,
@@ -38,6 +39,9 @@ const Review = ({review}) => {
     }
 
     useEffect (() => {
+      if(photos.length !== 0) {
+        setHasPhotos(true);
+      }
       if (body.length > 250) {
         let sliced = body.slice(0, 251);
         setDefaultBody(sliced);
@@ -69,10 +73,21 @@ const Review = ({review}) => {
               {fullBody}
             </div>
           }
+          {hasPhotos ?
+            photos.map((photo)=> {
+              return (
+                <img key={photo.id} src={photo.url} height='70'></img>
+              )
+            })
+            :
+            <div>no photo reviews</div>
+
+          }
         </div>
 
         {/* <p> {body ? body : ''} </p> */}
         <p>{recommend ? "✓ I recommend this product" : "no"}</p>
+        <p>{response ? {response} : ''}</p>
         <p>helpful: {helpfulness}</p>
 
     </StyledReview>

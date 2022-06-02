@@ -70,13 +70,14 @@ const RatingsAndReviews = ({ product_id }) => {
                      order={order}
                      setOrder={setOrder}
                      showModal={handleShowModal}
-                     filter={displayRatingFilter} />
+                     filter={displayRatingFilter}
+                     />
           </ReviewsStyle>
 
           {showModal ?
             <>
               <ModalBackground onClick={handleShowModal}></ModalBackground>
-              <ModalStyle> <CreateReview characteristics={characteristics} />
+              <ModalStyle> <CreateReview characteristics={characteristics} product_id={product_id}/>
               </ModalStyle>
             </>
             : null}
