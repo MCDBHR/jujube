@@ -57,13 +57,13 @@ const ProductDetail = ({overview,reviews,metaReview}) => {
         }}
         >{description}</span>
       </Flexbox>
-      <Flexbox direction="column" gap="0">
-        <div>
+      <Flexbox style={{marginRight:"20px"}} direction="column" gap="0">
+        <Flexbox direction="row" gap="0">
           <StarGenerator ratings={metaReview.ratings} />
-          <AiFillTwitterSquare onClick={twitterClick}/>
-          <AiFillFacebook onClick={fbClick}/>
-          <AiFillInstagram onClick={insClick}/>
-        </div>
+          <AiFillTwitterSquare style={{cursor: "pointer"}} size="30px" onClick={twitterClick}/>
+          <AiFillFacebook style={{cursor: "pointer"}} size="30px" onClick={fbClick}/>
+          <AiFillInstagram style={{cursor: "pointer"}} size="30px" onClick={insClick}/>
+        </Flexbox>
         {!!reviewsCount && <LinkStyle style={{ fontSize: '.8em' }} href="#ratings-reviews">Read {reviewsCount} reviews</LinkStyle>}
       </Flexbox>
     </ProductDetailsContainer>
