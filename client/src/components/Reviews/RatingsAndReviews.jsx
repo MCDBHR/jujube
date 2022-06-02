@@ -30,31 +30,17 @@ const RatingsAndReviews = ({ product_id }) => {
   const [formData, setFormData] = useState({});
 
   useEffect(() => {
-<<<<<<< HEAD
-    axios.get('/reviews/', {params: {'product_id': product_id, 'sort' : order, 'count': 9999}})
-    .then((results) => {
-      setReviews(results.data)
-    })
-    .then(()=> {
-      axios.get('/reviews/meta', {params: {'product_id': product_id}})
-      .then((metaData) => {
-
-        setCharacteristics(metaData.data.characteristics);
-        setRatings(metaData.data.ratings);
-        setRecommended(metaData.data.recommended);
-=======
-    axios.get('/reviews/', { params: { 'product_id': product_id, 'sort': order, 'count': 9999 } })
+    axios.get('/api/reviews/', { params: { 'product_id': product_id, 'sort': order, 'count': 9999 } })
       .then((results) => {
         setReviews(results.data)
       })
       .then(() => {
-        axios.get('/reviews/meta', { params: { 'product_id': product_id } })
+        axios.get('/api/reviews/meta', { params: { 'product_id': product_id } })
           .then((metaData) => {
             setCharacteristics(metaData.data.characteristics);
             setRatings(metaData.data.ratings);
             setRecommended(metaData.data.recommended);
           })
->>>>>>> main
       })
   }, [order]);
 
@@ -68,7 +54,7 @@ const RatingsAndReviews = ({ product_id }) => {
 
   if (reviews && Object.keys(characteristics).length !== 0) {
     return (
-      <RRFlexContainer>
+      <RRFlexContainer id="ratings-reviews">
         <RatingsStyle>
           <Ratings characteristics={characteristics} ratings={ratings} recommended={recommended} />
         </RatingsStyle>

@@ -45,14 +45,14 @@ const Navheader = styled.h2`
   }
 `;
 const NavList = styled.ul`
-  font-size: 0.8rem;
+  font-size: 1rem;
   display: flex;
   justify-content: flex-end;
   align-items: right;
   list-style: none;
   padding-left: 0;
-  font-family: 'Josh', sans-serif;
-  text-shadow:  0.5em 0.3em #E0E0E0;
+  font-family: 'Rubik', sans-serif;
+
   @media (max-width: 620px) {
     display: none;
   }

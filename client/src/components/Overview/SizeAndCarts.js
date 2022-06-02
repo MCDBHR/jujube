@@ -18,7 +18,7 @@ const Button = styled.button`
   border-radius:3px;
   &:hover {
     cursor: pointer;
-    background-color: black;
+    background-color: #3BAD51;
     color: white;
     border-radius: 3px;
   }
@@ -57,7 +57,7 @@ const QuantitySelector = styled.select`
 const CartButton = styled.button`
   color: white;
   padding: .45em .75em;
-  background-color: #555555;
+  background-color: #50CC68;
   outline: none;
   border: 1px solid black;
   transition: all .25s ease;
@@ -67,7 +67,7 @@ const CartButton = styled.button`
   width: 45%;
   text-transform: uppercase;
   position: relative;
-
+  border-radius:3px;
   &:not([disabled]) {
     transform: translate(-3px, -3px);
   }
@@ -110,7 +110,7 @@ const CartButton = styled.button`
 
   &:hover {
     cursor: pointer;
-    background-color: grey;
+    background-color: #3BAD51;
     color: white;
   }
 
@@ -263,6 +263,7 @@ const SizeAndCarts = ({defaultStyle}) => {
             </Flexbox>
             <CartWrapper>
             {cartShow && <Modal
+            cartShow={cartShow}
             setCartShow={setCartShow}
             msg={msg}/>}
             </CartWrapper>

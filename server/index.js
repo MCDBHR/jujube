@@ -5,6 +5,7 @@ const app = express();
 const PORT = 3000 || process.env.PORT;
 const axios = require('axios');
 const bodyParser = require('body-parser');
+app.use(express.urlencoded({ extended: true }));
 const apiURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/';
 const apiHeaders = { headers: {'Authorization': process.env.AUTH_TOKEN}}
 app.use(express.static('client/dist'));
@@ -14,12 +15,9 @@ app.use(bodyParser.json());
 app.listen(PORT, () => {
   console.log(`Server listening on port: ${PORT}`);
 })
-
 app.get('/api/products/*', (req, res) => {
   res.sendFile('index.html', {root: path.join(__dirname, '../client/dist')})
 });
-
-
 /*Overview*/
 //get all products
 app.get('/products', async (req, res) => {
@@ -29,8 +27,6 @@ app.get('/products', async (req, res) => {
    res.status(200).send(response.data)
  } catch(err){res.send(err)}
 });
-
-
 //get one products
 //We should split it into multiple get controllers?
 app.get('/products/:product_id', async (req, res) => {
@@ -48,7 +44,6 @@ app.get('/products/:product_id', async (req, res) => {
     res.status(400).send(err)
   }
 })
-
 app.get('/products/:product_id/one', async (req, res) => {
   const id = req.params.product_id;
   try {
@@ -58,7 +53,6 @@ app.get('/products/:product_id/one', async (req, res) => {
     res.status(400).send(err);
   }
 })
-
 app.get('/products/:product_id/styles', async (req, res) => {
   const id = req.params.product_id;
     try {
@@ -68,7 +62,6 @@ app.get('/products/:product_id/styles', async (req, res) => {
     res.status(400).send(err);
   }
 })
-
 //get Cart
 app.get('/cart', async (req, res) => {
   try {
@@ -78,7 +71,6 @@ app.get('/cart', async (req, res) => {
     res.send(err)
   }
 })
-
 //add To Cart
 app.post('/cart', async (req, res) => {
   try {
@@ -88,10 +80,9 @@ app.post('/cart', async (req, res) => {
     res.send(err)
   }
 })
-
 /* ===================== REVIEWS AND RATINGS ========================= */
 /*Reviews get all and by sort*/
-app.get('/reviews/', (req, res) => {
+app.get('/api/reviews/', (req, res) => {
   const id = req.query.product_id
   const sort = req.query.sort
   const count = req.query.count
@@ -106,14 +97,12 @@ app.get('/reviews/', (req, res) => {
   axios.get(`${apiURL}reviews/`, config)
   .then((results) => {
     res.status(200).send(results.data.results)})
-
   .catch((err) => {
     res.send(err);
   })
 })
-
 // get reviews meta for one product
-app.get('/reviews/meta', (req, res) => {
+app.get('/api/reviews/meta', (req, res) => {
   const id = req.query.product_id
   let config = {
     headers: {'Authorization': process.env.AUTH_TOKEN},
@@ -124,20 +113,21 @@ app.get('/reviews/meta', (req, res) => {
   axios.get(`${apiURL}reviews/meta`, config)
   .then((results)=> {
     res.status(200).send(results.data)})
-  .catch((err) => { res.status(500).send(err);});
+  .catch((err) => { res.status(500).send(err)});
 });
-
-
+app.post('/api/reviews', (req, res) => {
+  let params = req.body
+  console.log(params, 'these are the params');
+  axios.post(`${apiURL}reviews`, params, apiHeaders)
+  .then((results) => {
+    res.status(201).send(results.data)})
+  .catch((err) => {res.status(500).send(err)});
+})
 //review_id:1135681
 //from client end: axios.put('/report/review/?id=1135681')
 app.put('/report/review/:id', (req, res) => {
   var id =  req.params.id;
   axios.put(`${apiURL}reviews/${id}/report`, id,  apiHeaders)
   .then((data)=> { res.status(200).send(data.data)})
-  .catch((err) => {res.status(500).send(err);});
+  .catch((err) => {res.status(500).send(err)});
 });
-
-
-
-
-

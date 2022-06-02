@@ -8,24 +8,29 @@ const CartContainer = styled.div`
    border-radius:12px;
    border:3px solid black;
    background-color:white;
-   display:flex;
+   display:${(props) => props.shows};
    padding:15px;
 `
 
-const Modal = ({setCartShow,msg}) => {
+const Modal = ({setCartShow,msg,cartShow}) => {
 
-
-useEffect( ()=> {
-  document.addEventListener( 'mousedown', ()=>{
-    setCartShow(false)
+  useEffect( ()=> {
+    document.addEventListener( 'mousedown', ()=>{
+      setCartShow(false)
+    })
   })
-})
+  let show;
+  if(!cartShow) {
+    show = 'none';
+  } else {
+    show = 'flex'
+  }
+  return(
 
-return(
-  <CartContainer>
-    {msg}
-  </CartContainer>
-)
+    <CartContainer shows={show}>
+      {msg}
+    </CartContainer>
+  )
 }
 
 export default Modal;
