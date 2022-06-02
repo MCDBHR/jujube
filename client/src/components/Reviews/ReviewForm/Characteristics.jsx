@@ -7,11 +7,12 @@ import axios from 'axios';
 import CharacteristicDataTable from './CharacteristicDataTable.js';
 
 const Characteristics = ({characteristics}) => {
-  //takes in meta data that is an object.
-  //object.keys that metadata to get characteristic
 
+<<<<<<< HEAD
   //for each characteristic, find the key that matches in the CharacteristicDataTable and map out each radio button with the description (index) underneath
 
+=======
+>>>>>>> main
   let characteristicArray = Object.keys(characteristics);
 
   if (characteristicArray.length !== 0) {

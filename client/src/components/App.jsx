@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef}  from 'react';
 import Overview from './Overview'
 import axios from 'axios';
-import { Nav } from './style/NavStyle.js';
+import { Nav,Navheader,NavList } from './style/NavStyle.js';
 import FlexContainer from './style/Flexbox.js';
 import AppContainer from './style/AppContainer.js';
 import RatingsAndReviews from './Reviews/RatingsAndReviews.jsx';
@@ -117,7 +117,12 @@ const App = (props) => {
   return (
     <div style={{ position: 'relative' }}>
       <Nav>
-        Jonas Brother
+        <Navheader>The Jonas Brothers</Navheader>
+        <NavList>
+          <li><a href="#overview" >Overview</a></li>
+          <li><a href="#related" >Related Products</a></li>
+          <li><a href="#ratings-reviews" >Reviews &amp; Ratings</a></li>
+        </NavList>
       </Nav>
       {!!product.length &&
       <AppContainer>
@@ -126,6 +131,8 @@ const App = (props) => {
           overview={overview}
           styles={styles}
           reviews={reviews}
+          metaReview={metaReview}
+
         />
          <div>
         <SetFavItemsContext.Provider value={setFavItems}>
@@ -133,7 +140,6 @@ const App = (props) => {
           {<FavoriteProduct addFavProduct={addFavProduct} deleteFavProduct={deleteFavProduct} favItems={favItems}/>}
         </SetFavItemsContext.Provider>
         </div>
-
         <RatingsAndReviews product_id={40348}/>
         </FlexContainer>
       </AppContainer>
@@ -141,5 +147,4 @@ const App = (props) => {
     </div>
   )
 }
-
 export default App;

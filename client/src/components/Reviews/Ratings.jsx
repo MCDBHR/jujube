@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'; // import useState
 import axios from 'axios';
 import CharacteristicBar from './ratingComponents/CharacteristicBar.jsx';
 import RatingBar from './ratingComponents/RatingBar.jsx';
+import StarRating from './ratingComponents/StarRating.jsx';
 
 const Ratings = ({characteristics, ratings, recommended}) => {
 
@@ -15,7 +16,7 @@ const Ratings = ({characteristics, ratings, recommended}) => {
     let starRating = Object.keys(ratings);
     let total = 0;
     let starTotal = 0;
-    for (var stars of starRating) {
+    for (let stars of starRating) {
       total += parseInt(ratings[stars], 0);
       starTotal += ratings[stars] * stars;
     }
@@ -32,7 +33,7 @@ const Ratings = ({characteristics, ratings, recommended}) => {
 
   return (
     <div>
-      <h1>RATINGS {displayRating}</h1>
+      <StarRating data={displayRating}/>
       <div>
         <RatingBar data={ratings}/>
         <CharacteristicBar data={characteristics}/>
