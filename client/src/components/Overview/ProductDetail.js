@@ -25,7 +25,7 @@ const ProductDetail = ({overview,reviews,metaReview}) => {
   const { name, category, id, description } = overview;
   const [reviewsCount, setReviewsCount] = useState(null);
   useEffect(() => {
-    axios.get(`/reviews/`,{params:{product_id:id,sort:'relevant',count:10000 }}).then((res) => {
+    axios.get(`/api/reviews/`,{params:{product_id:id,sort:'relevant',count:10000 }}).then((res) => {
       setReviewsCount(res.data.length);
     });
   }, []);
@@ -51,7 +51,7 @@ const ProductDetail = ({overview,reviews,metaReview}) => {
         >
           {category}
         </span>
-        <h1>{name}</h1>
+        <h1 style={{fontFamily:"Rubik"}}>{name}</h1>
         <span style={{
           fontStyle:'italic'
         }}

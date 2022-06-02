@@ -117,7 +117,9 @@ const App = (props) => {
   return (
     <div style={{ position: 'relative' }}>
       <Nav>
-        <Navheader>The Jonas Brothers</Navheader>
+        <Navheader>
+          <img src='https://res.cloudinary.com/thejoebro/image/upload/v1654208478/rli7stbb7rwvyv0tya1x.png' height='100'></img>
+        </Navheader>
         <NavList>
           <li><a href="#overview" >Overview</a></li>
           <li><a href="#related" >Related Products</a></li>

@@ -12,7 +12,10 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 
+const Container = styled.div`
 
+
+`
 export const CreateReview = ({characteristics, product_id, name}) => {
   const [rating, setRating] = useState(null);
   const [recommended, setRecommended] = useState(null);

@@ -77,7 +77,8 @@ const RatingsAndReviews = ({ product_id, name}) => {
           {showModal ?
             <>
               <ModalBackground onClick={handleShowModal}></ModalBackground>
-              <ModalStyle> <CreateReview characteristics={characteristics} product_id={product_id} name={name}/>
+              <ModalStyle>
+                <CreateReview characteristics={characteristics} product_id={product_id} name={name}/>
               </ModalStyle>
             </>
             : null}
