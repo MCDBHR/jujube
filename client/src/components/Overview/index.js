@@ -10,7 +10,7 @@ import ProductDetailContainer from '../style/ProductStyle.js';
 
 
 /*------------------MAIN FUNCTION -----------------*/
-const Overview = ({overview,styles,reviews}) => {
+const Overview = ({overview,styles,reviews,metaReview}) => {
 
   //set up default style
   const [defaultStyle, setSelectedStyle] = useState(styles.results[0]);
@@ -25,34 +25,35 @@ const Overview = ({overview,styles,reviews}) => {
   };
 
   return(
-    <main>
-<Flexbox direction="column">
-<OverviewContainer
-  direction="row"
-  justify="center"
-  >
-  <GalleryContainer
-  expanded={isExpanded}>
-    <Gallery
-      defaultStyle={defaultStyle}
-      expandedHandler={handleExpand}
-      expanded={isExpanded}
-    />
-  </GalleryContainer>
-  <ProductDetailContainer expanded={isExpanded}>
-    <ProductsInfo
-    overview={overview}
-    reviews={reviews}
-    />
-  </ProductDetailContainer>
-</OverviewContainer>
-</Flexbox>
+    <main id="overview">
+      <Flexbox direction="column">
+      <OverviewContainer
+        direction="row"
+        justify="center"
+        >
+        <GalleryContainer
+        expanded={isExpanded}>
+          <Gallery
+            defaultStyle={defaultStyle}
+            expandedHandler={handleExpand}
+            expanded={isExpanded}
+          />
+        </GalleryContainer>
+        <ProductDetailContainer expanded={isExpanded}>
+          <ProductsInfo
+            overview={overview}
+            reviews={reviews}
+            styles={styles}
+            defaultStyle={defaultStyle}
+            metaReview={metaReview}
+            handleStyleChange={(style) => setSelectedStyle(style)}
+          />
+        </ProductDetailContainer>
+      </OverviewContainer>
+      </Flexbox>
     </main>
   )
 }
-
-
-
 
 export default Overview;
 

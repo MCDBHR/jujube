@@ -31,13 +31,13 @@ const RatingsAndReviews = ({ product_id }) => {
   const [formData, setFormData] = useState({});
 
   useEffect(() => {
-    console.log('order has changed');
-    axios.get('/reviews/', { params: { 'product_id': product_id, 'sort': order, 'count': 9999 } })
+
+    axios.get('/api/reviews/', { params: { 'product_id': product_id, 'sort': order, 'count': 9999 } })
       .then((results) => {
         setReviews(results.data)
       })
       .then(() => {
-        axios.get('/reviews/meta', { params: { 'product_id': product_id } })
+        axios.get('/api/reviews/meta', { params: { 'product_id': product_id } })
           .then((metaData) => {
             setCharacteristics(metaData.data.characteristics);
             setRatings(metaData.data.ratings);

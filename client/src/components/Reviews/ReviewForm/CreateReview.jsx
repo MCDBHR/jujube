@@ -26,7 +26,6 @@ export const CreateReview = ({characteristics, product_id}) => {
     if(images.length === 0) {
       setImages(null);
     }
-    console.log(product_id);
     let params = {
       'product_id': product_id,
       'rating': rating,
@@ -39,7 +38,7 @@ export const CreateReview = ({characteristics, product_id}) => {
       'characteristics': choiceObj
     }
     console.log(params);
-    axios.post('/reviews', params)
+    axios.post('/api/reviews', params)
   };
 
   return (

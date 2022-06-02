@@ -1,11 +1,13 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import {SetFavItemsContext} from '../App.jsx';
+import {Link} from 'react-router-dom';
+
+//CSS
+import {RelatedCardContainer} from '../style/RelatedproductsStyle/RelatedCardContainer.style.js';
 
 const RelatedCard = (props) => {
+  const setFavItems = useContext(SetFavItemsContext);
   const handleOnClickFav = (e) => {
-    // To remove localStorage Items
-    // localStorage.removeItem('favItems');
-    // return;
-    //
 
     if(!localStorage.getItem('favItems')) {
       localStorage.setItem('favItems', JSON.stringify([props.relatedProduct]));
@@ -23,12 +25,16 @@ const RelatedCard = (props) => {
       }
 
       if(!hasDuplicateItem) {
-        parsedItems.push(props.relatedProduct);
+        const productWithImg = {...props.relatedProduct, thumbnailURL: props.productImg}
+        parsedItems.push(productWithImg);
+
+        //Re-renders state with new product
+        setFavItems(parsedItems);
         localStorage.setItem('favItems', JSON.stringify(parsedItems));
       }
 
     }
-    console.log(localStorage.getItem('favItems'));
+    //console.log(localStorage.getItem('favItems'));
     // localStorage.removeItem('favItems');
     // console.log(localStorage.getItem('favItems'));
 
@@ -36,9 +42,11 @@ const RelatedCard = (props) => {
 
 
   return(
-    <div style={{border: '1px solid black', display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "flex-start" }}>
-      <div style={{width: "200px"}}>
-        <img style={{objectFit: "cover", width: "100%", height: "100%"}} src="https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80" alt=""/>
+    <CardContainer>
+      <div style={{width: "250px", height: "325px"}}>
+        <Link to={`/api/products/${props.relatedProduct.id}`}>
+           <img style={{objectFit: "cover", width: "100%", height: "100%"}} src={props.productImg} alt=""/>
+        </Link>
       </div>
       <div style={{padding: "0px 10px"}}>
          <div>{props.relatedProduct.category}</div>
@@ -46,8 +54,7 @@ const RelatedCard = (props) => {
          <div>$ {props.relatedProduct.default_price}</div>
          <button onClick={handleOnClickFav}>Add</button>
       </div>
-
-    </div>
+    </CardContainer>
   )
 }
 

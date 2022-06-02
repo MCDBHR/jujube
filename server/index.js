@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const path = require('path');
 const app = express();
 const PORT = 3000 || process.env.PORT;
 const axios = require('axios');
@@ -16,11 +17,17 @@ app.listen(PORT, () => {
   console.log(`Server listening on port: ${PORT}`);
 })
 
+app.get('/api/products/*', (req, res) => {
+  res.sendFile('index.html', {root: path.join(__dirname, '../client/dist')})
+});
+
+
 /*Overview*/
 //get all products
 app.get('/products', async (req, res) => {
+ const page = req.query.page || 1;
  try {
-   const response = await axios.get(`${apiURL}products`, apiHeaders);
+   const response = await axios.get(`${apiURL}products/?page=${page}`, apiHeaders);
    res.status(200).send(response.data)
  } catch(err){res.send(err)}
 });
@@ -31,32 +38,54 @@ app.get('/products', async (req, res) => {
 app.get('/products/:product_id', async (req, res) => {
   const id = req.params.product_id;
   try{
-    console.log('products with id');
     const overview = await axios.get(`${apiURL}products/${id}`,apiHeaders);
     const related = await axios.get(`${apiURL}products/${id}/related`,apiHeaders);
     const styles = await axios.get(`${apiURL}products/${id}/styles`,apiHeaders);
     const reviews = await axios.get(`${apiURL}reviews/?product_id=${id}`,apiHeaders);
-
+    const metaReview = await axios.get(`${apiURL}reviews/meta/?product_id=${id}`, apiHeaders);
     const combined = [];
-    await combined.push(overview.data,related.data,styles.data,reviews.data)
+    await combined.push(overview.data,related.data,styles.data,reviews.data,metaReview.data)
     res.status(200).send(combined)
   } catch(err) {
     res.status(400).send(err)
   }
 })
 
-// app.get('/products/:product_id/related', async (req, res) => {
-//   const id = req.params.product_id;
-//   try {
-//     const related = await axios.get(`${apiURL}products/${id}/related`, apiHeaders);
-//   }
-// })
+app.get('/products/:product_id/one', async (req, res) => {
+  const id = req.params.product_id;
+  try {
+    const product = await axios.get(`${apiURL}products/${id}`, apiHeaders);
+    res.status(200).send(product.data);
+  } catch (err) {
+    res.status(400).send(err);
+  }
+})
+
+app.get('/products/:product_id/styles', async (req, res) => {
+  const id = req.params.product_id;
+    try {
+    const productStyle = await axios.get(`${apiURL}products/${id}/styles`, apiHeaders);
+    res.status(200).send(productStyle.data);
+  } catch (err) {
+    res.status(400).send(err);
+  }
+})
+
+//get Cart
+app.get('/cart', async (req, res) => {
+  try {
+    const response = await axios.get(`${apiURL}cart`, apiHeaders);
+    res.status(201).send(response.data)
+  }catch(err) {
+    res.send(err)
+  }
+})
 
 //add To Cart
 app.post('/cart', async (req, res) => {
   try {
     const response = await axios.post(`${apiURL}cart`, req.body, apiHeaders);
-    res.status(201).send(response)
+    res.status(201).send(response.data)
   }catch(err) {
     res.send(err)
   }
@@ -64,7 +93,7 @@ app.post('/cart', async (req, res) => {
 
 /* ===================== REVIEWS AND RATINGS ========================= */
 /*Reviews get all and by sort*/
-app.get('/reviews/', (req, res) => {
+app.get('/api/reviews/', (req, res) => {
   const id = req.query.product_id
   const sort = req.query.sort
   const count = req.query.count
@@ -86,7 +115,7 @@ app.get('/reviews/', (req, res) => {
 })
 
 // get reviews meta for one product
-app.get('/reviews/meta', (req, res) => {
+app.get('/api/reviews/meta', (req, res) => {
   const id = req.query.product_id
   let config = {
     headers: {'Authorization': process.env.AUTH_TOKEN},
@@ -100,7 +129,7 @@ app.get('/reviews/meta', (req, res) => {
   .catch((err) => { res.status(500).send(err)});
 });
 
-app.post('/reviews', (req, res) => {
+app.post('/api/reviews', (req, res) => {
   let params = req.body
   console.log(params, 'these are the params');
   axios.post(`${apiURL}reviews`, params, apiHeaders)
@@ -112,7 +141,7 @@ app.post('/reviews', (req, res) => {
 
 //review_id:1135681
 //from client end: axios.put('/report/review/?id=1135681')
-app.put('/report/review/:id', (req, res) => {
+app.put('/api/report/review/:id', (req, res) => {
   var id =  req.params.id;
   axios.put(`${apiURL}reviews/${id}/report`, id,  apiHeaders)
   .then((data)=> { res.status(200).send(data.data)})

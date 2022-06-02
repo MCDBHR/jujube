@@ -30,7 +30,7 @@ const Characteristics = ({characteristics, choiceObj, setChoiceObj}) => {
   if (characteristicArray.length !== 0) {
     return (
       <div>
-        { characteristicArray.map((characteristic) => {
+        { characteristicArray.map((characteristic, index) => {
           let tabledata = CharacteristicDataTable[characteristic];
           return (
             <div key={characteristics[characteristic].id}>

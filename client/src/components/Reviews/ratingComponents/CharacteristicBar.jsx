@@ -40,25 +40,23 @@ const CharacteristicBar= ({data}) => {
     <div>
       {characteristicArray.map((characteristic, i) => {
         return (
-            <RatingsBarContainer key={characteristic.concat(i)}>
-                <small>{characteristic}</small>
-              <Bar>
-                <Arrow pos={data[characteristic].value}></Arrow>
-              </Bar>
-              <UnderText>
-                {
-                  CharacteristicDataTable[characteristic].filter((text, index) => {
-                    return index === 0 || index === 4;
-                  }).map((text) => <div key={text}>{text}</div>)
-                }
-              </UnderText>
-            </RatingsBarContainer>
-
+          <RatingsBarContainer key={characteristic.concat(i)}>
+              <small>{characteristic}</small>
+            <Bar>
+              <Arrow pos={data[characteristic].value}></Arrow>
+            </Bar>
+            <UnderText>
+              {
+                CharacteristicDataTable[characteristic].filter((text, index) => {
+                  return index === 0 || index === 4;
+                }).map((text) => <div key={text}>{text}</div>)
+              }
+            </UnderText>
+          </RatingsBarContainer>
         )
       })}
     </div>
   )
-
 }
 
 export default CharacteristicBar;
