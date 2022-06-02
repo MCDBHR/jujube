@@ -42,9 +42,9 @@ const RelatedCard = (props) => {
 
 
   return(
-    <RelatedCardContainer>
+    <CardContainer>
       <div style={{width: "250px", height: "325px"}}>
-        <Link to={`/products/${props.relatedProduct.id}`}>
+        <Link to={`/api/products/${props.relatedProduct.id}`}>
            <img style={{objectFit: "cover", width: "100%", height: "100%"}} src={props.productImg} alt=""/>
         </Link>
       </div>
@@ -54,8 +54,7 @@ const RelatedCard = (props) => {
          <div>$ {props.relatedProduct.default_price}</div>
          <button onClick={handleOnClickFav}>Add</button>
       </div>
-
-    </RelatedCardContainer>
+    </CardContainer>
   )
 }
 

@@ -25,7 +25,7 @@ const RelatedProduct = (props) => {
       .then(results => {
         //console.log(results, 'STYLES RESULTS')
         //const productStyles = results.map(product => product.data)
-        const stylesProductsImg = results.map(product => product.data.results[0].photos[0].thumbnail_url)
+        const stylesProductsImg = results.map(product => product.data.results[0].photos[0].url)
         setStyles(stylesProductsImg);
       })
       .catch(err => console.log(err, 'Error in Promise'))

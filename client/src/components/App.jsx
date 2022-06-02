@@ -7,7 +7,7 @@ import AppContainer from './style/AppContainer.js';
 import RatingsAndReviews from './Reviews/RatingsAndReviews.jsx';
 import RelatedProduct from './RelatedProducts/RelatedProduct.jsx';
 import FavoriteProduct from './RelatedProducts/FavoriteProduct.jsx';
-
+import {useParams} from 'react-router-dom';
 
 export const SetFavItemsContext = React.createContext();
 
@@ -16,18 +16,63 @@ const App = (props) => {
   const [favItems, setFavItems] = useState([]);
 
   const [overview, related, styles, reviews] = product;
+  const {id} = useParams();
 
+
+  //Figure out how to make the second comp a componentWillUpdate instead
+  //because right now both useEffects are running
+
+  //before our URL links would go into the backend, but now the new URL,
+  //serves our react app router, which then calls our comp with the new,
+  //param and then it makes the call to the server
+  // useEffect(() => {
+  //   axios.get(`/products/${props.id}`).then((res) => {
+  //     //returns an array of all URL calls
+  //     setProduct(res.data);
+  //   });
+  //   //Setting Favorite Item state
+  //   const parsedItems = JSON.parse(localStorage.getItem('favItems'));
+  //   setFavItems(parsedItems);
+  // }, []);
 
   useEffect(() => {
-    console.log(props, 'PROPS HERE')
-    axios.get('/products/40347').then((res) => {
+    axios.get(`/products/${id}`)
+    .then((res) => {
       //returns an array of all URL calls
+      console.log('We are in here!')
       setProduct(res.data);
-    });
+      //Move to top of the page
+      window.scrollTo(0, 0);
+    }).catch(err => console.log(err, 'error in api'));
     //Setting Favorite Item state
     const parsedItems = JSON.parse(localStorage.getItem('favItems'));
     setFavItems(parsedItems);
-  }, []);
+  }, [id]);
+
+  // const status = useRef();
+  // useEffect(() => {
+  //   if(!status.current) {
+  //     console.log('IN CURRENT')
+  //     axios.get(`/products/${props.id}`).then((res) => {
+  //      //returns an array of all URL calls
+  //       setProduct(res.data);
+  //     });
+  //     //Setting Favorite Item state
+  //     const parsedItems = JSON.parse(localStorage.getItem('favItems'));
+  //     setFavItems(parsedItems);
+  //     status.current = true;
+  //   } else {
+  //      axios.get(`/products/${id}`)
+  //       .then((res) => {
+  //      //returns an array of all URL calls
+  //      console.log('We are in here!')
+  //      setProduct(res.data);
+  //   }).catch(err => console.log(err, 'error in api'));
+  //      //Setting Favorite Item state
+  //      const parsedItems = JSON.parse(localStorage.getItem('favItems'));
+  //      setFavItems(parsedItems);
+  //   }
+  // }, [id])
 
   //Every time favItem state changes, also update localStorage to reflect
   useEffect(() => {
@@ -35,8 +80,7 @@ const App = (props) => {
   }, [favItems])
 
   const addFavProduct = () => {
-
-    const overviewWithImg = {...overview, thumbnailURL: styles.results[0].photos[0].thumbnail_url}
+    const overviewWithImg = {...overview, thumbnailURL: styles.results[0].photos[0].url}
 
     if(!favItems.length) {
       localStorage.setItem('favItems', JSON.stringify([overviewWithImg]));
@@ -54,26 +98,18 @@ const App = (props) => {
 
       if(!hasDuplicateItem) {
         //Re-renders state with new product
-        console.log("WE ARE REDOING")
         setFavItems((prevState) => {
           console.log(prevState, 'prev State');
           return prevState.concat(overviewWithImg);
         });
         //localStorage.setItem('favItems', JSON.stringify(parsedItems));
       }
-
     }
-
-
   }
 
   const deleteFavProduct = (id) => {
-    try {
       const removedProduct = favItems.filter(product => (product.id !== id));
       setFavItems(removedProduct);
-    } catch(err) {
-      console.log(err, "error here")
-    }
   }
 
 
