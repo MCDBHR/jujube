@@ -101,11 +101,9 @@ app.get('/reviews/meta', (req, res) => {
 });
 
 app.post('/reviews', (req, res) => {
-  let config = {
-    headers: {'Authorization': process.env.AUTH_TOKEN},
-    params: req.body
-  }
-  axios.post(`${apiURL}reviews`, config)
+  let params = req.body
+  console.log(params, 'these are the params');
+  axios.post(`${apiURL}reviews`, params, apiHeaders)
   .then((results) => {
     res.status(201).send(results.data)})
   .catch((err) => {res.status(500).send(err)});

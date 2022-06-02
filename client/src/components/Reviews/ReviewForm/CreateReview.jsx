@@ -36,14 +36,10 @@ export const CreateReview = ({characteristics, product_id}) => {
       'name': username,
       'email': email,
       'photos': images,
-      'characteristic': choiceObj
+      'characteristics': choiceObj
     }
     console.log(params);
-    // axios.post('/reviews', params)
-    // .then((results) => {
-    //   console.log(results);
-    // })
-
+    axios.post('/reviews', params)
   };
 
   return (
