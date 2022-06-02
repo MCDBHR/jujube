@@ -10,6 +10,7 @@ const apiURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/';
 const apiHeaders = { headers: {'Authorization': process.env.AUTH_TOKEN}}
 app.use(express.static('client/dist'));
 app.use(express.json());
+
 app.use(bodyParser.json());
 //app.use(express.urlencoded({extended: true}))
 app.listen(PORT, () => {

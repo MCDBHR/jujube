@@ -1,3 +1,4 @@
+
 import React, { useRef } from "react";
 import ReactDom from "react-dom";
 import Star from './Star.jsx';
@@ -10,7 +11,10 @@ import UsernameEmail from './UsernameEmail.jsx';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+
 const Container = styled.div`
+
+
 `
 export const CreateReview = ({characteristics, product_id, name}) => {
   const [rating, setRating] = useState(null);
@@ -21,6 +25,7 @@ export const CreateReview = ({characteristics, product_id, name}) => {
   let [images, setImages] = useState([]);
   let [username, setUsername] = useState('');
   let [email, setEmail] = useState('');
+
   const handlePostVerification = () => {
     if(images.length === 0) {
       setImages(null);
@@ -39,18 +44,27 @@ export const CreateReview = ({characteristics, product_id, name}) => {
     console.log(params);
     axios.post('/api/reviews', params)
   };
+
   return (
     <div>
       <p>{name}</p>
       <Star rating={rating} setRating={setRating}/>
+
       <Recommend setRecommended={setRecommended}/>
+
       <Characteristics characteristics={characteristics} choiceObj={choiceObj} setChoiceObj={setChoiceObj}/>
+
       <Summary setSummary={setSummary}/>
+
       <Body setBody={setBody}/>
+
       <PhotoUpload images={images} setImages={setImages}/>
+
       <UsernameEmail setUsername={setUsername} setEmail={setEmail}/>
+
       <button onClick={handlePostVerification}>submit review</button>
     </div>
   );
 };
+
 export default CreateReview;

@@ -142,7 +142,7 @@ const App = (props) => {
           {<FavoriteProduct addFavProduct={addFavProduct} deleteFavProduct={deleteFavProduct} favItems={favItems}/>}
         </SetFavItemsContext.Provider>
         </div>
-        <RatingsAndReviews product_id={40348}/>
+        <RatingsAndReviews product_id={overview.id} name={overview.name}/>
         </FlexContainer>
       </AppContainer>
       }
