@@ -3,7 +3,7 @@ import StyleEntryStyle from '../style/StyleEntryStyle'
 import {BsCheckCircleFill} from 'react-icons/Bs'
 
 
-const StyleEntry = ({style, handleStyleChange, thumbnailImg, selected}) => (
+const StyleEntry = ({style, handleStyleChange, selected,thumbnailImg}) => (
   <StyleEntryStyle
   onClick={() => handleStyleChange(style)}
   selected={selected}
