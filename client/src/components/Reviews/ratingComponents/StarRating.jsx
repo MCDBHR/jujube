@@ -18,6 +18,7 @@ const InnerStar = styled.div`
   position: absolute;
   color: green;
   overflow: hidden;
+
 `;
 
 const OuterStar = styled.div`

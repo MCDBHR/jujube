@@ -49,6 +49,7 @@ const Ratings = ({ characteristics, ratings, recommended, setDisplayRatingFilter
     <div>
       <RatingAndStarsContainer>
         <DisplayText>{displayText}</DisplayText>
+        {console.log(displayRating, 'display rating')}
         <StarRating data={displayRating} />
       </RatingAndStarsContainer>
       <p> {recommendedRating}% recommends this product</p>

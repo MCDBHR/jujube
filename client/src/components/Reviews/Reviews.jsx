@@ -5,7 +5,7 @@ import Ratings from './Ratings.jsx';
 import styled from 'styled-components';
 
 const ReviewContainer = styled.div`
-  height: 750px;
+  height: 725px;
   overflow: scroll;
   scrollbar-width: thin;
 `

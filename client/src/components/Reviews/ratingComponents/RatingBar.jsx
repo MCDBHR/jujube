@@ -9,11 +9,13 @@ const Container = styled.div`
 `;
 const BarContainer = styled.div`
   display: flex;
+  padding: 3px;
+  border-radius: 8px;
   flex-direction: row;
   margin: 0.5em 0 0.5em 0;
   align-items: center;
   &:hover {
-    background-color: green;
+    background-color: #cf2b2a;
   }
 `;
 
@@ -26,7 +28,7 @@ const Bar = styled.div`
 `;
 
 const FilledData = styled.div`
-  background-color: #9bde90;
+  background-color: #cf2b2a;
   z-index:2;
   width: ${({ width }) => width}%;
   height: 0.9em;
@@ -47,6 +49,7 @@ const RatingBar = ({ data, setDisplayRatingFilter, displayRatingFilter }) => {
 
   let dataValues = Object.values(data);
   let dataKeys = Object.keys(data);
+  console.log(dataKeys);
 
   useEffect(() => {
     let totalRatings = 0

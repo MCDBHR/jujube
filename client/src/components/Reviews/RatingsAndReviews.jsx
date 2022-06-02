@@ -15,7 +15,7 @@ import {
 } from '../style/ReviewsAndRatings.js'
 
 
-const RatingsAndReviews = ({ product_id }) => {
+const RatingsAndReviews = ({ product_id, name}) => {
 
   //------------REVIEWS STATE---------------
   const [reviews, setReviews] = useState(null);
@@ -44,7 +44,7 @@ const RatingsAndReviews = ({ product_id }) => {
             setRecommended(metaData.data.recommended);
           })
       })
-  }, [order]);
+  }, [order, product_id]);
 
   const handleShowModal = (e) => {
     if (showModal === false) {
@@ -77,7 +77,7 @@ const RatingsAndReviews = ({ product_id }) => {
           {showModal ?
             <>
               <ModalBackground onClick={handleShowModal}></ModalBackground>
-              <ModalStyle> <CreateReview characteristics={characteristics} product_id={product_id}/>
+              <ModalStyle> <CreateReview characteristics={characteristics} product_id={product_id} name={name}/>
               </ModalStyle>
             </>
             : null}

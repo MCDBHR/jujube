@@ -6,14 +6,15 @@ import { format, parseISO } from "date-fns";
 
 const StyledReview = styled.div`
   padding 10px;
-  border: 2px solid black;
-  margin: 4px;
-`
+  border: 2px solid #3bad51;
+  border-radius: 8px;
+  margin: 6px;
+`;
 const Header = styled.section`
   display: flex;
-  color: #9bde90;
   justify-content:space-between;
-`
+`;
+
 const Review = ({review}) => {
   const [fullBody, setFullBody] = useState(null);
   const [defaultBody, setDefaultBody] = useState(null);
@@ -21,15 +22,15 @@ const Review = ({review}) => {
   const [hasPhotos, setHasPhotos] = useState(false);
 
   const {review_id,
-    rating,
-    summary,
-    recommend,
-    response,
-    body,
-    date,
-    reviewer_name,
-    helpfulness,
-    photos} = review;
+        rating,
+        summary,
+        recommend,
+        response,
+        body,
+        date,
+        reviewer_name,
+        helpfulness,
+        photos} = review;
 
     if (rating) {
       var difference = 5 - rating;
@@ -58,7 +59,7 @@ const Review = ({review}) => {
         <div>
           <Header>
             <section>{starRender}</section>
-            <section> {reviewer_name},  {format(parseISO(date), 'PPP')}</section>
+            <section> <b style={{fontFamily:"Rubik"}}>{reviewer_name}</b> {format(parseISO(date), 'PPP')}</section>
           </Header>
         </div>
         <h3> {summary} </h3>
@@ -80,12 +81,11 @@ const Review = ({review}) => {
               )
             })
             :
-            <div>no photo reviews</div>
+            <div></div>
 
           }
         </div>
 
-        {/* <p> {body ? body : ''} </p> */}
         <p>{recommend ? "✓ I recommend this product" : "no"}</p>
         <p>{response ? {response} : ''}</p>
         <p>helpful: {helpfulness}</p>

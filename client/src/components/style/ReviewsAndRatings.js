@@ -33,7 +33,8 @@ const ModalStyle = styled.div`
   top: 50%;
   transform: translate(-50%, -50%);
   border-style: solid;
-  border-width: thick;
+  border-width: thin;
+  border-radius: 8px;
   padding: 20px;
   background: white;
   z-index: 51;

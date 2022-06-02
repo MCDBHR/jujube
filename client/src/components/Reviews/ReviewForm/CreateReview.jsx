@@ -10,9 +10,10 @@ import PhotoUpload from './PhotoUpload.jsx';
 import UsernameEmail from './UsernameEmail.jsx';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
 
 
-export const CreateReview = ({characteristics, product_id}) => {
+export const CreateReview = ({characteristics, product_id, name}) => {
   const [rating, setRating] = useState(null);
   const [recommended, setRecommended] = useState(null);
   let [choiceObj, setChoiceObj] = useState({})
@@ -43,7 +44,7 @@ export const CreateReview = ({characteristics, product_id}) => {
 
   return (
     <div>
-      <p>{product_id}</p>
+      <p>{name}</p>
       <Star rating={rating} setRating={setRating}/>
 
       <Recommend setRecommended={setRecommended}/>
