@@ -6,8 +6,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
-`
+`;
 const BarContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -58,31 +57,6 @@ const RatingBar = ({ data, setDisplayRatingFilter, displayRatingFilter }) => {
     setTotal(totalRatings)
   })
 
-<<<<<<< HEAD
-=======
-  return (
-<<<<<<< HEAD
-    //for each of the items
-    <div>
-      {ratingArray.map((rating, index) => {
-        return (
-          <div key={index}>
-            <div className="row">
-            <div className="data">
-            <div>{rating} star</div>
-            </div>
-            </div>
-            <div className="progressBar">
-            <div className="progressContainer">
-            </div>
-            </div>
-            <div className="data right">
-            <div>{data[rating]}</div>
-            </div>
-          </div>
-=======
->>>>>>> main
-
   return (
     <Container>
       {dataKeys.map((key, i) => {
@@ -105,12 +79,6 @@ const RatingBar = ({ data, setDisplayRatingFilter, displayRatingFilter }) => {
               {data[key]}
             </Count>
           </BarContainer>
-<<<<<<< HEAD
-=======
-
-
->>>>>>> main
->>>>>>> main
         )
       })}
     </Container>

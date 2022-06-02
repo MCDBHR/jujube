@@ -141,7 +141,7 @@ app.post('/api/reviews', (req, res) => {
 
 //review_id:1135681
 //from client end: axios.put('/report/review/?id=1135681')
-app.put('/api/report/review/:id', (req, res) => {
+app.put('/report/review/:id', (req, res) => {
   var id =  req.params.id;
   axios.put(`${apiURL}reviews/${id}/report`, id,  apiHeaders)
   .then((data)=> { res.status(200).send(data.data)})

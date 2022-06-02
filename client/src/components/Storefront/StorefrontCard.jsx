@@ -3,11 +3,11 @@ import {SetFavItemsContext} from '../App.jsx';
 import {Link} from 'react-router-dom';
 
 //CSS
-import {RelatedCardContainer} from '../style/RelatedproductsStyle/RelatedCardContainer.style.js';
+import {CardContainer} from '../style/RelatedproductsStyle/CardContainer.style.js';
 
 const StorefrontCard = (props) => {
   return(
-    <RelatedCardContainer>
+    <CardContainer>
       <div style={{width: "250px", height: "325px"}}>
         <Link to={`/api/products/${props.product.id}`}>
            <img style={{objectFit: "cover", width: "100%", height: "100%"}} src={props.stylesImg} alt=""/>
@@ -19,7 +19,7 @@ const StorefrontCard = (props) => {
          <div>$ {props.product.default_price}</div>
       </div>
 
-    </RelatedCardContainer>
+    </CardContainer>
   )
 }
 

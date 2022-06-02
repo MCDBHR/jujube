@@ -15,7 +15,7 @@ const App = (props) => {
   const [product, setProduct] = useState([]);
   const [favItems, setFavItems] = useState([]);
 
-  const [overview, related, styles, reviews] = product;
+  const [overview, related, styles, reviews, metaReview] = product;
   const {id} = useParams();
 
 

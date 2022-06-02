@@ -39,12 +39,8 @@ const ProductDetail = ({overview,reviews,metaReview}) => {
     window.open('https://www.pinterest.com/pin-builder/', 'Pinterest');
   }
   return(
-<<<<<<< HEAD
-    <FlexContainer direction="column" gap="0">
-=======
     <ProductDetailsContainer direction="column" gap="1.5em">
       <Flexbox direction="column" gap="0">
->>>>>>> main
         <span style={{
           fontSize: '.85em',
           opacity: '.8',
