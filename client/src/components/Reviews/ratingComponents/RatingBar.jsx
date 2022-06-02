@@ -47,26 +47,6 @@ const RatingBar = ({data}) => {
   }
 
   return (
-<<<<<<< HEAD
-    //for each of the items
-    <div>
-      {ratingArray.map((rating, index) => {
-        return (
-          <div key={index}>
-            <div className="row">
-            <div className="data">
-            <div>{rating} star</div>
-            </div>
-            </div>
-            <div className="progressBar">
-            <div className="progressContainer">
-            </div>
-            </div>
-            <div className="data right">
-            <div>{data[rating]}</div>
-            </div>
-          </div>
-=======
 
     <Container>
       {dataKeys.map((key) => {
@@ -79,7 +59,6 @@ const RatingBar = ({data}) => {
           </BarContainer>
 
 
->>>>>>> main
         )
       })}
 

@@ -45,12 +45,6 @@ const CharacteristicBar= ({data}) => {
     <div>
       {characteristicArray.map((characteristic, index) => {
         return (
-<<<<<<< HEAD
-          <div key={index}>
-            <p>{characteristic}</p>
-            <b>{data[characteristic].value}</b>
-          </div>
-=======
           <RatingsBarContainer>
               <small>{characteristic}</small>
             <Bar>
@@ -65,7 +59,6 @@ const CharacteristicBar= ({data}) => {
 
             </UnderText>
           </RatingsBarContainer>
->>>>>>> main
         )
       })}
     </div>

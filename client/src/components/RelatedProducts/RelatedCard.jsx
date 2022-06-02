@@ -3,7 +3,7 @@ import {SetFavItemsContext} from '../App.jsx';
 import {Link} from 'react-router-dom';
 
 //CSS
-import {RelatedCardContainer} from '../style/RelatedproductsStyle/RelatedCardContainer.style.js';
+import {CardContainer} from '../style/RelatedproductsStyle/CardContainer.style.js';
 
 const RelatedCard = (props) => {
   const setFavItems = useContext(SetFavItemsContext);
