@@ -8,15 +8,20 @@ import CharacteristicDataTable from './CharacteristicDataTable.js';
 
 const Characteristics = ({characteristics}) => {
 
+<<<<<<< HEAD
+  //for each characteristic, find the key that matches in the CharacteristicDataTable and map out each radio button with the description (index) underneath
+
+=======
+>>>>>>> main
   let characteristicArray = Object.keys(characteristics);
 
   if (characteristicArray.length !== 0) {
     return (
       <div>
-        { characteristicArray.map((characteristic) => {
+        { characteristicArray.map((characteristic, index) => {
           let tabledata = CharacteristicDataTable[characteristic];
           return (
-            <div>
+            <div key={index}>
               <div>
                 <label><input type="radio" name="radioset" value={tabledata[0]}/>{tabledata[0]}</label>
                 <label><input type="radio" name="radioset" value={tabledata[1]}/>{tabledata[1]}</label>

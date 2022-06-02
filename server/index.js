@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const path = require('path');
 const app = express();
 const PORT = 3000 || process.env.PORT;
 const axios = require('axios');
@@ -14,11 +15,17 @@ app.listen(PORT, () => {
   console.log(`Server listening on port: ${PORT}`);
 })
 
+app.get('/api/products/*', (req, res) => {
+  res.sendFile('index.html', {root: path.join(__dirname, '../client/dist')})
+});
+
+
 /*Overview*/
 //get all products
 app.get('/products', async (req, res) => {
+ const page = req.query.page || 1;
  try {
-   const response = await axios.get(`${apiURL}products`, apiHeaders);
+   const response = await axios.get(`${apiURL}products/?page=${page}`, apiHeaders);
    res.status(200).send(response.data)
  } catch(err){res.send(err)}
 });
@@ -39,6 +46,26 @@ app.get('/products/:product_id', async (req, res) => {
     res.status(200).send(combined)
   } catch(err) {
     res.status(400).send(err)
+  }
+})
+
+app.get('/products/:product_id/one', async (req, res) => {
+  const id = req.params.product_id;
+  try {
+    const product = await axios.get(`${apiURL}products/${id}`, apiHeaders);
+    res.status(200).send(product.data);
+  } catch (err) {
+    res.status(400).send(err);
+  }
+})
+
+app.get('/products/:product_id/styles', async (req, res) => {
+  const id = req.params.product_id;
+    try {
+    const productStyle = await axios.get(`${apiURL}products/${id}/styles`, apiHeaders);
+    res.status(200).send(productStyle.data);
+  } catch (err) {
+    res.status(400).send(err);
   }
 })
 
