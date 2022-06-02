@@ -82,9 +82,7 @@ const RatingsAndReviews = ({ product_id, name}) => {
               </ModalStyle>
             </>
             : null}
-
         </RRFlexContainer>
-
       </div>
     )
   } else {
