@@ -15,31 +15,13 @@ const App = (props) => {
   const [product, setProduct] = useState([]);
   const [favItems, setFavItems] = useState([]);
 
-  const [overview, related, styles, reviews] = product;
+  const [overview, related, styles, reviews, metaReview] = product;
   const {id} = useParams();
 
-
-  //Figure out how to make the second comp a componentWillUpdate instead
-  //because right now both useEffects are running
-
-  //before our URL links would go into the backend, but now the new URL,
-  //serves our react app router, which then calls our comp with the new,
-  //param and then it makes the call to the server
-  // useEffect(() => {
-  //   axios.get(`/products/${props.id}`).then((res) => {
-  //     //returns an array of all URL calls
-  //     setProduct(res.data);
-  //   });
-  //   //Setting Favorite Item state
-  //   const parsedItems = JSON.parse(localStorage.getItem('favItems'));
-  //   setFavItems(parsedItems);
-  // }, []);
-
   useEffect(() => {
-    axios.get(`/products/${id}`)
+    axios.get(`/api/products/${id}/all`)
     .then((res) => {
       //returns an array of all URL calls
-      console.log('We are in here!')
       setProduct(res.data);
       //Move to top of the page
       window.scrollTo(0, 0);
@@ -48,31 +30,6 @@ const App = (props) => {
     const parsedItems = JSON.parse(localStorage.getItem('favItems'));
     setFavItems(parsedItems);
   }, [id]);
-
-  // const status = useRef();
-  // useEffect(() => {
-  //   if(!status.current) {
-  //     console.log('IN CURRENT')
-  //     axios.get(`/products/${props.id}`).then((res) => {
-  //      //returns an array of all URL calls
-  //       setProduct(res.data);
-  //     });
-  //     //Setting Favorite Item state
-  //     const parsedItems = JSON.parse(localStorage.getItem('favItems'));
-  //     setFavItems(parsedItems);
-  //     status.current = true;
-  //   } else {
-  //      axios.get(`/products/${id}`)
-  //       .then((res) => {
-  //      //returns an array of all URL calls
-  //      console.log('We are in here!')
-  //      setProduct(res.data);
-  //   }).catch(err => console.log(err, 'error in api'));
-  //      //Setting Favorite Item state
-  //      const parsedItems = JSON.parse(localStorage.getItem('favItems'));
-  //      setFavItems(parsedItems);
-  //   }
-  // }, [id])
 
   //Every time favItem state changes, also update localStorage to reflect
   useEffect(() => {
@@ -99,10 +56,8 @@ const App = (props) => {
       if(!hasDuplicateItem) {
         //Re-renders state with new product
         setFavItems((prevState) => {
-          console.log(prevState, 'prev State');
           return prevState.concat(overviewWithImg);
         });
-        //localStorage.setItem('favItems', JSON.stringify(parsedItems));
       }
     }
   }
@@ -111,8 +66,6 @@ const App = (props) => {
       const removedProduct = favItems.filter(product => (product.id !== id));
       setFavItems(removedProduct);
   }
-
-
 
   return (
     <div style={{ position: 'relative' }}>
@@ -132,11 +85,10 @@ const App = (props) => {
           styles={styles}
           reviews={reviews}
           metaReview={metaReview}
-
         />
          <div>
         <SetFavItemsContext.Provider value={setFavItems}>
-          {Object.keys(overview).length && <RelatedProduct relatedItems={related}/>}
+          {Object.keys(overview).length && <RelatedProduct id='related' relatedItems={related}/>}
           {<FavoriteProduct addFavProduct={addFavProduct} deleteFavProduct={deleteFavProduct} favItems={favItems}/>}
         </SetFavItemsContext.Provider>
         </div>

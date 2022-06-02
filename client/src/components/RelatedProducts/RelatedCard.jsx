@@ -3,7 +3,7 @@ import {SetFavItemsContext} from '../App.jsx';
 import {Link} from 'react-router-dom';
 
 //CSS
-import {RelatedCardContainer} from '../style/RelatedproductsStyle/RelatedCardContainer.style.js';
+import {CardContainer} from '../style/RelatedproductsStyle/CardContainer.style.js';
 
 const RelatedCard = (props) => {
   const setFavItems = useContext(SetFavItemsContext);
@@ -14,8 +14,6 @@ const RelatedCard = (props) => {
     } else {
       const parsedItems = JSON.parse(localStorage.getItem('favItems'));
 
-      //We need to check if the item has already been favorited
-      //If had a large data structure we could use a hash table
       let hasDuplicateItem = false;
       for(let i = 0; i < parsedItems.length; i++) {
         if(parsedItems[i].id === props.relatedProduct.id) {
@@ -34,17 +32,12 @@ const RelatedCard = (props) => {
       }
 
     }
-    //console.log(localStorage.getItem('favItems'));
-    // localStorage.removeItem('favItems');
-    // console.log(localStorage.getItem('favItems'));
-
   }
 
-
   return(
-    <CardContainer>
+    <CardContainer id={"relatedSlider-" + props.slider}>
       <div style={{width: "250px", height: "325px"}}>
-        <Link to={`/api/products/${props.relatedProduct.id}`}>
+        <Link to={`/products/${props.relatedProduct.id}`}>
            <img style={{objectFit: "cover", width: "100%", height: "100%"}} src={props.productImg} alt=""/>
         </Link>
       </div>

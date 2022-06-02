@@ -11,15 +11,10 @@ import axios from 'axios';
 
 //Import CSS
 import {FlexContainer, H2} from '../style/RelatedProductsStyle/FlexContainer.style.js'
-import {RelatedCardContainer, AddOutfitContainer} from '../style/RelatedproductsStyle/RelatedCardContainer.style.js'
+import {CardContainer, AddOutfitContainer} from '../style/RelatedproductsStyle/CardContainer.style.js'
 
 const FavoriteProduct = (props) => {
-  // const [favItems, setFavItems] = useState([])
   const [slider, setSlider] = useState(0);
-  // useEffect(() => {
-  //   const parsedItems = JSON.parse(localStorage.getItem('favItems'));
-  //   setFavItems(parsedItems);
-  // }, [])
   const [forwardLast, setForwardLast] = useState(false);
   const cardOffset = useRef(4);
 
@@ -32,7 +27,6 @@ const FavoriteProduct = (props) => {
         setSlider(prevState => prevState + 1);
         setForwardLast(true);
       }
-
     }
   }
 
@@ -46,9 +40,8 @@ const FavoriteProduct = (props) => {
         setForwardLast(false);
       }
     }
-
   }
-  // It needs to add the product that we are currently on
+
   return (
     <div>
       <H2>Your Outfit</H2>
@@ -69,6 +62,8 @@ const FavoriteProduct = (props) => {
       </FlexContainer>
       <a onClick={prevSlider} href={`#slider-${slider}`}>Prev</a>
       <a onClick={nextSlider} href={`#slider-${slider}`}>Next</a>
+      {/* <a onClick={useSlider(props.favItems.length, )} href={`#slider-${slider}`}>Prev</a>
+      <a onClick={nextSlider} href={`#slider-${slider}`}>Next</a> */}
 
     </div>
 
