@@ -8,8 +8,8 @@ const StyledReview = styled.div`
   padding 10px;
   border: 2px solid #ed424c;
   border-radius: 8px;
-  background: white;
-  box-shadow: 20px 20px 10px #f9d4d3;
+  background: #f7f7f7;
+  box-shadow: 20px 20px 10px #ededed;
   margin: 6px;
 `;
 const Header = styled.section`

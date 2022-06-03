@@ -95,7 +95,7 @@ const Reviews = ({ reviews, order, setOrder, showModal, filter }) => {
     <Container>
       <SortingContainer>
         <p style={{fontFamily:'Petrona', fontWeight: 'bold'}}> {reviewsToRender.length} Reviews   --- sort by:  </p>
-        <DropDownContainer value={order} onChange={handleOrderChange}>
+        <DropDownContainer style={{fontFamily:'Petrona', fontWeight: 'bold'}} value={order} onChange={handleOrderChange}>
           <option value="relevant">relevance</option>
           <option value="helpful">helpfulness</option>
           <option value="newest">date</option>
