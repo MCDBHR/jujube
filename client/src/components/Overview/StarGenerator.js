@@ -60,7 +60,6 @@ const StarGenerator= ({ratings}) => {
           <AiFillStar />
           <AiFillStar />
         </StarsContainer>
-        {console.log(allRatingsArr, "all rating array")}
       <Bar width={barWidth} id="bar"/>
         <StarsContainer>
           <AiOutlineStar />

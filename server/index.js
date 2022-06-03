@@ -53,7 +53,6 @@ app.get('/api/products/:product_id/all', async (req, res) => {
   }
 })
 
-
 app.get('/api/products/:product_id/styles', async (req, res) => {
   const id = req.params.product_id;
     try {
@@ -67,15 +66,6 @@ app.get('/api/products/:product_id/styles', async (req, res) => {
 app.get('/api/cart', async (req, res) => {
   try {
     const response = await axios.get(`${apiURL}cart`, apiHeaders);
-    res.status(201).send(response.data)
-  }catch(err) {
-    res.send(err)
-  }
-})
-
-app.post('/api/cart', async (req, res) => {
-  try {
-    const response = await axios.post(`${apiURL}cart`, req.body, apiHeaders);
     res.status(201).send(response.data)
   }catch(err) {
     res.send(err)
@@ -114,6 +104,16 @@ app.get('/api/reviews/meta', (req, res) => {
   .then((results)=> {
     res.status(200).send(results.data)})
   .catch((err) => { res.status(500).send(err)});
+});
+
+app.post('/api/reviews', (req, res) => {
+  axios.post(`${apiURL}reviews`, req.body, apiHeaders)
+  .then((result) => {
+    res.status(201).send('success');
+  })
+  .catch((err) => {
+    res.status(501).send(err)
+  });
 });
 
 app.put('/api/report/review/:id', (req, res) => {

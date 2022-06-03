@@ -22,14 +22,13 @@ const BarContainer = styled.div`
 const Bar = styled.div`
   display: flex;
   border-radius: 4px;
-  background-color: #ec9c94;
-  color: white;
+  background-color: #e8dbd8;
   height: 1em;
   width: 100%;
 `;
 
 const FilledData = styled.div`
-  background-color: #cf2b2a;
+  background-color: #ed424c;
   z-index:2;
   border-radius: 4px;
   width: ${({ width }) => width}%;
@@ -37,7 +36,7 @@ const FilledData = styled.div`
   `
 const StarRatingNum = styled.div`
   font-size: .9em;
-  width: 20%;
+  width: 25%;
   font-weight: bold
   font-family: 'Petrona';
   text-decoration: underline;
@@ -53,7 +52,6 @@ const RatingBar = ({ data, setDisplayRatingFilter, displayRatingFilter }) => {
 
   let dataValues = Object.values(data);
   let dataKeys = Object.keys(data);
-  console.log(dataKeys);
 
   useEffect(() => {
     let totalRatings = 0

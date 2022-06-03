@@ -24,7 +24,7 @@ const OuterStar = styled.div`
   &:before {
     display: relative;
     content: '\\2605\\2605\\2605\\2605\\2605';
-    color: grey;
+    color: #ded1d1;
     font-size: 20px;
   }
   position: relative;

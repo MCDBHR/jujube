@@ -3,11 +3,13 @@ import Flexbox from '../style/Flexbox.js';
 
 const RRFlexContainer = styled.div`
   display: flex;
+  box-sizing: border-box;
   flex-direction: row;
   justify.content: space-inbetween;
 `;
 const RatingsStyle = styled.div`
   flex: 0.3;
+  box-sizing: border-box;
   flex-direction: row;
   padding: 10px;
 `;
@@ -15,6 +17,7 @@ const RatingsStyle = styled.div`
 const ReviewsStyle = styled.div`
   flex: .7;
   flex-direction: row;
+  box-sizing: border-box;
   padding: 10px;
 `
 const ModalBackground = styled.div`
@@ -28,6 +31,7 @@ const ModalBackground = styled.div`
 `
 
 const ModalStyle = styled.div`
+  margin-top: 30px;
   position: fixed;
   left: 50%;
   top: 50%;

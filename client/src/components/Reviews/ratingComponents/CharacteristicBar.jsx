@@ -11,7 +11,7 @@ const RatingsBarContainer = styled.div`
 `;
 
 const Bar = styled.div`
-  background-color: #ec9c94;
+  background-color: #e8dbd8;
   border-radius: 4px;
   height: 1em;
   margin: 0.1em 0 0.5em 0;
@@ -24,9 +24,9 @@ const Arrow = styled.div`
   left: ${({ pos }) => (pos / 5) * 100}%;
   border-left: 0.5em solid transparent;
   border-right: 0.5em solid transparent;
-  border-top: 1em solid #de4044;
+  border-top: 1em solid #ed424c;
+`;
 
-  `
 const UnderText = styled.div`
   display: flex;
   justify-content: space-between;
@@ -38,8 +38,7 @@ const CharacteristicName = styled.div`
   font-size: 1.2em;
   font-weight: bold;
   font-family: "Petrona";
-`
-
+`;
 
 const CharacteristicBar= ({data}) => {
   let characteristicArray = Object.keys(data);

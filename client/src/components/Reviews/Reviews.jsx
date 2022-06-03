@@ -24,20 +24,31 @@ const DropDownContainer = styled.select`
   width: 100px;
   height: 30px;
   font-family: 'Petrona';
+  font-weight: 500;
   border-radius: 5px;
-  background-color: #f9d4d3;
+  background-color: #e8dbd8;
+  position: relative;
+  menu>ul>li>ul {
+    position: absolute;
+    background-color: #555;
+    width: 100%;
+    left: 0;
+    top: 100%;
+    z-index: 1;
+}
 `
 const Button = styled.button`
   margin-right: 10px;
-  background-color: #f9d4d3;
+  background-color: #e8dbd8;
   border: 2px solid #f35a64;
   border-radius: 30px;
   box-shadow: #cf2b2a 4px 4px 0 0;
   color: #422800;
   cursor: pointer;
   display: inline-block;
+  font-family: 'Patrona';
+  font-size: 13px;
   font-weight: 600;
-  font-size: 10px;
   padding: 5 15px;
   line-height: 30px;
   text-align: center;
@@ -57,7 +68,7 @@ const Button = styled.button`
 `
 
 
-const Reviews = ({ reviews, order, setOrder, showModal, filter }) => {
+const Reviews = ({ reviews, order, setOrder, showModal, filter, setUpdate }) => {
   let [numberToRender, setNumberToRender] = useState(2);
   let [showMoreButton, setShowMoreButton] = useState(true);
   let [reviewsToRender, setReviewsToRender] = useState(reviews);
@@ -95,10 +106,10 @@ const Reviews = ({ reviews, order, setOrder, showModal, filter }) => {
     <Container>
       <SortingContainer>
         <p style={{fontFamily:'Petrona', fontWeight: 'bold'}}> {reviewsToRender.length} Reviews   --- sort by:  </p>
-        <DropDownContainer style={{fontFamily:'Petrona', fontWeight: 'bold'}} value={order} onChange={handleOrderChange}>
-          <option value="relevant">relevance</option>
-          <option value="helpful">helpfulness</option>
-          <option value="newest">date</option>
+        <DropDownContainer  value={order} onChange={handleOrderChange}>
+          <option style={{fontFamily:'Petrona', fontWeight: '500'}} value="relevant">relevance</option>
+          <option style={{fontFamily:'Petrona', fontWeight: '500'}} value="helpful">helpfulness</option>
+          <option style={{fontFamily:'Petrona', fontWeight: '500'}} value="newest">date</option>
         </DropDownContainer>
       </SortingContainer>
       <ReviewContainer>
