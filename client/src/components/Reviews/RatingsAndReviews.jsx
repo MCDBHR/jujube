@@ -42,7 +42,7 @@ const RatingsAndReviews = ({ product_id }) => {
             setRecommended(metaData.data.recommended);
           })
       })
-  }, [order]);
+  }, [order,product_id]);
 
   const handleShowModal = (e) => {
     if (showModal === false) {
