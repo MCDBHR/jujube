@@ -3,7 +3,7 @@ import {SetFavItemsContext, HandleCompareContext} from '../App.jsx';
 import {Link} from 'react-router-dom';
 
 //CSS
-import {CardContainer, CardButton, CardInfoDiv, ImageContainer, CardElement} from '../style/RelatedProductsStyle/CardContainer.style.js';
+import {RelatedCardContainer, CardButton, CardInfoDiv, ImageContainer, CardElement} from '../style/RelatedProductsStyle/CardContainer.style.js';
 
 const RelatedCard = (props) => {
   const handleCompare = useContext(HandleCompareContext);
@@ -37,7 +37,7 @@ const RelatedCard = (props) => {
   }
 
   return(
-    <CardContainer id={"relatedSlider-" + props.slider}>
+    <RelatedCardContainer id={"relatedSlider-" + props.slider}>
       <ImageContainer>
         <Link to={`/products/${props.relatedProduct.id}`}>
            <img style={{objectFit: "cover", width: "100%", height: "100%"}} src={props.productImg} alt=""/>
@@ -49,7 +49,7 @@ const RelatedCard = (props) => {
          <CardElement>{props.relatedProduct.name}</CardElement>
          <CardElement>$ {props.relatedProduct.default_price}</CardElement>
       </CardInfoDiv>
-    </CardContainer>
+    </RelatedCardContainer>
   )
 }
 

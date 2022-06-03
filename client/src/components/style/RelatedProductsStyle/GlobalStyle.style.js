@@ -15,6 +15,7 @@ export default createGlobalStyle`
   a:visited {
     text-decoration: none;
   }
+
   button:hover {
     cursor: pointer;
   }

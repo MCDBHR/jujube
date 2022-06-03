@@ -1,6 +1,16 @@
 import styled from 'styled-components';
 
-export const CardContainer = styled.li`
+export const FavoriteCardContainer = styled.li`
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
+`
+
+export const RelatedCardContainer = styled.li`
   border: 1px solid black;
   display: flex;
   flex-direction: column;
