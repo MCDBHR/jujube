@@ -9,6 +9,7 @@ export default createGlobalStyle`
 
   html {
     scroll-padding-top: 200px;
+    font-family: 'Petrona', serif;
   }
 
   button:hover {

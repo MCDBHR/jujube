@@ -19,7 +19,7 @@ app.get('/products/*', (req, res) => {
   res.sendFile('index.html', {root: path.join(__dirname, '../client/dist')})
 });
 
-app.get('/products', async (req, res) => {
+app.get('/api/products', async (req, res) => {
  const page = req.query.page || 1;
  try {
    const response = await axios.get(`${apiURL}products/?page=${page}`, apiHeaders);

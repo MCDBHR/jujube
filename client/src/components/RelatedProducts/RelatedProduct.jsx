@@ -3,7 +3,8 @@ import RelatedCard from './RelatedCard.jsx'
 import axios from 'axios';
 
 //CSS
-import {FlexContainer, H2} from '../style/RelatedProductsStyle/FlexContainer.style.js'
+import {FlexContainer, H2, CarouselContainer, CarouselBtnContainer, CarouselBtn, CarouselInner} from '../style/RelatedProductsStyle/FlexContainer.style.js'
+
 
 const RelatedProduct = (props) => {
   const [relatedProducts, setRelatedProducts] = useState([]);
@@ -20,7 +21,13 @@ const RelatedProduct = (props) => {
 
     Promise.all(productStylesPromise)
       .then(results => {
-        const stylesProductsImg = results.map(product => product.data.results[0].photos[0].url)
+        const stylesProductsImg = results.map(product => {
+          if(!product.data.results[0].photos[0].url) {
+            return 'https://citroen.navigation.com/static/WFS/Shop-CitroenEMEA-Site/-/Shop/en_US/Product%20Not%20Found.png'
+          } else {
+            return product.data.results[0].photos[0].url
+          }
+        })
         setStyles(stylesProductsImg);
       })
       .catch(err => console.log(err, 'Error in Promise'))
@@ -62,16 +69,18 @@ const RelatedProduct = (props) => {
   }
 
   return (
-    <div>
+    <CarouselContainer>
       <H2>Related Products</H2>
+      <CarouselInner>
+      <CarouselBtn onClick={prevSlider} href={`#relatedSlider-${slider}`}>&#8678;</CarouselBtn>
        <FlexContainer>
          {relatedProducts.map((item, index) =>
             <RelatedCard slider={index} productImg={styles[index]} relatedProduct={item} key={item.id}/>
          )}
        </FlexContainer>
-       <a onClick={prevSlider} href={`#relatedSlider-${slider}`}>Prev</a>
-       <a onClick={nextSlider} href={`#relatedSlider-${slider}`}>Next</a>
-    </div>
+        <CarouselBtn onClick={nextSlider} href={`#relatedSlider-${slider}`}>&#8680;</CarouselBtn>
+      </CarouselInner>
+    </CarouselContainer>
   )
 }
 

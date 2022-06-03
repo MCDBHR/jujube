@@ -10,8 +10,8 @@ import FavoriteCard from './FavoriteCard.jsx';
 import axios from 'axios';
 
 //Import CSS
-import {FlexContainer, H2} from '../style/RelatedProductsStyle/FlexContainer.style.js'
-import {CardContainer, AddOutfitContainer} from '../style/RelatedProductsStyle/CardContainer.style.js'
+import {FlexContainer, H2, CarouselContainer, CarouselBtnContainer, CarouselBtn, CarouselInner} from '../style/RelatedProductsStyle/FlexContainer.style.js'
+import {CardContainer, AddOutfitContainer, CardButton} from '../style/RelatedProductsStyle/CardContainer.style.js'
 
 const FavoriteProduct = (props) => {
   const [slider, setSlider] = useState(0);
@@ -43,8 +43,10 @@ const FavoriteProduct = (props) => {
   }
 
   return (
-    <div>
+    <CarouselContainer>
       <H2>Your Outfit</H2>
+      <CarouselInner>
+      <CarouselBtn onClick={prevSlider} href={`#slider-${slider}`}>&#8678;</CarouselBtn>
       <FlexContainer>
         {
           !!props.favItems.length &&
@@ -60,10 +62,9 @@ const FavoriteProduct = (props) => {
           </AddOutfitContainer>
         </CardContainer>
       </FlexContainer>
-      <a onClick={prevSlider} href={`#slider-${slider}`}>Prev</a>
-      <a onClick={nextSlider} href={`#slider-${slider}`}>Next</a>
-
-    </div>
+        <CarouselBtn onClick={nextSlider} href={`#slider-${slider}`}>&#8680;</CarouselBtn>
+      </CarouselInner>
+    </CarouselContainer>
 
   )
 }
