@@ -23,7 +23,7 @@ const ModalBackground = styled.div`
   left: 0;
   height: 100vh;
   width: 100vw;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 147, 147, 0.8);
   z-index: 50;
 `
 
@@ -35,6 +35,7 @@ const ModalStyle = styled.div`
   border-style: solid;
   border-width: thin;
   border-radius: 8px;
+  box-shadow: 20px 20px 20px 10px #de4044;
   padding: 20px;
   background: white;
   z-index: 51;

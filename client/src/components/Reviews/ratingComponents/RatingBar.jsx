@@ -15,23 +15,25 @@ const BarContainer = styled.div`
   margin: 0.5em 0 0.5em 0;
   align-items: center;
   &:hover {
-    background-color: #cf2b2a;
+    background-color: #f9d4d3;
   }
 `;
 
 const Bar = styled.div`
   display: flex;
-  background-color: #e6e6e6;
+  border-radius: 4px;
+  background-color: #ec9c94;
   color: white;
-  height: 0.9em;
+  height: 1em;
   width: 100%;
 `;
 
 const FilledData = styled.div`
   background-color: #cf2b2a;
   z-index:2;
+  border-radius: 4px;
   width: ${({ width }) => width}%;
-  height: 0.9em;
+  height: 1em;
   `
 const StarRatingNum = styled.div`
   font-size: .9em;
