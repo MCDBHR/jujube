@@ -3,7 +3,7 @@ import FavoriteCard from './FavoriteCard.jsx';
 import axios from 'axios';
 
 //Import CSS
-import {FlexContainer, H2, CarouselContainer, CarouselBtnContainer, CarouselBtn, CarouselInner} from '../style/RelatedProductsStyle/FlexContainer.style.js'
+import {FlexContainer, H2, CarouselContainer, CarouselBtnContainer, PrevCarouselBtn, NextCarouselBtn, CarouselInner} from '../style/RelatedProductsStyle/FlexContainer.style.js'
 import {FavoriteCardContainer, AddOutfitContainer, CardButton} from '../style/RelatedProductsStyle/CardContainer.style.js'
 
 const FavoriteProduct = (props) => {
@@ -39,7 +39,7 @@ const FavoriteProduct = (props) => {
     <CarouselContainer>
       <H2>Your Outfit</H2>
       <CarouselInner>
-      <CarouselBtn onClick={prevSlider} href={`#slider-${slider}`}>&#8678;</CarouselBtn>
+      <PrevCarouselBtn slider={slider} onClick={prevSlider} href={`#slider-${slider}`}>&#8678;</PrevCarouselBtn>
       <FlexContainer>
         {
           !!props.favItems.length &&
@@ -55,7 +55,8 @@ const FavoriteProduct = (props) => {
           </AddOutfitContainer>
         </FavoriteCardContainer>
       </FlexContainer>
-        <CarouselBtn onClick={nextSlider} href={`#slider-${slider}`}>&#8680;</CarouselBtn>
+        <NextCarouselBtn slider={slider} onClick={nextSlider} length={props.favItems.length}
+        href={`#slider-${slider}`}>&#8680;</NextCarouselBtn>
       </CarouselInner>
     </CarouselContainer>
 
