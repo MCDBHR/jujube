@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-
 export const CardContainer = styled.li`
   border: 1px solid black;
   display: flex;

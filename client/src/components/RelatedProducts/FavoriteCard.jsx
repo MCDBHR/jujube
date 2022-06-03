@@ -2,7 +2,7 @@ import React, {useState, useContext} from 'react';
 import {SetFavItemsContext} from '../App.jsx';
 
 //CSS
-import {CardContainer} from '../style/RelatedproductsStyle/CardContainer.style.js'
+import {CardContainer} from '../style/RelatedProductsStyle/CardContainer.style.js'
 
 const FavoriteCard = (props) => {
   const setFavItems = useContext(SetFavItemsContext);

@@ -9,7 +9,7 @@ const StorefrontCard = (props) => {
   return(
     <CardContainer>
       <div style={{width: "250px", height: "325px"}}>
-        <Link to={`/api/products/${props.product.id}`}>
+        <Link to={`/products/${props.product.id}`}>
            <img style={{objectFit: "cover", width: "100%", height: "100%"}} src={props.stylesImg} alt=""/>
         </Link>
       </div>

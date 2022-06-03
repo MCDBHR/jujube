@@ -94,8 +94,8 @@ export const CreateReview = ({characteristics, product_id, name}) =>
       console.log(reasons);
       alert(`failed to post! missing requirements: ${reasons}`);
     }
-
   };
+
   return (
     <div>
       <h2 style={{fontFamily:'Shrikhand'}}>{name}</h2>

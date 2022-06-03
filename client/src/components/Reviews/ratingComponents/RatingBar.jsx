@@ -39,7 +39,7 @@ const StarRatingNum = styled.div`
   font-size: .9em;
   width: 20%;
   font-weight: bold
-  font-family: 'Rubik';
+  font-family: 'Petrona';
   text-decoration: underline;
 `;
 

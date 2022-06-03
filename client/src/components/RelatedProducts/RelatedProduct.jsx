@@ -1,39 +1,32 @@
-import React, {useEffect, useContext, useState} from 'react';
+import React, {useEffect, useContext, useState, useRef} from 'react';
 import RelatedCard from './RelatedCard.jsx'
-import FavoriteCard from './FavoriteCard.jsx'
 import axios from 'axios';
-
 
 //CSS
 import {FlexContainer, H2} from '../style/RelatedProductsStyle/FlexContainer.style.js'
 
-//Need to only have the API key in the server / backend side, its not safe anywhere in react
-
-
 const RelatedProduct = (props) => {
-
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [styles, setStyles] = useState([]);
 
+  const [slider, setSlider] = useState(0);
+  const [forwardLast, setForwardLast] = useState(false);
+  const cardOffset = useRef(4);
+
   useEffect(() => {
-    //TEMPORARY we will use this component to call the styles, but will
-    //later just pass down the information from App
+    const uniqueRelatedItems = [...new Set(props.relatedItems)];
     const productStylesPromise =
-    props.relatedItems.map(id => axios.get(`/products/${id}/styles`));
+    uniqueRelatedItems.map(id => axios.get(`/api/products/${id}/styles`));
 
     Promise.all(productStylesPromise)
       .then(results => {
-        //console.log(results, 'STYLES RESULTS')
-        //const productStyles = results.map(product => product.data)
         const stylesProductsImg = results.map(product => product.data.results[0].photos[0].url)
         setStyles(stylesProductsImg);
       })
       .catch(err => console.log(err, 'Error in Promise'))
-      // const stylesProductsImg = results.map(product => product.data.results[0].photos[0].thumbnail_url)
-
 
     const relatedProductsPromise =
-    props.relatedItems.map(id => axios.get(`/products/${id}/one`));
+    uniqueRelatedItems.map(id => axios.get(`/api/products/${id}`));
 
     Promise.all(relatedProductsPromise)
       .then(results => {
@@ -42,20 +35,43 @@ const RelatedProduct = (props) => {
       }).catch(err => {
         console.log(err)
       })
-  }, [])
+  }, [props.relatedItems]);
 
+  const nextSlider = () => {
+    if(slider < props.relatedItems.length) {
+      if(!forwardLast) {
+        setSlider(prevState => prevState + cardOffset.current);
+        setForwardLast(true);
+      } else {
+        setSlider(prevState => prevState + 1);
+        setForwardLast(true);
+      }
+    }
+  }
 
+  const prevSlider = () => {
+    if(slider > 0) {
+      if(forwardLast) {
+        setSlider(prevState => prevState - cardOffset.current);
+        setForwardLast(false);
+      } else {
+        setSlider(prevState => prevState - 1);
+        setForwardLast(false);
+      }
+    }
+  }
 
   return (
     <div>
       <H2>Related Products</H2>
        <FlexContainer>
          {relatedProducts.map((item, index) =>
-            <RelatedCard productImg={styles[index]} relatedProduct={item} key={item.id}/>
+            <RelatedCard slider={index} productImg={styles[index]} relatedProduct={item} key={item.id}/>
          )}
        </FlexContainer>
+       <a onClick={prevSlider} href={`#relatedSlider-${slider}`}>Prev</a>
+       <a onClick={nextSlider} href={`#relatedSlider-${slider}`}>Next</a>
     </div>
-
   )
 }
 

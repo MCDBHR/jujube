@@ -1,27 +1,33 @@
 import React, { useState, useEffect, useRef}  from 'react';
 import Overview from './Overview'
 import axios from 'axios';
-import { Nav,Navheader,NavList } from './style/NavStyle.js';
+import { Nav, Navheader,NavList } from './style/NavStyle.js';
 import FlexContainer from './style/Flexbox.js';
 import AppContainer from './style/AppContainer.js';
 import RatingsAndReviews from './Reviews/RatingsAndReviews.jsx';
 import RelatedProduct from './RelatedProducts/RelatedProduct.jsx';
 import FavoriteProduct from './RelatedProducts/FavoriteProduct.jsx';
+import Modal from './RelatedProducts/Modal.jsx';
 import {useParams} from 'react-router-dom';
 
 export const SetFavItemsContext = React.createContext();
-
+export const HandleCompareContext = React.createContext();
+// INSTEAD OF PASSING THE MAIN PRODUCT DOWN, I WILL PASS THE A HANDLEONCLICK TO MY
+// RELATED CARDS, THEN PASS THE INFORMATION UP TO THE APP, AND SET THE INFO
+// IN THE STATE AND SEND IT TO THE MODAL COMPONENT
 const App = (props) => {
   const [product, setProduct] = useState([]);
   const [favItems, setFavItems] = useState([]);
+  const [compareProduct, setCompareProduct] = useState([]);
+  const [showModal, setShowModal] = useState(false);
 
   const [overview, related, styles, reviews, metaReview] = product;
   const {id} = useParams();
 
   useEffect(() => {
-    axios.get(`/products/${id}`)
+    axios.get(`/api/products/${id}/all`)
     .then((res) => {
-      console.log('We are in here!')
+      //returns an array of all URL calls
       setProduct(res.data);
       window.scrollTo(0, 0);
     }).catch(err => console.log(err, 'error in api'));
@@ -50,7 +56,6 @@ const App = (props) => {
 
       if(!hasDuplicateItem) {
         setFavItems((prevState) => {
-          console.log(prevState, 'prev State');
           return prevState.concat(overviewWithImg);
         });
       }
@@ -62,7 +67,11 @@ const App = (props) => {
       setFavItems(removedProduct);
   }
 
-
+  const handleCompare = (relatedProduct) => {
+    console.log(relatedProduct, 'We passed up our product');
+    setCompareProduct(relatedProduct);
+    setShowModal(true);
+  }
 
   return (
     <div style={{ position: 'relative' }}>
@@ -84,11 +93,13 @@ const App = (props) => {
           styles={styles}
           reviews={reviews}
           metaReview={metaReview}
-
         />
          <div>
         <SetFavItemsContext.Provider value={setFavItems}>
-          {Object.keys(overview).length && <RelatedProduct relatedItems={related}/>}
+            <HandleCompareContext.Provider value={handleCompare}>
+            {Object.keys(overview).length && <RelatedProduct id='related' mainProduct={overview} relatedItems={related}/>}
+            </HandleCompareContext.Provider>
+            {showModal && <Modal showModal={showModal} setShowModal={setShowModal} relatedProduct={compareProduct} mainProduct={overview}/>}
           {<FavoriteProduct addFavProduct={addFavProduct} deleteFavProduct={deleteFavProduct} favItems={favItems}/>}
         </SetFavItemsContext.Provider>
         </div>

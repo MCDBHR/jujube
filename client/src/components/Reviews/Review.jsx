@@ -6,11 +6,11 @@ import { format, parseISO } from "date-fns";
 
 const StyledReview = styled.div`
   padding 10px;
-  border: 2px solid #ed424c;
+  border: 2px solid #212121;
   border-radius: 8px;
-  background: #f7f7f7;
+  background: white;
   box-shadow: 20px 20px 10px #ededed;
-  margin: 6px;
+  box-sizing: border-box;
 `;
 const Header = styled.section`
   display: flex;
