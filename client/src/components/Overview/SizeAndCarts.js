@@ -40,6 +40,7 @@ const QuantitySelector = styled.select`
   padding: .45em 1.25em;
   background-color: #f3f3f3;
   font-weight: bold;
+  border-radius: 30px;
   height: 100%;
   width: 45%;
   &:hover {
@@ -55,83 +56,37 @@ const QuantitySelector = styled.select`
 `;
 
 const CartButton = styled.button`
+margin-right: 10px;
+background-color: #f9d4d3;
+border: 2px solid #f35a64;
+border-radius: 30px;
+box-shadow: #cf2b2a 4px 4px 0 0;
+color: #422800;
+cursor: pointer;
+display: inline-block;
+font-weight: 600;
+font-size: 15px;
+padding: 5 15px;
+line-height: 30px;
+text-align: center;
+text-decoration: none;
+user-select: none;
+-webkit-user-select: none;
+touch-action: manipulation;
+z-index: 5;
+
+&:hover {
+  background-color: #f35a64;
   color: white;
-  padding: .45em .75em;
-  background-color: #50CC68;
-  outline: none;
-  border: 1px solid black;
-  transition: all .25s ease;
-  font-weight: bold;
-  text-align: center;
-  height: 100%;
-  width: 45%;
-  text-transform: uppercase;
-  position: relative;
-  border-radius:3px;
-  &:not([disabled]) {
-    transform: translate(-3px, -3px);
-  }
-
-  &::after,
-  &::before {
-    display: block;
-    content: '';
-    position: absolute;
-    transition: .1s ease;
-  }
-
-  &::after {
-    height: 100%;
-    width: 3px;
-    top: 3px;
-    right: -3px;
-    border-top: 1px solid black;
-    border-right: 1px solid black;
-  }
-
-  &::before {
-    width: 100%;
-    height: 3px;
-    left: 3px;
-    bottom: -3px;
-    border-bottom: 1px solid black;
-    border-left: 1px solid black;
-  }
-
-  &:active {
-    transform: translate(0, 0);
-
-    &::after,
-    &::before {
-      transform: translate(-3px, -3px);
-      opacity: 0;
-    }
-  }
-
-  &:hover {
-    cursor: pointer;
-    background-color: #3BAD51;
-    color: white;
-  }
-
-  &:focus {
-    outline: none;
-  }
-
-  &[disabled] {
-    cursor: not-allowed;
-    opacity: 50%;
-    &::after,
-    &::before {
-      opacity: 0;
-    }
-  }
-
-  &[disabled]:hover {
-    background-color: #555555;
-    color: white;
-    border-radius: 0;
-  }
+}
+&:active{
+  background-color: red;
+  box-shadow: none;
+}
+@media (min-width: 768px) {
+  min-width: 120px;
+  padding: 0 25px;
+}
 `;
 
 const CartWrapper = styled.div`
@@ -208,10 +163,10 @@ const SizeAndCarts = ({defaultStyle}) => {
 
   return (
     <Flexbox direction="column" gap="1em" >
-      <span>Current Size: {sizeList[sizeIndex]}</span>
+      <span style={{ fontWeight: 'bold',fontFamily:'Inconsolata',fontStyle:'italic' }}>Current Size: {sizeList[sizeIndex]}</span>
       <Flexbox direction="row" gap=".5em" wrap="wrap">
       {skuList.map((id, index) => (
-        <Button
+        <CartButton
         key={index}
         selected={setSizeIndex === index}
         onClick={() => {
@@ -220,7 +175,7 @@ const SizeAndCarts = ({defaultStyle}) => {
         }}
         >
           {id.size}
-        </Button>
+        </CartButton>
       ))
       }
       </Flexbox>

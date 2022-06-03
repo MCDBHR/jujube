@@ -31,7 +31,6 @@ const RatingsAndReviews = ({ product_id, name}) => {
   const [formData, setFormData] = useState({});
 
   useEffect(() => {
-
     axios.get('/api/reviews/', { params: { 'product_id': product_id, 'sort': order, 'count': 9999 } })
       .then((results) => {
         setReviews(results.data)

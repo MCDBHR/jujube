@@ -10,7 +10,8 @@ const Nav = styled.header`
   width: 100vw;
   max-width: 1400px;
   margin: 0 auto 1em;
-  box-shadow: 0 3px 3px rgba(0,0,0,.75);
+  box-shadow: 10px 20px 10px #f9d4d3;
+  border-radius: 8px;
   position: sticky;
   top: 0%;
   z-index: 9999;
@@ -20,7 +21,6 @@ const Nav = styled.header`
 const Navheader = styled.h2`
   color: black;
   font-size: 2em;
-  text-shadow:  0.5em 0.3em #E0E0E0;
   font-family: 'Josh', sans-serif;
   margin-right:auto;
   & > a {
@@ -58,7 +58,7 @@ const NavList = styled.ul`
   }
 
   & > li a {
-    color: black;
+    color: #ff878f;
     text-decoration: none;
     transition: all .2s ease;
     position: relative;
@@ -79,7 +79,7 @@ const NavList = styled.ul`
   }
 
   & > li a:visited {
-    color: black;
+    color: #ff3b47;
   }
 
   & > li a::after {

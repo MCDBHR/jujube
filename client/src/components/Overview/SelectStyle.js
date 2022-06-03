@@ -29,7 +29,7 @@ const SelectStyle = ({styles,defaultStyle,handleStyleChange}) => {
       {/* FOR price */}
     <div
         style={{
-          borderBottom: '2px solid black', marginTop: '1em',
+          borderBottom: '2px solid #f9d4d3', marginTop: '1em', boxShadow:'4px 4px 4px #f9d4d3', fontStyle:'Rubik'
         }}
       >
       {
@@ -45,7 +45,7 @@ const SelectStyle = ({styles,defaultStyle,handleStyleChange}) => {
       </span>
     </div>
         {/* FOR Style select name */}
-        <span style={{ fontWeight: 'bold',fontFamily:'Rubik',fontStyle:'italic' }}>
+        <span style={{ fontWeight: 'bold',fontFamily:'Inconsolata',fontStyle:'italic',fontSize:'0.8em' }}>
           STYLE SELECTED :
         {defaultStyle.name}
       </span>
