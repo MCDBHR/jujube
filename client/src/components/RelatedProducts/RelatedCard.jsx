@@ -3,7 +3,7 @@ import {SetFavItemsContext, HandleCompareContext} from '../App.jsx';
 import {Link} from 'react-router-dom';
 
 //CSS
-import {CardContainer} from '../style/RelatedProductsStyle/CardContainer.style.js';
+import {CardContainer, CardButton, CardInfoDiv, ImageContainer, CardElement} from '../style/RelatedProductsStyle/CardContainer.style.js';
 
 const RelatedCard = (props) => {
   const handleCompare = useContext(HandleCompareContext);
@@ -38,18 +38,17 @@ const RelatedCard = (props) => {
 
   return(
     <CardContainer id={"relatedSlider-" + props.slider}>
-      <div style={{width: "250px", height: "325px"}}>
+      <ImageContainer>
         <Link to={`/products/${props.relatedProduct.id}`}>
            <img style={{objectFit: "cover", width: "100%", height: "100%"}} src={props.productImg} alt=""/>
         </Link>
-      </div>
-      <div style={{padding: "0px 10px"}}>
-         <div>{props.relatedProduct.category}</div>
-         <div>{props.relatedProduct.name}</div>
-         <div>$ {props.relatedProduct.default_price}</div>
-         <button onClick={handleOnClickFav}>Add</button>
-         <button onClick={() => {handleCompare(props.relatedProduct)}}>{"\u2731"}</button>
-      </div>
+        <CardButton onClick={() => {handleCompare(props.relatedProduct)}}>{"\u2731"}</CardButton>
+      </ImageContainer>
+      <CardInfoDiv>
+         <CardElement>{props.relatedProduct.category}</CardElement>
+         <CardElement>{props.relatedProduct.name}</CardElement>
+         <CardElement>$ {props.relatedProduct.default_price}</CardElement>
+      </CardInfoDiv>
     </CardContainer>
   )
 }

@@ -9,8 +9,12 @@ export default createGlobalStyle`
 
   html {
     scroll-padding-top: 200px;
+    font-family: 'Petrona', serif;
   }
 
+  a:visited {
+    text-decoration: none;
+  }
   button:hover {
     cursor: pointer;
   }
