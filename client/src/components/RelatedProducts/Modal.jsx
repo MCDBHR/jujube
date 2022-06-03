@@ -1,5 +1,6 @@
 import React from 'react';
-import {OuterModal, ModalContainer, ModalHeader, ModalBody, ModalElement} from '../style/RelatedProductsStyle/ModalContainer.style.js';
+import {OuterModal, ModalContainer, ModalHeader,
+         ModalBody, ModalElement, ModalDiv, ModalHeaderEl, ModalTitle} from '../style/RelatedProductsStyle/ModalContainer.style.js';
 
 const Modal = (props) => {
 
@@ -34,29 +35,19 @@ const Modal = (props) => {
   return (
     <OuterModal onClick={() => {props.setShowModal(false)}}>
       <ModalContainer onClick={e => (e.stopPropagation())} showModal={props.showModal}>
-        <p>Comparing</p>
+        <ModalTitle>Comparing</ModalTitle>
         <ModalHeader>
-        <p>{props.mainProduct.name}</p>
-        <p>{props.relatedProduct.name}</p>
+        <ModalHeaderEl>{props.mainProduct.name}</ModalHeaderEl>
+        <ModalHeaderEl>{props.relatedProduct.name}</ModalHeaderEl>
         </ModalHeader>
         <ModalBody>
         {
-          // compareFeatures().map((feature, index) => {
-          //   const key = Object.keys(compareFeatures)[index]
-          //   return (
-          //     <ModalElement>
-          //       <div>{feature[key].main}</div>
-          //       <div>{key}</div>
-          //       <div>{feature[key].related}</div>
-          //     </ModalElement>
-          //       )
-          //   })
           Object.keys(compareFeaturesObj).map((key, index) => {
             return(
                   <ModalElement>
-                    <div>{compareFeaturesObj[key].main}</div>
-                    <div>{key}</div>
-                    <div>{compareFeaturesObj[key].related}</div>
+                    <ModalDiv>{compareFeaturesObj[key].main}</ModalDiv>
+                    <ModalDiv style={{width: "150px"}}>{key}</ModalDiv>
+                    <ModalDiv>{compareFeaturesObj[key].related}</ModalDiv>
                   </ModalElement>
               )
           })
