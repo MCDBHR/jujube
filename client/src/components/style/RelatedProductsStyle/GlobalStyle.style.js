@@ -10,4 +10,8 @@ export default createGlobalStyle`
   html {
     scroll-padding-top: 200px;
   }
+
+  button:hover {
+    cursor: pointer;
+  }
 `

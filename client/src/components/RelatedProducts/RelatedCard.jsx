@@ -48,7 +48,7 @@ const RelatedCard = (props) => {
          <div>{props.relatedProduct.name}</div>
          <div>$ {props.relatedProduct.default_price}</div>
          <button onClick={handleOnClickFav}>Add</button>
-         <button onClick={() => {handleCompare(props.relatedProduct)}}>Compare</button>
+         <button onClick={() => {handleCompare(props.relatedProduct)}}>{"\u2731"}</button>
       </div>
     </CardContainer>
   )
