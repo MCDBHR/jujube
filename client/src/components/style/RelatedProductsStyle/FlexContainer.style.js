@@ -33,12 +33,18 @@ export const CarouselBtnContainer = styled.div`
 
 export const CarouselBtn = styled.a`
   background-color: none;
+  color: black;
   text-decoration: none;
   line-height: 450px;
   font-size: 30px;
   height: 200px;
 
-  &:focus, &:hover, &:visited, &:link, &:active {
+  &:visited {
+    color: black;
+    text-decoration: none;
+  }
+
+  &:active {
     text-decoration: none;
   }
 

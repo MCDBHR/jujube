@@ -12,6 +12,9 @@ export default createGlobalStyle`
     font-family: 'Petrona', serif;
   }
 
+  a:visited {
+    text-decoration: none;
+  }
   button:hover {
     cursor: pointer;
   }
