@@ -6,8 +6,10 @@ import { format, parseISO } from "date-fns";
 
 const StyledReview = styled.div`
   padding 10px;
-  border: 2px solid #3bad51;
+  border: 2px solid #ed424c;
   border-radius: 8px;
+  background: white;
+  box-shadow: 20px 20px 10px #f9d4d3;
   margin: 6px;
 `;
 const Header = styled.section`

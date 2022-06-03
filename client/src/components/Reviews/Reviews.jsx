@@ -5,12 +5,42 @@ import Ratings from './Ratings.jsx';
 import styled from 'styled-components';
 
 const ReviewContainer = styled.div`
-  height: 725px;
+  max-height: 620px;
   overflow: scroll;
+  margin-right:20px;
   scrollbar-width: thin;
+  scrollbar-color: #f9d4d3 #f35a64;
 `
 const Container = styled.div`
-  padding: 10px;
+  padding: 20px;
+`
+const Button = styled.button`
+  margin-right: 10px;
+  background-color: #f9d4d3;
+  border: 2px solid #f35a64;
+  border-radius: 30px;
+  box-shadow: #cf2b2a 4px 4px 0 0;
+  color: #422800;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 10px;
+  padding: 5 15px;
+  line-height: 30px;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  z-index: 5;
+
+  :hover {
+    background-color: #f35a64;
+  }
+  @media (min-width: 768px) {
+    min-width: 120px;
+    padding: 0 25px;
+  }
 `
 
 
@@ -51,14 +81,12 @@ const Reviews = ({ reviews, order, setOrder, showModal, filter }) => {
   return (
     <Container>
       <div>
-        <label>
-          <b> {reviewsToRender.length} Reviews   --- sort by:</b>
+          <h3 style={{fontFamily:'Shrikhand'}}> {reviewsToRender.length} Reviews   --- sort by:</h3>
           <select value={order} onChange={handleOrderChange}>
             <option value="relevant">relevance</option>
             <option value="helpful">helpfulness</option>
             <option value="newest">date</option>
           </select>
-        </label>
       </div>
       <ReviewContainer>
         <div>
@@ -66,9 +94,9 @@ const Reviews = ({ reviews, order, setOrder, showModal, filter }) => {
             return <Review key={review.review_id} review={review} />
           })}
         </div>
-        {showMoreButton ? <button onClick={addToRender}> See more! </button> : 'No reviews yet  '}
-        <button onClick={showModal}>Add Review +</button>
       </ReviewContainer>
+        {showMoreButton ? <Button onClick={addToRender}> See more! </Button> : 'No reviews yet  '}
+        <Button onClick={showModal}>Add Review +</Button>
     </Container>
   )
 
