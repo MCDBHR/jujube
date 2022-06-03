@@ -68,7 +68,6 @@ const App = (props) => {
   }
 
   const handleCompare = (relatedProduct) => {
-    console.log(relatedProduct, 'We passed up our product');
     setCompareProduct(relatedProduct);
     setShowModal(true);
   }
