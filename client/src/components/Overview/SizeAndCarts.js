@@ -40,6 +40,7 @@ const QuantitySelector = styled.select`
   padding: .45em 1.25em;
   background-color: #f3f3f3;
   font-weight: bold;
+  border-radius: 30px;
   height: 100%;
   width: 45%;
   &:hover {
