@@ -1,12 +1,14 @@
-import React, {useContext} from 'react';
-import {SetFavItemsContext} from '../App.jsx';
+import React, {useContext, useState} from 'react';
+import {SetFavItemsContext, HandleCompareContext} from '../App.jsx';
 import {Link} from 'react-router-dom';
 
 //CSS
 import {CardContainer} from '../style/RelatedproductsStyle/CardContainer.style.js';
 
 const RelatedCard = (props) => {
+  const handleCompare = useContext(HandleCompareContext);
   const setFavItems = useContext(SetFavItemsContext);
+
   const handleOnClickFav = (e) => {
 
     if(!localStorage.getItem('favItems')) {
@@ -46,6 +48,7 @@ const RelatedCard = (props) => {
          <div>{props.relatedProduct.name}</div>
          <div>$ {props.relatedProduct.default_price}</div>
          <button onClick={handleOnClickFav}>Add</button>
+         <button onClick={() => {handleCompare(props.relatedProduct)}}>Compare</button>
       </div>
     </CardContainer>
   )

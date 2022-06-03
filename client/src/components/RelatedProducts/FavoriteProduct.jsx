@@ -62,8 +62,6 @@ const FavoriteProduct = (props) => {
       </FlexContainer>
       <a onClick={prevSlider} href={`#slider-${slider}`}>Prev</a>
       <a onClick={nextSlider} href={`#slider-${slider}`}>Next</a>
-      {/* <a onClick={useSlider(props.favItems.length, )} href={`#slider-${slider}`}>Prev</a>
-      <a onClick={nextSlider} href={`#slider-${slider}`}>Next</a> */}
 
     </div>
 
