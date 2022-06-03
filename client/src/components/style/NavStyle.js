@@ -10,7 +10,7 @@ const Nav = styled.header`
   width: 100vw;
   max-width: 1400px;
   margin: 0 auto 1em;
-  box-shadow: 10px 20px 10px #f9d4d3;
+  border-bottom: 2px solid #f9d4d3;
   border-radius: 8px;
   position: sticky;
   top: 0%;
