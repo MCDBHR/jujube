@@ -1,8 +1,6 @@
 import React, {useState, useEffect} from 'react'; // import useState
 
-const UsernameEmail = () => {
-  let [username, setUsername] = useState('');
-  let [email, setEmail] = useState('');
+const UsernameEmail = ({username, setUsername, email, setEmail}) => {
 
   return (
     <div>

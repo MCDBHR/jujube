@@ -45,10 +45,8 @@ const SelectStyle = ({styles,defaultStyle,handleStyleChange}) => {
       </span>
     </div>
         {/* FOR Style select name */}
-        <span style={{ fontWeight: 'bold' }}>
+        <span style={{ fontWeight: 'bold',fontFamily:'Rubik',fontStyle:'italic' }}>
           STYLE SELECTED :
-        </span>
-        <span style={{ fontStyle:'italic'}}>
         {defaultStyle.name}
       </span>
 

@@ -6,26 +6,31 @@ import { format, parseISO } from "date-fns";
 
 const StyledReview = styled.div`
   padding 10px;
-  border: 2px solid black;
-  margin: 4px;
-`
+  border: 2px solid #3bad51;
+  border-radius: 8px;
+  margin: 6px;
+`;
 const Header = styled.section`
   display: flex;
-  color: #9bde90;
   justify-content:space-between;
-`
+`;
+
 const Review = ({review}) => {
-  //const [reviews, setReviews] = useState([]);
+  const [fullBody, setFullBody] = useState(null);
+  const [defaultBody, setDefaultBody] = useState(null);
+  const [hideFullBody, setHideFullBody] = useState(true);
+  const [hasPhotos, setHasPhotos] = useState(false);
+
   const {review_id,
-    rating,
-    summary,
-    recommend,
-    response,
-    body,
-    date,
-    reviewer_name,
-    helpfulness,
-    photos} = review;
+        rating,
+        summary,
+        recommend,
+        response,
+        body,
+        date,
+        reviewer_name,
+        helpfulness,
+        photos} = review;
 
     if (rating) {
       var difference = 5 - rating;
@@ -34,17 +39,55 @@ const Review = ({review}) => {
       var starRender = solidStars + clearStars;
     }
 
+    useEffect (() => {
+      if(photos.length !== 0) {
+        setHasPhotos(true);
+      }
+      if (body.length > 250) {
+        let sliced = body.slice(0, 251);
+        setDefaultBody(sliced);
+        setFullBody(body);
+        setHideFullBody(true);
+      } else {
+        setFullBody(body);
+        setHideFullBody(false);
+      }
+    }, [fullBody])
+
   return (
     <StyledReview>
         <div>
           <Header>
             <section>{starRender}</section>
-            <section> {reviewer_name},  {format(parseISO(date), 'PPP')}</section>
+            <section> <b style={{fontFamily:"Rubik"}}>{reviewer_name}</b> {format(parseISO(date), 'PPP')}</section>
           </Header>
         </div>
-        <h1> {summary} </h1>
-        <p> {body ? body : ''} </p>
+        <h3> {summary} </h3>
+        <div>
+          {hideFullBody ?
+            <div>
+              {defaultBody}
+              <p onClick={() => setHideFullBody(false)}><u>Show more</u></p>
+            </div>
+              :
+            <div>
+              {fullBody}
+            </div>
+          }
+          {hasPhotos ?
+            photos.map((photo)=> {
+              return (
+                <img key={photo.id} src={photo.url} height='70'></img>
+              )
+            })
+            :
+            <div></div>
+
+          }
+        </div>
+
         <p>{recommend ? "✓ I recommend this product" : "no"}</p>
+        <p>{response ? {response} : ''}</p>
         <p>helpful: {helpfulness}</p>
 
     </StyledReview>

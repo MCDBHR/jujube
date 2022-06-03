@@ -1,6 +1,12 @@
 import React, {useState, useEffect} from 'react'; // import useState
+import styled from 'styled-components';
 
-const Summary = () => {
+const StyledSummaryContainer = styled.input`
+    width: 90%;
+    height: 30px;
+  `;
+const Summary = ({setSummary}) => {
+
   //takes in meta data that is an object.
   //object.keys that metadata to get characteristic
 
@@ -10,9 +16,10 @@ const Summary = () => {
     <div>
       <form>
         <label>
-          <input type="text" maxLength = "60" placeholder="Example: Best purchase ever!" />
+          Summary:
+          <StyledSummaryContainer type="text" maxLength = "60" placeholder="Example: Best purchase ever!" onChange={event => setSummary(event.target.value)}/>
         </label>
-        <input type="submit" value="Submit" />
+        {/* <input type="submit" value="Submit" /> */}
       </form>
     </div>
   )

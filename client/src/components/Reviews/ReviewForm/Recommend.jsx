@@ -4,7 +4,7 @@
 
 import React, {useState, useEffect} from 'react'; // import useState
 
-const Recommend = () => {
+const Recommend = ({setRecommended}) => {
 
   return (
     <div>
@@ -12,8 +12,8 @@ const Recommend = () => {
         <label>
           Do you recommend?
         </label>
-        <label><input type="radio" name="radioset" value={'yes'}/>Yes</label>
-        <label><input type="radio" name="radioset" value={'no'}/>No</label>
+        <label><input type="radio" name="radioset" value={true} required onClick={() => setRecommended(true)}/>Yes</label>
+        <label><input type="radio" name="radioset" value={false} required onClick={() => setRecommended(false)}/>No</label>
       </div>
     </div>
   )

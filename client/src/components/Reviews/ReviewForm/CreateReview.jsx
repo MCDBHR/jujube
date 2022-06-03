@@ -10,7 +10,10 @@ import UsernameEmail from './UsernameEmail.jsx';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+
 const Container = styled.div`
+
+
 `
 export const CreateReview = ({characteristics, product_id, name}) => {
   const [rating, setRating] = useState(null);
@@ -43,12 +46,19 @@ export const CreateReview = ({characteristics, product_id, name}) => {
     <div>
       <p>{name}</p>
       <Star rating={rating} setRating={setRating}/>
+
       <Recommend setRecommended={setRecommended}/>
+
       <Characteristics characteristics={characteristics} choiceObj={choiceObj} setChoiceObj={setChoiceObj}/>
+
       <Summary setSummary={setSummary}/>
+
       <Body setBody={setBody}/>
+
       <PhotoUpload images={images} setImages={setImages}/>
+
       <UsernameEmail setUsername={setUsername} setEmail={setEmail}/>
+
       <button onClick={handlePostVerification}>submit review</button>
     </div>
   );
