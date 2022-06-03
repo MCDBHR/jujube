@@ -50,11 +50,7 @@ const CharacteristicBar= ({data}) => {
       {characteristicArray.map((characteristic, i) => {
         return (
           <RatingsBarContainer key={characteristic.concat(i)}>
-<<<<<<< HEAD
-              <small>{characteristic}</small>
-=======
               <CharacteristicName>{characteristic}</CharacteristicName>
->>>>>>> main
             <Bar>
               <Arrow pos={data[characteristic].value}></Arrow>
             </Bar>
