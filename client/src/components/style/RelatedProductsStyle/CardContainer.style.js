@@ -8,6 +8,10 @@ export const CardContainer = styled.li`
   align-items: flex-start;
   scroll-snap-align: start;
   scroll-snap-stop: normal;
+  &:hover {
+    opacity: 0.7;
+    transition: 0.3s;
+  }
 `
 
 export const AddOutfitContainer = styled.div`
