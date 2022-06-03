@@ -3,7 +3,7 @@ import {SetFavItemsContext, HandleCompareContext} from '../App.jsx';
 import {Link} from 'react-router-dom';
 
 //CSS
-import {CardContainer} from '../style/RelatedproductsStyle/CardContainer.style.js';
+import {CardContainer} from '../style/RelatedProductsStyle/CardContainer.style.js';
 
 const RelatedCard = (props) => {
   const handleCompare = useContext(HandleCompareContext);
@@ -48,7 +48,7 @@ const RelatedCard = (props) => {
          <div>{props.relatedProduct.name}</div>
          <div>$ {props.relatedProduct.default_price}</div>
          <button onClick={handleOnClickFav}>Add</button>
-         <button onClick={() => {handleCompare(props.relatedProduct)}}>Compare</button>
+         <button onClick={() => {handleCompare(props.relatedProduct)}}>{"\u2731"}</button>
       </div>
     </CardContainer>
   )

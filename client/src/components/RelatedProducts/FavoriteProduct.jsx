@@ -11,7 +11,7 @@ import axios from 'axios';
 
 //Import CSS
 import {FlexContainer, H2} from '../style/RelatedProductsStyle/FlexContainer.style.js'
-import {CardContainer, AddOutfitContainer} from '../style/RelatedproductsStyle/CardContainer.style.js'
+import {CardContainer, AddOutfitContainer} from '../style/RelatedProductsStyle/CardContainer.style.js'
 
 const FavoriteProduct = (props) => {
   const [slider, setSlider] = useState(0);

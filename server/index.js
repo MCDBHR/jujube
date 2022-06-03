@@ -3,10 +3,9 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const axios = require('axios');
-const bodyParser = require('body-parser');
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static('client/dist'));
 app.use(express.json());
+app.use(express.static('client/dist'));
 
 const PORT = 3000 || process.env.PORT;
 
@@ -16,7 +15,8 @@ const apiURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/';
 app.listen(PORT, () => {
   console.log(`Server listening on port: ${PORT}`);
 })
-app.get('/api/products/*', (req, res) => {
+
+app.get('/products/*', (req, res) => {
   res.sendFile('index.html', {root: path.join(__dirname, '../client/dist')})
 });
 
@@ -28,6 +28,15 @@ app.get('/products', async (req, res) => {
  } catch(err){res.send(err)}
 });
 
+app.get('/api/products/:product_id', async (req, res) => {
+  const id = req.params.product_id;
+  try {
+    const product = await axios.get(`${apiURL}products/${id}`, apiHeaders);
+    res.status(200).send(product.data);
+  } catch (err) {
+    res.status(400).send(err);
+  }
+})
 
 app.get('/api/products/:product_id/all', async (req, res) => {
   const id = req.params.product_id;
@@ -45,15 +54,6 @@ app.get('/api/products/:product_id/all', async (req, res) => {
   }
 })
 
-app.get('/api/products/:product_id', async (req, res) => {
-  const id = req.params.product_id;
-  try {
-    const product = await axios.get(`${apiURL}products/${id}`, apiHeaders);
-    res.status(200).send(product.data);
-  } catch (err) {
-    res.status(400).send(err);
-  }
-})
 
 app.get('/api/products/:product_id/styles', async (req, res) => {
   const id = req.params.product_id;
