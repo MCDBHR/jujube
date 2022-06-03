@@ -16,7 +16,7 @@ const InnerStar = styled.div`
     font-size: 20px;
   }
   position: absolute;
-  color: green;
+  color: #de4044;
   overflow: hidden;
 
 `;

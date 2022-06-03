@@ -46,7 +46,7 @@ const Star = ({rating, setRating}) => {
                 <FaStar size={20}
                         onMouseEnter = {() => setHover(ratingValue)}
                         onMouseLeave = {() => setHover(null)}
-                        color={ratingValue <= (hover || rating) ? 'yellow' : 'grey'}/>
+                        color={ratingValue <= (hover || rating) ? '#cf2b2a' : 'grey'}/>
               </CenterStar>
             <div>
               <small>{starMeaning[index]}</small>

@@ -12,8 +12,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 
 const Container = styled.div`
-
-
+  margin: 5px;
 `
 export const CreateReview = ({characteristics, product_id, name}) => {
   const [rating, setRating] = useState(null);
@@ -24,10 +23,24 @@ export const CreateReview = ({characteristics, product_id, name}) => {
   let [images, setImages] = useState([]);
   let [username, setUsername] = useState('');
   let [email, setEmail] = useState('');
+  let [imagesToPost, setImagesToPost] = useState([])
+
   const handlePostVerification = () => {
     if(images.length === 0) {
-      setImages(null);
+      setImagesToPost(null);
+    } else {
+      setImagesToPost(images)
     }
+
+    const validEmail = (email) => {
+      let mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+      if (email.match(mailFormat)) {
+        return (true)
+      } else {
+        return (false)
+      }
+    }
+
     let params = {
       'product_id': product_id,
       'rating': rating,
@@ -36,20 +49,32 @@ export const CreateReview = ({characteristics, product_id, name}) => {
       'recommend': recommended,
       'name': username,
       'email': email,
-      'photos': images,
+      'photos': imagesToPost,
       'characteristics': choiceObj
     }
-    console.log(params);
-    axios.post('/api/reviews', params)
+
+
+    if(validEmail(email)) {
+      axios.post('/api/reviews', params)
+      .then(() => {
+        alert('posted!')
+      })
+    } else {
+      alert('invalid email format');
+    }
+
   };
   return (
     <div>
-      <p>{name}</p>
-      <Star rating={rating} setRating={setRating}/>
+      <h2 style={{fontFamily:'Shrikhand'}}>{name}</h2>
+      <Container>
+        <Star rating={rating} setRating={setRating}/>
+      </Container>
 
       <Recommend setRecommended={setRecommended}/>
-
-      <Characteristics characteristics={characteristics} choiceObj={choiceObj} setChoiceObj={setChoiceObj}/>
+      <Container>
+        <Characteristics characteristics={characteristics} choiceObj={choiceObj} setChoiceObj={setChoiceObj}/>
+      </Container>
 
       <Summary setSummary={setSummary}/>
 
