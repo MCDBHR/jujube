@@ -14,7 +14,9 @@ import styled from 'styled-components';
 const Container = styled.div`
   margin: 5px;
 `
-export const CreateReview = ({characteristics, product_id, name}) => {
+export const CreateReview = ({characteristics, product_id, name}) =>
+{
+  const [characteristicArray, setCharacteristicsArray] = useState( Object.keys(characteristics));
   const [rating, setRating] = useState(null);
   const [recommended, setRecommended] = useState(null);
   let [choiceObj, setChoiceObj] = useState({})
@@ -43,34 +45,23 @@ export const CreateReview = ({characteristics, product_id, name}) => {
       }
     }
 
-    let params = {
-      'product_id': product_id,
-      'rating': rating,
-      'summary': summary,
-      'body': body,
-      'recommend': recommended,
-      'name': username,
-      'email': email,
-      'photos': imagesToPost,
-      'characteristics': choiceObj
-    }
     const setToInvalid = (reason) => {
-      setInvalidReasons([...invalidReasons, reason]);
+      setInvalidReasons(invalidReasons.push(reason));
     }
     const checkManditoryfields = () => {
-      if (!rating === null) {
+      if (rating === null) {
         setToInvalid('must have a rating');
       }
       if (recommended === null) {
         setToInvalid('recommended must be filled');
       }
-      if (Object.keys(choiceObj) === 0) {
+      if (Object.keys(choiceObj).length < characteristicArray.length) {
         setToInvalid('must fill out characteristics');
       }
       if (body.length < 50) {
         setToInvalid('minimum characters have not been met');
       }
-      if (name.length === 0) {
+      if (username.length === 0) {
         setToInvalid('nickname is required to post');
       }
       if (email.length === 0) {
@@ -81,17 +72,27 @@ export const CreateReview = ({characteristics, product_id, name}) => {
       }
     }
     checkManditoryfields();
-
+    console.log(invalidReasons);
     if(invalidReasons.length === 0) {
-      // axios.post('/api/reviews', params)
-      // .then(() => {
-      //   alert('posted!')
-      // })
-      console.log('posted !')
+      let params = {
+        'product_id': product_id,
+        'rating': rating,
+        'summary': summary,
+        'body': body,
+        'recommend': recommended,
+        'name': username,
+        'email': email,
+        'photos': imagesToPost,
+        'characteristics': choiceObj
+      }
+      axios.post('/api/reviews', params)
+      .then(() => {
+        alert('posted!')
+      })
     } else {
       let reasons = invalidReasons.toString();
       console.log(reasons);
-      alert("failed to post! missing requirements: ", reasons);
+      alert(`failed to post! missing requirements: ${reasons}`);
     }
 
   };
@@ -104,7 +105,7 @@ export const CreateReview = ({characteristics, product_id, name}) => {
 
       <Recommend setRecommended={setRecommended}/>
       <Container>
-        <Characteristics characteristics={characteristics} choiceObj={choiceObj} setChoiceObj={setChoiceObj}/>
+        <Characteristics characteristics={characteristics} characteristicArray={characteristicArray} choiceObj={choiceObj} setChoiceObj={setChoiceObj}/>
       </Container>
 
       <Summary setSummary={setSummary}/>

@@ -1,5 +1,4 @@
-import React, {useState, useEffect} from 'react'; // import useState
-import axios from 'axios';
+import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`

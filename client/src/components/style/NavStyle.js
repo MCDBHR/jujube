@@ -51,7 +51,7 @@ const NavList = styled.ul`
   align-items: right;
   list-style: none;
   padding-left: 0;
-  font-family: 'Rubik', sans-serif;
+  font-family: 'Petrona', sans-serif;
 
   @media (max-width: 620px) {
     display: none;

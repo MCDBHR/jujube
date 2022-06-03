@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'; // import useState
+import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 
 const StyledBodyContainer = styled.input`
@@ -29,9 +29,9 @@ const Body = ({setBody}) => {
     <div>
       <form>
         <label>
-          <div>Body:</div>
+          <div>Review body *:</div>
 
-          <StyledBodyContainer type="text" minLength="50" maxLength = "1000" placeholder="Why did you like the product or not?" value={characterCount} onChange={handleChange} required= 'true'/>
+          <StyledBodyContainer type="text" minLength="50" maxLength = "1000" placeholder="Why did you like the product or not?" value={characterCount} onChange={handleChange} required= {true}/>
         </label>
       </form>
       <small><b>{minimumReached ? 'Minimum reached' : `Mininum required characters left: ${50 - characterCount.length}`} </b></small>

@@ -1,12 +1,8 @@
-// receives the meta data -characteristics as a prop
-// if the characteristic matches one of the options, reveal these set of radio buttons, else these other ones.
-import React, {useState, useEffect} from 'react'; // import useState
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import CharacteristicDataTable from './CharacteristicDataTable.js';
 
-const Characteristics = ({characteristics, choiceObj, setChoiceObj}) => {
-
-  let characteristicArray = Object.keys(characteristics);
+const Characteristics = ({characteristics, characteristicArray, choiceObj, setChoiceObj}) => {
 
   const onClickHandler = (e) => {
     let value = parseInt(e.target.value);

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState, useEffect } from 'react'; // import useState
+import { useState, useEffect } from 'react';
 import CreateReview from './ReviewForm/CreateReview.jsx';
 import Reviews from './Reviews.jsx';
 import Ratings from './Ratings.jsx';
@@ -16,17 +16,12 @@ import {
 
 
 const RatingsAndReviews = ({ product_id, name}) => {
-
-  //------------REVIEWS STATE---------------
   const [reviews, setReviews] = useState(null);
   const [order, setOrder] = useState("relevant");
   const [displayRatingFilter, setDisplayRatingFilter] = useState([]);
-
-  //------------RATINGS STATE ----------------
   const [characteristics, setCharacteristics] = useState({});
   const [ratings, setRatings] = useState({});
   const [recommended, setRecommended] = useState({});
-  //------------ADD REVIEW ---------------------
   const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState({});
 

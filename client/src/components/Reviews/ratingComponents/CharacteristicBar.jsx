@@ -1,9 +1,8 @@
-import React, {useState, useEffect} from 'react'; // import useState
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import Review from '../Review.jsx';
 import styled from 'styled-components';
-import CharacteristicDataTable from '../ReviewForm/CharacteristicDataTable.js'
-
+import CharacteristicDataTable from '../ReviewForm/CharacteristicDataTable.js';
 
 const RatingsBarContainer = styled.div`
   display: flex;
@@ -32,14 +31,13 @@ const UnderText = styled.div`
   display: flex;
   justify-content: space-between;
   font-size: 0.8em;
-  font-family: "Rubik";
+  font-family: "Petrona";
 `;
 
 const CharacteristicName = styled.div`
-  @import url('https://fonts.googleapis.com/css2?family=Play&family=Rubik&family=Vollkorn:wght@400;600&display=swap');
   font-size: 1.2em;
   font-weight: bold;
-  font-family: "Rubik";
+  font-family: "Petrona";
 `
 
 

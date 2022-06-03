@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react'; // import useState
-//import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 import Review from './Review.jsx';
 import Ratings from './Ratings.jsx';
 import styled from 'styled-components';
@@ -13,6 +12,20 @@ const ReviewContainer = styled.div`
 `
 const Container = styled.div`
   padding: 20px;
+`
+const SortingContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  align-items: center;
+  padding: 5px;
+`
+const DropDownContainer = styled.select`
+  width: 100px;
+  height: 30px;
+  font-family: 'Petrona';
+  border-radius: 5px;
+  background-color: #f9d4d3;
 `
 const Button = styled.button`
   margin-right: 10px;
@@ -80,14 +93,14 @@ const Reviews = ({ reviews, order, setOrder, showModal, filter }) => {
 
   return (
     <Container>
-      <div>
-          <h3 style={{fontFamily:'Shrikhand'}}> {reviewsToRender.length} Reviews   --- sort by:</h3>
-          <select value={order} onChange={handleOrderChange}>
-            <option value="relevant">relevance</option>
-            <option value="helpful">helpfulness</option>
-            <option value="newest">date</option>
-          </select>
-      </div>
+      <SortingContainer>
+        <p style={{fontFamily:'Petrona', fontWeight: 'bold'}}> {reviewsToRender.length} Reviews   --- sort by:  </p>
+        <DropDownContainer value={order} onChange={handleOrderChange}>
+          <option value="relevant">relevance</option>
+          <option value="helpful">helpfulness</option>
+          <option value="newest">date</option>
+        </DropDownContainer>
+      </SortingContainer>
       <ReviewContainer>
         <div>
           {reviewsToRender.slice(0, numberToRender).map((review) => {

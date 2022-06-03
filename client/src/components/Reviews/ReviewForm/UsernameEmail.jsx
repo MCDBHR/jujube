@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'; // import useState
+import React, {useState, useEffect} from 'react';
 
 const UsernameEmail = ({username, setUsername, email, setEmail}) => {
 

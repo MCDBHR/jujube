@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'; // import useState
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const PhotoUpload = ({images, setImages}) => {

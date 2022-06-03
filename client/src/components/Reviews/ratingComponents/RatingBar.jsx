@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'; // import useState
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 
@@ -38,6 +38,8 @@ const FilledData = styled.div`
 const StarRatingNum = styled.div`
   font-size: .9em;
   width: 20%;
+  font-weight: bold
+  font-family: 'Rubik';
   text-decoration: underline;
 `;
 

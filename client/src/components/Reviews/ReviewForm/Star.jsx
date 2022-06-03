@@ -1,5 +1,5 @@
 import React from 'react';
-import {useState, useEffect} from 'react'; // import useState
+import {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import {FaStar} from 'react-icons/fa';
 
