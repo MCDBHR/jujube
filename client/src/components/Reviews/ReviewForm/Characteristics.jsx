@@ -3,13 +3,9 @@
 import React, {useState, useEffect} from 'react'; // import useState
 import axios from 'axios';
 import CharacteristicDataTable from './CharacteristicDataTable.js';
-<<<<<<< HEAD
-const Characteristics = ({characteristics, choiceObj, setChoiceObj}) => {
-=======
 
 const Characteristics = ({characteristics, choiceObj, setChoiceObj}) => {
 
->>>>>>> main
   let characteristicArray = Object.keys(characteristics);
 
   const onClickHandler = (e) => {
