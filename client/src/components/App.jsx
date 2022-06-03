@@ -29,15 +29,12 @@ const App = (props) => {
     .then((res) => {
       //returns an array of all URL calls
       setProduct(res.data);
-      //Move to top of the page
       window.scrollTo(0, 0);
     }).catch(err => console.log(err, 'error in api'));
-    //Setting Favorite Item state
     const parsedItems = JSON.parse(localStorage.getItem('favItems'));
     setFavItems(parsedItems);
   }, [id]);
 
-  //Every time favItem state changes, also update localStorage to reflect
   useEffect(() => {
     localStorage.setItem('favItems', JSON.stringify(favItems));
   }, [favItems])
@@ -49,8 +46,6 @@ const App = (props) => {
       localStorage.setItem('favItems', JSON.stringify([overviewWithImg]));
       setFavItems([overviewWithImg]);
     } else {
-      //We need to check if the item has already been favorited
-      //If had a large data structure we could use a hash table
       let hasDuplicateItem = false;
       for(let i = 0; i < favItems.length; i++) {
         if(favItems[i].id === overview.id) {
@@ -60,7 +55,6 @@ const App = (props) => {
       }
 
       if(!hasDuplicateItem) {
-        //Re-renders state with new product
         setFavItems((prevState) => {
           return prevState.concat(overviewWithImg);
         });
@@ -82,7 +76,9 @@ const App = (props) => {
   return (
     <div style={{ position: 'relative' }}>
       <Nav>
-        <Navheader>The Jonas Brothers</Navheader>
+        <Navheader>
+          <img src='https://res.cloudinary.com/thejoebro/image/upload/v1654208478/rli7stbb7rwvyv0tya1x.png' height='100'></img>
+        </Navheader>
         <NavList>
           <li><a href="#overview" >Overview</a></li>
           <li><a href="#related" >Related Products</a></li>
@@ -100,7 +96,6 @@ const App = (props) => {
         />
          <div>
         <SetFavItemsContext.Provider value={setFavItems}>
-
             <HandleCompareContext.Provider value={handleCompare}>
             {Object.keys(overview).length && <RelatedProduct id='related' mainProduct={overview} relatedItems={related}/>}
             </HandleCompareContext.Provider>
@@ -108,7 +103,7 @@ const App = (props) => {
           {<FavoriteProduct addFavProduct={addFavProduct} deleteFavProduct={deleteFavProduct} favItems={favItems}/>}
         </SetFavItemsContext.Provider>
         </div>
-        <RatingsAndReviews product_id={40348}/>
+        <RatingsAndReviews product_id={overview.id} name={overview.name}/>
         </FlexContainer>
       </AppContainer>
       }
