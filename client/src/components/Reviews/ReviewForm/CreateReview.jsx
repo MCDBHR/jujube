@@ -13,6 +13,7 @@ import styled from 'styled-components';
 
 const Container = styled.div`
   margin: 5px;
+  gap:20px;
 `
 export const CreateReview = ({characteristics, product_id, name, setShowModal, setUpdate}) =>
 {
@@ -108,12 +109,13 @@ export const CreateReview = ({characteristics, product_id, name, setShowModal, s
       <Container>
         <Characteristics characteristics={characteristics} characteristicArray={characteristicArray} choiceObj={choiceObj} setChoiceObj={setChoiceObj}/>
       </Container>
-
-      <Summary setSummary={setSummary}/>
-
-      <Body setBody={setBody}/>
-
-      <PhotoUpload images={images} setImages={setImages}/>
+      <Container>
+        <Summary setSummary={setSummary}/>
+        <Body setBody={setBody}/>
+      </Container>
+      <Container>
+        <PhotoUpload images={images} setImages={setImages}/>
+      </Container>
 
       <UsernameEmail setUsername={setUsername} setEmail={setEmail}/>
 

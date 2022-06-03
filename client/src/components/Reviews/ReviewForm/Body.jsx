@@ -2,10 +2,11 @@ import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 
 const StyledBodyContainer = styled.input`
-  width: 90%;
-  height: 100px;
+  width: 100%;
+  height: 35px;
+  word-wrap:break-word;
   box-sizing: border-box;
-  border: 4px solid #ccc;
+  border: 2px solid #ccc;
   border-radius: 5px;
   resize: none;
   `;

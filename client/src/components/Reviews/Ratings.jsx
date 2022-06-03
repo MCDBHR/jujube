@@ -49,7 +49,9 @@ const Ratings = ({ characteristics, ratings, recommended, setDisplayRatingFilter
     <div>
       <RatingAndStarsContainer>
         <DisplayText>{displayText}</DisplayText>
-        <StarRating data={displayRating} />
+        <div>
+          {StarRating(displayRating)}
+        </div>
       </RatingAndStarsContainer>
       <p style={{fontFamily:'Petrona'}}> {recommendedRating}% recommends this product</p>
       <div>

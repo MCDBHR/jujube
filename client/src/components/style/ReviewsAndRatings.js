@@ -26,7 +26,7 @@ const ModalBackground = styled.div`
   left: 0;
   height: 100vh;
   width: 100vw;
-  background: rgba(255, 147, 147, 0.8);
+  background: rgba(250, 213, 214, 0.8);
   z-index: 50;
 `
 
@@ -39,7 +39,10 @@ const ModalStyle = styled.div`
   border-style: solid;
   border-width: thin;
   border-radius: 8px;
-  box-shadow: 20px 20px 20px 10px #de4044;
+  max-height: 580px;
+  overflow: scroll;
+  scrollbar-width: thin;
+  box-shadow: 20px 20px 20px 10px #eb444c;
   padding: 20px;
   background: white;
   z-index: 51;
