@@ -3,7 +3,7 @@ import {SetFavItemsContext} from '../App.jsx';
 import {Link} from 'react-router-dom';
 
 //CSS
-import {CardContainer} from '../style/RelatedProductsStyle/CardContainer.style.js';
+import {RelatedCardContainer} from '../style/RelatedProductsStyle/CardContainer.style.js';
 
 const StorefrontCard = (props) => {
   return(
