@@ -31,24 +31,39 @@ export const CarouselBtnContainer = styled.div`
   align-items: center;
 `
 
-export const CarouselBtn = styled.a`
+export const PrevCarouselBtn = styled.a`
   background-color: none;
   color: black;
   text-decoration: none;
   line-height: 450px;
   font-size: 30px;
   height: 200px;
-
+  visibility: ${props => props.slider === 0 ? 'hidden' : 'visible'};
   &:visited {
     color: black;
     text-decoration: none;
   }
-
   &:active {
     text-decoration: none;
   }
-
 `
+export const NextCarouselBtn = styled.a`
+  background-color: none;
+  color: black;
+  text-decoration: none;
+  visibility: ${props => props.slider === props.length ? 'hidden' : 'visible'};
+  line-height: 450px;
+  font-size: 30px;
+  height: 200px;
+  &:visited {
+    color: black;
+    text-decoration: none;
+  }
+  &:active {
+    text-decoration: none;
+  }
+`
+
 export const CarouselInner = styled.div`
   display: flex;
   flex: row;

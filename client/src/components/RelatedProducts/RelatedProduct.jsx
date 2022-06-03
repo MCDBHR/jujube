@@ -3,7 +3,7 @@ import RelatedCard from './RelatedCard.jsx'
 import axios from 'axios';
 
 //CSS
-import {FlexContainer, H2, CarouselContainer, CarouselBtnContainer, CarouselBtn, CarouselInner} from '../style/RelatedProductsStyle/FlexContainer.style.js'
+import {FlexContainer, H2, CarouselContainer, CarouselBtnContainer, PrevCarouselBtn, NextCarouselBtn, CarouselInner} from '../style/RelatedProductsStyle/FlexContainer.style.js'
 
 
 const RelatedProduct = (props) => {
@@ -72,13 +72,14 @@ const RelatedProduct = (props) => {
     <CarouselContainer>
       <H2>Related Products</H2>
       <CarouselInner>
-      <CarouselBtn onClick={prevSlider} href={`#relatedSlider-${slider}`}>&#8678;</CarouselBtn>
+      <PrevCarouselBtn slider={slider} onClick={prevSlider} href={`#relatedSlider-${slider}`}>&#8678;</PrevCarouselBtn>
        <FlexContainer>
          {relatedProducts.map((item, index) =>
             <RelatedCard slider={index} productImg={styles[index]} relatedProduct={item} key={item.id}/>
          )}
        </FlexContainer>
-        <CarouselBtn onClick={nextSlider} href={`#relatedSlider-${slider}`}>&#8680;</CarouselBtn>
+        <NextCarouselBtn slider={slider} onClick={nextSlider} length={relatedProducts.length}
+        href={`#relatedSlider-${slider}`}>&#8680;</NextCarouselBtn>
       </CarouselInner>
     </CarouselContainer>
   )

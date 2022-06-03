@@ -2,7 +2,7 @@ import React, {useState, useContext} from 'react';
 import {SetFavItemsContext} from '../App.jsx';
 
 //CSS
-import {CardContainer, CardButton, CardInfoDiv, ImageContainer, CardElement} from '../style/RelatedProductsStyle/CardContainer.style.js'
+import {FavoriteCardContainer, CardButton, CardInfoDiv, ImageContainer, CardElement} from '../style/RelatedProductsStyle/CardContainer.style.js'
 
 const FavoriteCard = (props) => {
   const setFavItems = useContext(SetFavItemsContext);
@@ -13,7 +13,7 @@ const FavoriteCard = (props) => {
 
   // Need styles picture to be called from App component
   return(
-    <CardContainer id={'slider-' + props.slider}>
+    <FavoriteCardContainer id={'slider-' + props.slider}>
       <ImageContainer>
         <img style={{objectFit: "cover", width: "100%", height: "100%"}} src={props.favItem.thumbnailURL} alt=""/>
         <CardButton onClick={removeFavItem}>X</CardButton>
@@ -23,7 +23,7 @@ const FavoriteCard = (props) => {
          <CardElement>{props.favItem.name}</CardElement>
          <CardElement>$ {props.favItem.default_price}</CardElement>
       </CardInfoDiv>
-    </CardContainer>
+    </FavoriteCardContainer>
   )
 }
 
