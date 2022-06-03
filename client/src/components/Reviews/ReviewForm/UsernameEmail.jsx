@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'; // import useState
+import React, {useState, useEffect} from 'react';
 
 const UsernameEmail = ({username, setUsername, email, setEmail}) => {
 
@@ -7,7 +7,7 @@ const UsernameEmail = ({username, setUsername, email, setEmail}) => {
       <form>
         <label>
           <div>
-            <small>username </small>
+            <small>Nickname * </small>
             <input type="text"
                     maxLength = "60"
                     placeholder="Example: jackson11!"
@@ -15,7 +15,7 @@ const UsernameEmail = ({username, setUsername, email, setEmail}) => {
                     onChange={event => setUsername(event.target.value)} />
           </div>
           <div>
-            <small>email </small>
+            <small>Email * </small>
             <input type="text"
                     maxLength = "60"
                     placeholder="Example: jackson11@gmail.com"

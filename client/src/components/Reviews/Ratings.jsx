@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'; // import useState
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import CharacteristicBar from './ratingComponents/CharacteristicBar.jsx';
 import RatingBar from './ratingComponents/RatingBar.jsx';
@@ -52,7 +52,7 @@ const Ratings = ({ characteristics, ratings, recommended, setDisplayRatingFilter
         {console.log(displayRating, 'display rating')}
         <StarRating data={displayRating} />
       </RatingAndStarsContainer>
-      <p> {recommendedRating}% recommends this product</p>
+      <p style={{fontFamily:'Petrona'}}> {recommendedRating}% recommends this product</p>
       <div>
         <RatingBar data={ratings}
                    setDisplayRatingFilter={setDisplayRatingFilter}

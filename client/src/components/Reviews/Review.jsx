@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'; // import useState
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import { format, parseISO } from "date-fns";
@@ -6,11 +6,11 @@ import { format, parseISO } from "date-fns";
 
 const StyledReview = styled.div`
   padding 10px;
-  border: 2px solid #ed424c;
+  border: 2px solid #212121;
   border-radius: 8px;
   background: white;
-  box-shadow: 20px 20px 10px #f9d4d3;
-  margin: 6px;
+  box-shadow: 20px 20px 10px #ededed;
+  box-sizing: border-box;
 `;
 const Header = styled.section`
   display: flex;
@@ -61,10 +61,10 @@ const Review = ({review}) => {
         <div>
           <Header>
             <section>{starRender}</section>
-            <section> <b style={{fontFamily:"Rubik"}}>{reviewer_name}</b> {format(parseISO(date), 'PPP')}</section>
+            <section> <b style={{fontFamily:"Patrona"}}>{reviewer_name}</b> {format(parseISO(date), 'PPP')}</section>
           </Header>
         </div>
-        <h3> {summary} </h3>
+        <h3 style={{fontFamily:"Patrona"}}> {summary} </h3>
         <div>
           {hideFullBody ?
             <div>

@@ -1,8 +1,8 @@
 require('dotenv').config();
 const express = require('express');
 const path = require('path');
-const app = express();
 const axios = require('axios');
+const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static('client/dist'));
@@ -15,7 +15,6 @@ const apiURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/';
 app.listen(PORT, () => {
   console.log(`Server listening on port: ${PORT}`);
 })
-
 app.get('/products/*', (req, res) => {
   res.sendFile('index.html', {root: path.join(__dirname, '../client/dist')})
 });
@@ -65,7 +64,6 @@ app.get('/api/products/:product_id/styles', async (req, res) => {
   }
 })
 
-//get Cart
 app.get('/api/cart', async (req, res) => {
   try {
     const response = await axios.get(`${apiURL}cart`, apiHeaders);
@@ -75,7 +73,6 @@ app.get('/api/cart', async (req, res) => {
   }
 })
 
-//add To Cart
 app.post('/api/cart', async (req, res) => {
   try {
     const response = await axios.post(`${apiURL}cart`, req.body, apiHeaders);
@@ -105,7 +102,6 @@ app.get('/api/reviews/', (req, res) => {
   })
 })
 
-// get reviews meta for one product
 app.get('/api/reviews/meta', (req, res) => {
   const id = req.query.product_id
   let config = {
@@ -120,8 +116,6 @@ app.get('/api/reviews/meta', (req, res) => {
   .catch((err) => { res.status(500).send(err)});
 });
 
-
-//from client end: axios.put('/report/review/?id=1135681')
 app.put('/api/report/review/:id', (req, res) => {
   var id =  req.params.id;
   axios.put(`${apiURL}reviews/${id}/report`, id,  apiHeaders)
