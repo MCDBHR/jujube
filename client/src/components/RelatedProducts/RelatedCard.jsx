@@ -1,12 +1,14 @@
-import React, {useContext} from 'react';
-import {SetFavItemsContext} from '../App.jsx';
+import React, {useContext, useState} from 'react';
+import {SetFavItemsContext, HandleCompareContext} from '../App.jsx';
 import {Link} from 'react-router-dom';
 
 //CSS
 import {CardContainer} from '../style/RelatedproductsStyle/CardContainer.style.js';
 
 const RelatedCard = (props) => {
+  const handleCompare = useContext(HandleCompareContext);
   const setFavItems = useContext(SetFavItemsContext);
+
   const handleOnClickFav = (e) => {
 
     if(!localStorage.getItem('favItems')) {
@@ -14,8 +16,6 @@ const RelatedCard = (props) => {
     } else {
       const parsedItems = JSON.parse(localStorage.getItem('favItems'));
 
-      //We need to check if the item has already been favorited
-      //If had a large data structure we could use a hash table
       let hasDuplicateItem = false;
       for(let i = 0; i < parsedItems.length; i++) {
         if(parsedItems[i].id === props.relatedProduct.id) {
@@ -34,17 +34,12 @@ const RelatedCard = (props) => {
       }
 
     }
-    //console.log(localStorage.getItem('favItems'));
-    // localStorage.removeItem('favItems');
-    // console.log(localStorage.getItem('favItems'));
-
   }
 
-
   return(
-    <CardContainer>
+    <CardContainer id={"relatedSlider-" + props.slider}>
       <div style={{width: "250px", height: "325px"}}>
-        <Link to={`/api/products/${props.relatedProduct.id}`}>
+        <Link to={`/products/${props.relatedProduct.id}`}>
            <img style={{objectFit: "cover", width: "100%", height: "100%"}} src={props.productImg} alt=""/>
         </Link>
       </div>
@@ -53,6 +48,7 @@ const RelatedCard = (props) => {
          <div>{props.relatedProduct.name}</div>
          <div>$ {props.relatedProduct.default_price}</div>
          <button onClick={handleOnClickFav}>Add</button>
+         <button onClick={() => {handleCompare(props.relatedProduct)}}>Compare</button>
       </div>
     </CardContainer>
   )

@@ -14,7 +14,7 @@ root.render(
   <GlobalStyle/>
   <Routes>
     <Route path='/' exact element={<Storefront/>} />
-    <Route path='/api/products/:id' exact element={<App/>}/>
+    <Route path='/products/:id' exact element={<App/>}/>
   </Routes>
 </Router>
 )

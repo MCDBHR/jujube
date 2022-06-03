@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('client/dist'));
 app.use(express.json());
-app.use(bodyParser.json());
+
 const PORT = 3000 || process.env.PORT;
 
 const apiHeaders = { headers: {'Authorization': process.env.AUTH_TOKEN}}
@@ -28,7 +28,8 @@ app.get('/products', async (req, res) => {
  } catch(err){res.send(err)}
 });
 
-app.get('/products/:product_id', async (req, res) => {
+
+app.get('/api/products/:product_id/all', async (req, res) => {
   const id = req.params.product_id;
   try{
     const overview = await axios.get(`${apiURL}products/${id}`,apiHeaders);
@@ -44,7 +45,7 @@ app.get('/products/:product_id', async (req, res) => {
   }
 })
 
-app.get('/products/:product_id/one', async (req, res) => {
+app.get('/api/products/:product_id', async (req, res) => {
   const id = req.params.product_id;
   try {
     const product = await axios.get(`${apiURL}products/${id}`, apiHeaders);
@@ -54,7 +55,7 @@ app.get('/products/:product_id/one', async (req, res) => {
   }
 })
 
-app.get('/products/:product_id/styles', async (req, res) => {
+app.get('/api/products/:product_id/styles', async (req, res) => {
   const id = req.params.product_id;
     try {
     const productStyle = await axios.get(`${apiURL}products/${id}/styles`, apiHeaders);
@@ -64,7 +65,8 @@ app.get('/products/:product_id/styles', async (req, res) => {
   }
 })
 
-app.get('/cart', async (req, res) => {
+//get Cart
+app.get('/api/cart', async (req, res) => {
   try {
     const response = await axios.get(`${apiURL}cart`, apiHeaders);
     res.status(201).send(response.data)
@@ -73,7 +75,8 @@ app.get('/cart', async (req, res) => {
   }
 })
 
-app.post('/cart', async (req, res) => {
+//add To Cart
+app.post('/api/cart', async (req, res) => {
   try {
     const response = await axios.post(`${apiURL}cart`, req.body, apiHeaders);
     res.status(201).send(response.data)
@@ -102,6 +105,7 @@ app.get('/api/reviews/', (req, res) => {
   })
 })
 
+// get reviews meta for one product
 app.get('/api/reviews/meta', (req, res) => {
   const id = req.query.product_id
   let config = {
@@ -115,16 +119,11 @@ app.get('/api/reviews/meta', (req, res) => {
     res.status(200).send(results.data)})
   .catch((err) => { res.status(500).send(err)});
 });
-app.post('/api/reviews', (req, res) => {
-  let params = req.body
-  console.log(params, 'these are the params');
-  axios.post(`${apiURL}reviews`, params, apiHeaders)
-  .then((results) => {
-    res.status(201).send(results.data)})
-  .catch((err) => {res.status(500).send(err)});
-})
-app.put('/report/review/:id', (req, res) => {
-  let id =  req.params.id;
+
+
+//from client end: axios.put('/report/review/?id=1135681')
+app.put('/api/report/review/:id', (req, res) => {
+  var id =  req.params.id;
   axios.put(`${apiURL}reviews/${id}/report`, id,  apiHeaders)
   .then((data)=> { res.status(200).send(data.data)})
   .catch((err) => {res.status(500).send(err)});

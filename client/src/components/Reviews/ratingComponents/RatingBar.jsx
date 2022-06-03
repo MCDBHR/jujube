@@ -63,6 +63,10 @@ const RatingBar = ({ data, setDisplayRatingFilter, displayRatingFilter }) => {
   })
 
   return (
+<<<<<<< HEAD
+
+=======
+>>>>>>> main
     <Container>
       {dataKeys.map((key, i) => {
         return (

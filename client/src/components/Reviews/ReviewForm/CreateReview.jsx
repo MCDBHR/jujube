@@ -41,6 +41,9 @@ export const CreateReview = ({characteristics, product_id, name}) => {
       }
     }
 
+<<<<<<< HEAD
+export const CreateReview = ({characteristics}) => {
+=======
     let params = {
       'product_id': product_id,
       'rating': rating,
@@ -64,6 +67,7 @@ export const CreateReview = ({characteristics, product_id, name}) => {
     }
 
   };
+>>>>>>> main
   return (
     <div>
       <h2 style={{fontFamily:'Shrikhand'}}>{name}</h2>

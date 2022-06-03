@@ -11,7 +11,7 @@ const Storefront = () => {
   const [page, setPage] = useState(1);
 
   useEffect(() => {
-    axios.get(`/products/?page=${page}`)
+    axios.get(`/api/products/?page=${page}`)
       .then(results => {
         setProducts(results.data)
       })
@@ -25,11 +25,10 @@ const Storefront = () => {
       status.current = true;
     } else {
       const stylesPromises =
-      products.map(product => axios.get(`/products/${product.id}/styles`));
+      products.map(product => axios.get(`/api/products/${product.id}/styles`));
 
       Promise.all(stylesPromises)
         .then(results => {
-          console.log(results);
           const stylesURLs =
           results.map(product => {
             if (product.data.results.length) {
