@@ -15,9 +15,6 @@ const RatingsStyle = styled.div`
 const ReviewsStyle = styled.div`
   flex: .7;
   flex-direction: row;
-  height: 500px;
-  overflow: scroll;
-  scrollbar-width: thin;
   padding: 10px;
 `
 const ModalBackground = styled.div`
@@ -36,8 +33,9 @@ const ModalStyle = styled.div`
   top: 50%;
   transform: translate(-50%, -50%);
   border-style: solid;
-  border-width: thick;
-  padding: 60px;
+  border-width: thin;
+  border-radius: 8px;
+  padding: 20px;
   background: white;
   z-index: 51;
 `

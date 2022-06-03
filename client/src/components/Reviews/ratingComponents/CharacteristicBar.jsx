@@ -7,15 +7,14 @@ import CharacteristicDataTable from '../ReviewForm/CharacteristicDataTable.js'
 
 const RatingsBarContainer = styled.div`
   display: flex;
-
   flex-direction: column;
-  padding: 0.5em 1 0.5em 1;
+  margin: 1em 0 1em 0;
 `;
 
 const Bar = styled.div`
   background-color: #e6e6e6;
   height: 0.5em;
-  margin: 0.5em 0 0.5em 0;
+  margin: 0.1em 0 0.5em 0;
 `;
 
 const Arrow = styled.div`
@@ -36,16 +35,12 @@ const UnderText = styled.div`
 
 
 const CharacteristicBar= ({data}) => {
-  // takes in an object as a prop
-  // sets an array of the keys
   let characteristicArray = Object.keys(data);
-
   return (
-    //for each of the items
     <div>
-      {characteristicArray.map((characteristic, index) => {
+      {characteristicArray.map((characteristic, i) => {
         return (
-          <RatingsBarContainer>
+          <RatingsBarContainer key={characteristic.concat(i)}>
               <small>{characteristic}</small>
             <Bar>
               <Arrow pos={data[characteristic].value}></Arrow>
@@ -53,17 +48,15 @@ const CharacteristicBar= ({data}) => {
             <UnderText>
               {
                 CharacteristicDataTable[characteristic].filter((text, index) => {
-                  return index % 2 === 0;
-                }).map((text) => <div>{text}</div>)
+                  return index === 0 || index === 4;
+                }).map((text) => <div key={text}>{text}</div>)
               }
-
             </UnderText>
           </RatingsBarContainer>
         )
       })}
     </div>
   )
-
 }
 
 export default CharacteristicBar;
