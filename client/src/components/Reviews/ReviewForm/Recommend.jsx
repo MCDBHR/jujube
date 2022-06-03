@@ -10,7 +10,7 @@ const Recommend = ({setRecommended}) => {
     <div>
       <div>
         <label>
-          Do you recommend?
+          Do you recommend this product? *
         </label>
         <label><input type="radio" name="radioset" value={true} required onClick={() => setRecommended(true)}/>Yes</label>
         <label><input type="radio" name="radioset" value={false} required onClick={() => setRecommended(false)}/>No</label>

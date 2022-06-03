@@ -23,7 +23,9 @@ export const CreateReview = ({characteristics, product_id, name}) => {
   let [images, setImages] = useState([]);
   let [username, setUsername] = useState('');
   let [email, setEmail] = useState('');
-  let [imagesToPost, setImagesToPost] = useState([])
+  let [imagesToPost, setImagesToPost] = useState([]);
+  let [isValidToPost, setIsValidToPost] = useState(false);
+  let [invalidReasons, setInvalidReasons] = useState([]);
 
   const handlePostVerification = () => {
     if(images.length === 0) {
@@ -52,15 +54,44 @@ export const CreateReview = ({characteristics, product_id, name}) => {
       'photos': imagesToPost,
       'characteristics': choiceObj
     }
+    const setToInvalid = (reason) => {
+      setInvalidReasons([...invalidReasons, reason]);
+    }
+    const checkManditoryfields = () => {
+      if (!rating === null) {
+        setToInvalid('must have a rating');
+      }
+      if (recommended === null) {
+        setToInvalid('recommended must be filled');
+      }
+      if (Object.keys(choiceObj) === 0) {
+        setToInvalid('must fill out characteristics');
+      }
+      if (body.length < 50) {
+        setToInvalid('minimum characters have not been met');
+      }
+      if (name.length === 0) {
+        setToInvalid('nickname is required to post');
+      }
+      if (email.length === 0) {
+        setToInvalid('email is required to post');
+      }
+      if (validEmail(email) === false) {
+        setToInvalid('email is invalid');
+      }
+    }
+    checkManditoryfields();
 
-
-    if(validEmail(email)) {
-      axios.post('/api/reviews', params)
-      .then(() => {
-        alert('posted!')
-      })
+    if(invalidReasons.length === 0) {
+      // axios.post('/api/reviews', params)
+      // .then(() => {
+      //   alert('posted!')
+      // })
+      console.log('posted !')
     } else {
-      alert('invalid email format');
+      let reasons = invalidReasons.toString();
+      console.log(reasons);
+      alert("failed to post! missing requirements: ", reasons);
     }
 
   };

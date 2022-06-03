@@ -34,27 +34,30 @@ const Star = ({rating, setRating}) => {
   const [hover, setHover] = useState(null)
 
   return (
-    <AllStarContainer>
-      {[...Array(5)].map((star, index) => {
-        const ratingValue = index + 1;
-        return (
-            <StarAndLabelContainer key={index}>
-              <CenterStar>
-                <RadioStar type='radio'
-                      value={ratingValue}
-                      onClick={() => setRating(ratingValue)}/>
-                <FaStar size={20}
-                        onMouseEnter = {() => setHover(ratingValue)}
-                        onMouseLeave = {() => setHover(null)}
-                        color={ratingValue <= (hover || rating) ? '#cf2b2a' : 'grey'}/>
-              </CenterStar>
-            <div>
-              <small>{starMeaning[index]}</small>
-            </div>
-          </StarAndLabelContainer>
-        );
-      })}
-    </AllStarContainer>
+    <>
+      <div>Overall Rating *</div>
+      <AllStarContainer>
+        {[...Array(5)].map((star, index) => {
+          const ratingValue = index + 1;
+          return (
+              <StarAndLabelContainer key={index}>
+                <CenterStar>
+                  <RadioStar type='radio'
+                        value={ratingValue}
+                        onClick={() => setRating(ratingValue)}/>
+                  <FaStar size={20}
+                          onMouseEnter = {() => setHover(ratingValue)}
+                          onMouseLeave = {() => setHover(null)}
+                          color={ratingValue <= (hover || rating) ? '#cf2b2a' : 'grey'}/>
+                </CenterStar>
+              <div>
+                <small>{starMeaning[index]}</small>
+              </div>
+            </StarAndLabelContainer>
+          );
+        })}
+      </AllStarContainer>
+    </>
   );
 };
 

@@ -28,6 +28,7 @@ const Characteristics = ({characteristics, choiceObj, setChoiceObj}) => {
   if (characteristicArray.length !== 0) {
     return (
       <div>
+        <p>Rate the following *</p>
         { characteristicArray.map((characteristic, index) => {
           let tabledata = CharacteristicDataTable[characteristic];
           return (
