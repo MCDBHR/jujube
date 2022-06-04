@@ -3,7 +3,7 @@ import Flexbox from '../style/Flexbox';
 import ProductDetailsContainer from '../style/ProductDetailStyle'
 import styled from 'styled-components';
 import StarGenerator from './StarGenerator';
-import {AiFillTwitterSquare,AiFillInstagram,AiFillFacebook} from 'react-icons/Ai';
+import {AiFillTwitterSquare, AiFillInstagram, AiFillFacebook} from 'react-icons/ai';
 const axios = require('axios');
 const LinkStyle = styled.a`
   text-decoration: none;

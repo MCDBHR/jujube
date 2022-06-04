@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import Flexbox from '../style/Flexbox';
-import {AiFillStar,AiOutlineStar} from 'react-icons/Ai';
 import { useState, useEffect } from 'react';
 import StarRating from '../Reviews/ratingComponents/StarRating.jsx';
 

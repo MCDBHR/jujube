@@ -1,6 +1,6 @@
 import React from 'react';
 import StyleEntryStyle from '../style/StyleEntryStyle'
-import {BsCheckCircleFill} from 'react-icons/Bs'
+import {BsCheckCircleFill} from 'react-icons/bs'
 
 
 const StyleEntry = ({style, handleStyleChange, selected,thumbnailImg}) => (
