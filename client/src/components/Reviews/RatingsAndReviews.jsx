@@ -5,15 +5,13 @@ import Reviews from './Reviews.jsx';
 import Ratings from './Ratings.jsx';
 import styled from 'styled-components';
 import axios from 'axios';
-
 import {
   RRFlexContainer,
   RatingsStyle,
   ReviewsStyle,
   ModalStyle,
   ModalBackground
-} from '../style/ReviewsAndRatings.js'
-
+} from '../style/ReviewAndRatingStyle/ReviewsAndRatings.js'
 
 const RatingsAndReviews = ({ product_id, name}) => {
   const [reviews, setReviews] = useState(null);
@@ -88,7 +86,6 @@ const RatingsAndReviews = ({ product_id, name}) => {
       </div>
     )
   }
-
 }
 
 export default RatingsAndReviews;

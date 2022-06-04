@@ -1,7 +1,12 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
-import styled from 'styled-components';
 import {FaStar} from 'react-icons/fa';
+import {
+  AllStarContainer,
+  StarAndLabelContainer,
+  RadioStar,
+  CenterStar
+} from '../../style/ReviewAndRatingStyle/FormStyle/StarSelectStyle.js';
 
 const starMeaning = [
   'Poor',
@@ -10,25 +15,6 @@ const starMeaning = [
   'Good',
   'Great'
 ];
-
-const AllStarContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-`
-
-const StarAndLabelContainer = styled.div`
-  flex-direction: column;
-`
-
-const RadioStar = styled.input`
-  display: none;
-`
-const CenterStar = styled.label`
-  display: flex;
-  justify-content: center;
-`
-
 
 const Star = ({rating, setRating}) => {
   const [hover, setHover] = useState(null)

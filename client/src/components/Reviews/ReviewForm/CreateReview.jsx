@@ -9,12 +9,7 @@ import PhotoUpload from './PhotoUpload.jsx';
 import UsernameEmail from './UsernameEmail.jsx';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import styled from 'styled-components';
 
-const Container = styled.div`
-  margin: 5px;
-  gap:20px;
-`
 export const CreateReview = ({characteristics, product_id, name, setShowModal, setUpdate}) =>
 {
   const [characteristicArray, setCharacteristicsArray] = useState( Object.keys(characteristics));
@@ -101,24 +96,13 @@ export const CreateReview = ({characteristics, product_id, name, setShowModal, s
   return (
     <div>
       <h2 style={{fontFamily:'Shrikhand'}}>{name}</h2>
-      <Container>
-        <Star rating={rating} setRating={setRating}/>
-      </Container>
-
+      <Star rating={rating} setRating={setRating}/>
       <Recommend setRecommended={setRecommended}/>
-      <Container>
-        <Characteristics characteristics={characteristics} characteristicArray={characteristicArray} choiceObj={choiceObj} setChoiceObj={setChoiceObj}/>
-      </Container>
-      <Container>
-        <Summary setSummary={setSummary}/>
-        <Body setBody={setBody}/>
-      </Container>
-      <Container>
-        <PhotoUpload images={images} setImages={setImages}/>
-      </Container>
-
+      <Characteristics characteristics={characteristics} characteristicArray={characteristicArray} choiceObj={choiceObj} setChoiceObj={setChoiceObj}/>
+      <Summary setSummary={setSummary}/>
+      <Body setBody={setBody}/>
+      <PhotoUpload images={images} setImages={setImages}/>
       <UsernameEmail setUsername={setUsername} setEmail={setEmail}/>
-
       <button onClick={handlePostVerification}>submit review</button>
     </div>
   );

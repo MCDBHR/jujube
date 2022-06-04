@@ -1,9 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
-
-const StyledSummaryContainer = styled.div`
-    margin: 10px 0;
-  `;
+import {Container} from '../../style/ReviewAndRatingStyle/FormStyle/BodyAndSummaryStyle.js';
 
 const UsernameEmail = ({username, setUsername, email, setEmail}) => {
 
@@ -11,22 +8,22 @@ const UsernameEmail = ({username, setUsername, email, setEmail}) => {
     <div>
       <form>
         <label>
-          <StyledSummaryContainer>
+          <Container>
             <small><b>Nickname * </b></small>
             <input type="text"
                     maxLength = "60"
                     placeholder="Example: jackson11!"
                     value={username}
                     onChange={event => setUsername(event.target.value)} />
-          </StyledSummaryContainer>
-          <StyledSummaryContainer>
+          </Container>
+          <Container>
             <small><b>Email * </b></small>
             <input type="text"
                     maxLength = "60"
                     placeholder="Example: jackson11@gmail.com"
                     value={email}
                     onChange={event => setEmail(event.target.value)}/>
-          </StyledSummaryContainer>
+          </Container>
           <p>For authentication reasons, you will not be emailed</p>
         </label>
       </form>

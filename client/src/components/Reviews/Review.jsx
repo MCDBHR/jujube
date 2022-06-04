@@ -1,29 +1,17 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import styled from 'styled-components';
 import { format, parseISO } from "date-fns";
 import StarRating from '../Reviews/ratingComponents/StarRating.jsx';
-
-
-const StyledReview = styled.div`
-  padding 10px;
-  border: 2px solid #240d0d;
-  border-radius: 8px;
-  background: white;
-  margin: 20px 20px 20px 0;
-  box-shadow: 20px 20px 10px #e8dbd8;
-`;
-const Header = styled.section`
-  display: flex;
-  justify-content:space-between;
-`;
+import {
+  StyledReview,
+  Header
+} from '../style/ReviewAndRatingStyle/SingleReviewStyle.js'
 
 const Review = ({review}) => {
   const [fullBody, setFullBody] = useState(null);
   const [defaultBody, setDefaultBody] = useState(null);
   const [hideFullBody, setHideFullBody] = useState(true);
   const [hasPhotos, setHasPhotos] = useState(false);
-
   const {review_id,
         rating,
         summary,

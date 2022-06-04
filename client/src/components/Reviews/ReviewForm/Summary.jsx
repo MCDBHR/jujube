@@ -1,16 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
-
-const StyledSummaryContainer = styled.input`
-    display: relative;
-    width: 98%;
-    height: 25px;
-    border: 2px solid #ccc;
-    border-radius: 5px;
-  `;
+import {StyledSummaryContainer} from '../../style/ReviewAndRatingStyle/FormStyle/BodyAndSummaryStyle.js';
 
 const Summary = ({setSummary}) => {
-
   return (
     <div>
       <form>
