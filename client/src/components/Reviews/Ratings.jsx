@@ -17,8 +17,6 @@ const DisplayText = styled.h1`
 
 `
 const Ratings = ({ characteristics, ratings, recommended, setDisplayRatingFilter, displayRatingFilter}) => {
-
-
   let [displayRating, setDisplayRating] = useState(0);
   let [displayText, setDisplayText] = useState(0);
   let [recommendedRating, setRecommendedRating] = useState(0)

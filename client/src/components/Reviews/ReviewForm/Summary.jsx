@@ -8,6 +8,7 @@ const StyledSummaryContainer = styled.input`
     border: 2px solid #ccc;
     border-radius: 5px;
   `;
+
 const Summary = ({setSummary}) => {
 
   return (

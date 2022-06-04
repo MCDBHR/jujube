@@ -47,12 +47,12 @@ const ProductDetail = ({overview,reviews,metaReview}) => {
           textTransform: 'uppercase',
           marginBottom: '-15px',
           letterSpacing: '.2em',
-          fontFamily:"Bungee Inline"
+          fontFamily:"Petrona"
         }}
         >
           {category}
         </span>
-        <h1 style={{fontFamily:"Bungee Shade", color:'#f35a64'}}>{name}</h1>
+        <h1 style={{fontFamily:"Petrona", color:'#f35a64'}}>{name}</h1>
         <span style={{
           fontStyle:'italic'
         }}
