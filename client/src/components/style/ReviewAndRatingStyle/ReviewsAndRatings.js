@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import Flexbox from '../style/Flexbox.js';
+import Flexbox from '../Flexbox.js';
 
 const RRFlexContainer = styled.div`
   display: flex;

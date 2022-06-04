@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 
 const Recommend = ({setRecommended}) => {
-
   return (
     <div>
       <div>
@@ -13,8 +12,6 @@ const Recommend = ({setRecommended}) => {
       </div>
     </div>
   )
-
-
 }
 
 export default Recommend;

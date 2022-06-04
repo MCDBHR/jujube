@@ -1,18 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import styled from 'styled-components';
-
-const StyledBodyContainer = styled.input`
-  width: 100%;
-  height: 35px;
-  word-wrap:break-word;
-  box-sizing: border-box;
-  border: 2px solid #ccc;
-  border-radius: 5px;
-  resize: none;
-  `;
+import {StyledBodyContainer} from '../../style/ReviewAndRatingStyle/FormStyle/BodyAndSummaryStyle.js';
 
 const Body = ({setBody}) => {
-
   let [characterCount, setCharacterCount] = useState('');
   let [minimumReached, setMinimumReached] = useState(false);
 
