@@ -5,7 +5,10 @@ const axios = require('axios');
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static('client/dist'));
+// app.use(express.static('client/dist'));
+const pathName = path.join(__dirname, "../client/dist");
+console.log(pathName);
+app.use(express.static(path.join(__dirname, "../client/dist")));
 
 const PORT = 3000 || process.env.PORT;
 
@@ -49,7 +52,6 @@ app.get('/api/products/:product_id/all', async (req, res) => {
     const [{data: overviewData}, {data: relatedData}, {data: stylesData}, {data: reviewData}, {data: metaReviewData}] = await Promise.all([overview, related, styles, reviews, metaReview])
 
     const combined = [overviewData, relatedData, stylesData, reviewData, metaReviewData];
-    // await combined.push(overview.data,related.data,styles.data,reviews.data,metaReview.data)
     res.status(200).send(combined)
   } catch(err) {
     res.status(400).send(err)

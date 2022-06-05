@@ -3,7 +3,8 @@ import FavoriteCard from './FavoriteCard.jsx';
 import axios from 'axios';
 
 //Import CSS
-import {FlexContainer, H2, CarouselContainer, CarouselBtnContainer, PrevCarouselBtn, NextCarouselBtn, CarouselInner} from '../style/RelatedProductsStyle/FlexContainer.style.js'
+import {FlexContainer, H2, CarouselContainer, CarouselBtnContainer,
+        PrevCarouselBtn, NextCarouselBtn, CarouselInner} from '../style/RelatedProductsStyle/FlexContainer.style.js'
 import {FavoriteCardContainer, AddOutfitContainer, CardButton} from '../style/RelatedProductsStyle/CardContainer.style.js'
 
 const FavoriteProduct = (props) => {
@@ -59,7 +60,6 @@ const FavoriteProduct = (props) => {
         href={`#slider-${slider}`}>&#8680;</NextCarouselBtn>
       </CarouselInner>
     </CarouselContainer>
-
   )
 }
 

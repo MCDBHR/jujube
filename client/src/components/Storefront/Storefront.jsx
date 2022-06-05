@@ -37,12 +37,9 @@ const Storefront = () => {
               return 'https://images.unsplash.com/photo'
             }
           });
-
           setStyles(stylesURLs);
         }).catch(err => console.log(err));
     }
-
-
   }, [products])
 
   const prevPage = () => {
@@ -58,13 +55,12 @@ const Storefront = () => {
   return (
     <div>
       <FlexContainer>
-        {products.map((product, index) => <StorefrontCard stylesImg={styles[index]} key={product.id} product={product}/>)}
+        {products.map((product, index) => <StorefrontCard
+         stylesImg={styles[index]} key={product.id} product={product}/>)}
        </FlexContainer>
        <button onClick={prevPage}>PREV</button>
        <button onClick={nextPage}>NEXT</button>
     </div>
-
-
   )
 }
 

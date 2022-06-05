@@ -1,10 +1,11 @@
 import React from 'react';
-import {OuterModal, ModalContainer, ModalHeader,
-         ModalBody, ModalElement, ModalDiv, ModalHeaderEl, ModalTitle} from '../style/RelatedProductsStyle/ModalContainer.style.js';
+import {
+         OuterModal, ModalContainer, ModalHeader,
+         ModalBody, ModalElement, ModalDiv, ModalHeaderEl,
+         ModalTitle
+        } from '../style/RelatedProductsStyle/ModalContainer.style.js';
 
 const Modal = (props) => {
-
-
   const compareFeatures = () => {
     const compareFeatures = {};
 

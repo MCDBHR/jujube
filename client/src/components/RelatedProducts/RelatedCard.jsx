@@ -32,7 +32,6 @@ const RelatedCard = (props) => {
         setFavItems(parsedItems);
         localStorage.setItem('favItems', JSON.stringify(parsedItems));
       }
-
     }
   }
 
