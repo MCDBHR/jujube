@@ -87,12 +87,12 @@ const App = (props) => {
       {!!product.length &&
       <AppContainer>
         <FlexContainer direction="column" gap="3em">
-        <Overview
+        {/* <Overview
           overview={overview}
           styles={styles}
           reviews={reviews}
           metaReview={metaReview}
-        />
+        /> */}
          <div>
         <SetFavItemsContext.Provider value={setFavItems}>
             <HandleCompareContext.Provider value={handleCompare}>
