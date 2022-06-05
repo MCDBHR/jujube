@@ -29,7 +29,7 @@ const App = (props) => {
       setProduct(res.data);
       window.scrollTo(0, 0);
     }).catch(err => console.log(err, 'error in api'));
-    if (localStorage.getItem('favItems').length > 0) {
+    if (localStorage.getItem('favItems')) {
       const parsedItems = JSON.parse(localStorage.getItem('favItems'));
       setFavItems(parsedItems);
     }
@@ -87,12 +87,12 @@ const App = (props) => {
       {!!product.length &&
       <AppContainer>
         <FlexContainer direction="column" gap="3em">
-        {/* <Overview
+        <Overview
           overview={overview}
           styles={styles}
           reviews={reviews}
           metaReview={metaReview}
-        /> */}
+        />
          <div>
         <SetFavItemsContext.Provider value={setFavItems}>
             <HandleCompareContext.Provider value={handleCompare}>
