@@ -5,7 +5,6 @@ import axios from 'axios';
 //CSS
 import {FlexContainer, H2, CarouselContainer, CarouselBtnContainer, PrevCarouselBtn, NextCarouselBtn, CarouselInner} from '../style/RelatedProductsStyle/FlexContainer.style.js'
 
-
 const RelatedProduct = (props) => {
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [styles, setStyles] = useState([]);
@@ -72,7 +71,8 @@ const RelatedProduct = (props) => {
     <CarouselContainer>
       <H2>Related Products</H2>
       <CarouselInner>
-      <PrevCarouselBtn slider={slider} onClick={prevSlider} href={`#relatedSlider-${slider}`}>&#8678;</PrevCarouselBtn>
+      <PrevCarouselBtn slider={slider} onClick={prevSlider}
+       href={`#relatedSlider-${slider}`}>&#8678;</PrevCarouselBtn>
        <FlexContainer>
          {relatedProducts.map((item, index) =>
             <RelatedCard slider={index} productImg={styles[index]} relatedProduct={item} key={item.id}/>

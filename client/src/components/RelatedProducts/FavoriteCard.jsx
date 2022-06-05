@@ -11,7 +11,6 @@ const FavoriteCard = (props) => {
     props.deleteFavProduct(props.favItem.id);
   }
 
-  // Need styles picture to be called from App component
   return(
     <FavoriteCardContainer id={'slider-' + props.slider}>
       <ImageContainer>

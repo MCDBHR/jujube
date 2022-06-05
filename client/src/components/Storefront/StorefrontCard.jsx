@@ -7,10 +7,11 @@ import {RelatedCardContainer} from '../style/RelatedProductsStyle/CardContainer.
 
 const StorefrontCard = (props) => {
   return(
-    <CardContainer>
+    <RelatedCardContainer>
       <div style={{width: "250px", height: "325px"}}>
         <Link to={`/products/${props.product.id}`}>
-           <img style={{objectFit: "cover", width: "100%", height: "100%"}} src={props.stylesImg} alt=""/>
+           <img style={{objectFit: "cover", width: "100%", height: "100%"}}
+            src={props.stylesImg} alt=""/>
         </Link>
       </div>
       <div style={{padding: "0px 10px"}}>
@@ -18,8 +19,7 @@ const StorefrontCard = (props) => {
          <div>{props.product.name}</div>
          <div>$ {props.product.default_price}</div>
       </div>
-
-    </CardContainer>
+    </RelatedCardContainer>
   )
 }
 
