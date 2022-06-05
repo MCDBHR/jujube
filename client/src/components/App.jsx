@@ -12,9 +12,7 @@ import {useParams} from 'react-router-dom';
 
 export const SetFavItemsContext = React.createContext();
 export const HandleCompareContext = React.createContext();
-// INSTEAD OF PASSING THE MAIN PRODUCT DOWN, I WILL PASS THE A HANDLEONCLICK TO MY
-// RELATED CARDS, THEN PASS THE INFORMATION UP TO THE APP, AND SET THE INFO
-// IN THE STATE AND SEND IT TO THE MODAL COMPONENT
+
 const App = (props) => {
   const [product, setProduct] = useState([]);
   const [favItems, setFavItems] = useState([]);
