@@ -31,8 +31,10 @@ const App = (props) => {
       setProduct(res.data);
       window.scrollTo(0, 0);
     }).catch(err => console.log(err, 'error in api'));
-    const parsedItems = JSON.parse(localStorage.getItem('favItems'));
-    setFavItems(parsedItems);
+    if (localStorage.getItem('favItems').length > 0) {
+      const parsedItems = JSON.parse(localStorage.getItem('favItems'));
+      setFavItems(parsedItems);
+    }
   }, [id]);
 
   useEffect(() => {
