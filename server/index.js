@@ -77,15 +77,6 @@ app.get('/api/cart', async (req, res) => {
   }
 })
 
-app.post('/api/cart', async (req, res) => {
-  try {
-    const response = await axios.post(`${apiURL}cart`, req.body, apiHeaders);
-    res.status(201).send(response.data)
-  }catch(err) {
-    res.send(err)
-  }
-})
-
 app.get('/api/reviews/', (req, res) => {
   const id = req.query.product_id
   const sort = req.query.sort
@@ -118,6 +109,16 @@ app.get('/api/reviews/meta', (req, res) => {
   .then((results)=> {
     res.status(200).send(results.data)})
   .catch((err) => { res.status(500).send(err)});
+});
+
+app.post('/api/reviews', (req, res) => {
+  axios.post(`${apiURL}reviews`, req.body, apiHeaders)
+  .then((result) => {
+    res.status(201).send('success');
+  })
+  .catch((err) => {
+    res.status(501).send(err)
+  });
 });
 
 app.put('/api/report/review/:id', (req, res) => {

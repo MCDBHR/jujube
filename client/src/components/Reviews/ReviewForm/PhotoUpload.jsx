@@ -5,6 +5,7 @@ const PhotoUpload = ({images, setImages}) => {
   let [canAddImages, setCanAddImages] = useState(true);
   let [photoCount, setPhotoCount] = useState(0);
 
+
   const loadFile = (e) => {
     let selectedFile = e.target.files[0];
     if (selectedFile !== undefined) {

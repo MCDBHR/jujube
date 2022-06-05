@@ -5,15 +5,13 @@ import Reviews from './Reviews.jsx';
 import Ratings from './Ratings.jsx';
 import styled from 'styled-components';
 import axios from 'axios';
-
 import {
   RRFlexContainer,
   RatingsStyle,
   ReviewsStyle,
   ModalStyle,
   ModalBackground
-} from '../style/ReviewsAndRatings.js'
-
+} from '../style/ReviewAndRatingStyle/ReviewsAndRatings.js'
 
 const RatingsAndReviews = ({ product_id, name}) => {
   const [reviews, setReviews] = useState(null);
@@ -24,6 +22,7 @@ const RatingsAndReviews = ({ product_id, name}) => {
   const [recommended, setRecommended] = useState({});
   const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState({});
+  let [update, setUpdate] = useState(false)
 
   useEffect(() => {
     axios.get('/api/reviews/', { params: { 'product_id': product_id, 'sort': order, 'count': 9999 } })
@@ -36,9 +35,10 @@ const RatingsAndReviews = ({ product_id, name}) => {
             setCharacteristics(metaData.data.characteristics);
             setRatings(metaData.data.ratings);
             setRecommended(metaData.data.recommended);
+            setUpdate(false);
           })
       })
-  }, [order, product_id]);
+  }, [order, product_id, update]);
 
   const handleShowModal = (e) => {
     if (showModal === false) {
@@ -72,7 +72,7 @@ const RatingsAndReviews = ({ product_id, name}) => {
             <>
               <ModalBackground onClick={handleShowModal}></ModalBackground>
               <ModalStyle>
-                <CreateReview characteristics={characteristics} product_id={product_id} name={name}/>
+                <CreateReview setShowModal={setShowModal} characteristics={characteristics} product_id={product_id} name={name} setUpdate={setUpdate}/>
               </ModalStyle>
             </>
             : null}
@@ -86,7 +86,6 @@ const RatingsAndReviews = ({ product_id, name}) => {
       </div>
     )
   }
-
 }
 
 export default RatingsAndReviews;

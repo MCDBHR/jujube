@@ -163,7 +163,7 @@ const SizeAndCarts = ({defaultStyle}) => {
 
   return (
     <Flexbox direction="column" gap="1em" >
-      <span style={{ fontWeight: 'bold',fontFamily:'Inconsolata',fontStyle:'italic' }}>Current Size: {sizeList[sizeIndex]}</span>
+      <span style={{ fontWeight: 'bold',fontFamily:'Petrona',fontStyle:'italic' }}>Current Size: {sizeList[sizeIndex]}</span>
       <Flexbox direction="row" gap=".5em" wrap="wrap">
       {skuList.map((id, index) => (
         <CartButton

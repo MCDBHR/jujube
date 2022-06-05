@@ -3,7 +3,7 @@ import Flexbox from '../style/Flexbox';
 import ProductDetailsContainer from '../style/ProductDetailStyle'
 import styled from 'styled-components';
 import StarGenerator from './StarGenerator';
-import {AiFillTwitterSquare,AiFillInstagram,AiFillFacebook} from 'react-icons/Ai';
+import {AiFillTwitterSquare, AiFillInstagram, AiFillFacebook} from 'react-icons/ai';
 const axios = require('axios');
 const LinkStyle = styled.a`
   text-decoration: none;
@@ -47,12 +47,12 @@ const ProductDetail = ({overview,reviews,metaReview}) => {
           textTransform: 'uppercase',
           marginBottom: '-15px',
           letterSpacing: '.2em',
-          fontFamily:"Bungee Inline"
+          fontFamily:"Petrona"
         }}
         >
           {category}
         </span>
-        <h1 style={{fontFamily:"Bungee Shade", color:'#f35a64'}}>{name}</h1>
+        <h1 style={{fontFamily:"Petrona", color:'#f35a64'}}>{name}</h1>
         <span style={{
           fontStyle:'italic'
         }}

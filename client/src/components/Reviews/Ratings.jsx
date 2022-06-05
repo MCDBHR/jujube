@@ -3,22 +3,12 @@ import axios from 'axios';
 import CharacteristicBar from './ratingComponents/CharacteristicBar.jsx';
 import RatingBar from './ratingComponents/RatingBar.jsx';
 import StarRating from './ratingComponents/StarRating.jsx';
-import styled from 'styled-components';
+import {
+  RatingAndStarsContainer,
+  DisplayText
+} from '../style/ReviewAndRatingStyle/RatingsStyle.js'
 
-const RatingAndStarsContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`
-const DisplayText = styled.h1`
-  font-size: 40px;
-  letter-spacing: 3px;
-  margin: 0;
-
-`
 const Ratings = ({ characteristics, ratings, recommended, setDisplayRatingFilter, displayRatingFilter}) => {
-
-
   let [displayRating, setDisplayRating] = useState(0);
   let [displayText, setDisplayText] = useState(0);
   let [recommendedRating, setRecommendedRating] = useState(0)
@@ -49,8 +39,9 @@ const Ratings = ({ characteristics, ratings, recommended, setDisplayRatingFilter
     <div>
       <RatingAndStarsContainer>
         <DisplayText>{displayText}</DisplayText>
-        {console.log(displayRating, 'display rating')}
-        <StarRating data={displayRating} />
+        <div>
+          {StarRating(displayRating)}
+        </div>
       </RatingAndStarsContainer>
       <p style={{fontFamily:'Petrona'}}> {recommendedRating}% recommends this product</p>
       <div>
@@ -59,7 +50,6 @@ const Ratings = ({ characteristics, ratings, recommended, setDisplayRatingFilter
                    displayRatingFilter={displayRatingFilter}/>
         <CharacteristicBar data={characteristics} />
       </div>
-
     </div>
   )
 

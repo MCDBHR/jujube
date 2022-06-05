@@ -1,63 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import Review from './Review.jsx';
 import Ratings from './Ratings.jsx';
-import styled from 'styled-components';
-
-const ReviewContainer = styled.div`
-  max-height: 580px;
-  overflow: scroll;
-  margin-right:20px;
-  scrollbar-width: thin;
-  scrollbar-color: #f9d4d3 #f35a64;
-`
-const Container = styled.div`
-  padding: 20px;
-`
-const SortingContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 16px;
-  align-items: center;
-  padding: 5px;
-`
-const DropDownContainer = styled.select`
-  width: 100px;
-  height: 30px;
-  font-family: 'Petrona';
-  border-radius: 5px;
-  background-color: #f9d4d3;
-`
-const Button = styled.button`
-  margin-right: 10px;
-  background-color: #f9d4d3;
-  border: 2px solid #f35a64;
-  border-radius: 30px;
-  box-shadow: #cf2b2a 4px 4px 0 0;
-  color: #422800;
-  cursor: pointer;
-  display: inline-block;
-  font-weight: 600;
-  font-size: 10px;
-  padding: 5 15px;
-  line-height: 30px;
-  text-align: center;
-  text-decoration: none;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  z-index: 5;
-
-  :hover {
-    background-color: #f35a64;
-  }
-  @media (min-width: 768px) {
-    min-width: 120px;
-    padding: 0 25px;
-  }
-`
+import {
+  ReviewContainer,
+  Container,
+  SortingContainer,
+  DropDownContainer,
+  Button
+} from '../style/ReviewAndRatingStyle/AllReviewsStyle.js';
 
 
-const Reviews = ({ reviews, order, setOrder, showModal, filter }) => {
+const Reviews = ({ reviews, order, setOrder, showModal, filter, setUpdate }) => {
   let [numberToRender, setNumberToRender] = useState(2);
   let [showMoreButton, setShowMoreButton] = useState(true);
   let [reviewsToRender, setReviewsToRender] = useState(reviews);
@@ -95,10 +48,10 @@ const Reviews = ({ reviews, order, setOrder, showModal, filter }) => {
     <Container>
       <SortingContainer>
         <p style={{fontFamily:'Petrona', fontWeight: 'bold'}}> {reviewsToRender.length} Reviews   --- sort by:  </p>
-        <DropDownContainer style={{fontFamily:'Petrona', fontWeight: 'bold'}} value={order} onChange={handleOrderChange}>
-          <option value="relevant">relevance</option>
-          <option value="helpful">helpfulness</option>
-          <option value="newest">date</option>
+        <DropDownContainer  value={order} onChange={handleOrderChange}>
+          <option style={{fontFamily:'Petrona', fontWeight: '500'}} value="relevant">relevance</option>
+          <option style={{fontFamily:'Petrona', fontWeight: '500'}} value="helpful">helpfulness</option>
+          <option style={{fontFamily:'Petrona', fontWeight: '500'}} value="newest">date</option>
         </DropDownContainer>
       </SortingContainer>
       <ReviewContainer>
@@ -112,7 +65,6 @@ const Reviews = ({ reviews, order, setOrder, showModal, filter }) => {
         <Button onClick={showModal}>Add Review +</Button>
     </Container>
   )
-
 }
 
 export default Reviews;

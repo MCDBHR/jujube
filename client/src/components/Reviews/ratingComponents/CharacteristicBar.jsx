@@ -1,45 +1,14 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import Review from '../Review.jsx';
-import styled from 'styled-components';
 import CharacteristicDataTable from '../ReviewForm/CharacteristicDataTable.js';
-
-const RatingsBarContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin: 0.6em 0 0.6em 0;
-`;
-
-const Bar = styled.div`
-  background-color: #ec9c94;
-  border-radius: 4px;
-  height: 1em;
-  margin: 0.1em 0 0.5em 0;
-`;
-
-const Arrow = styled.div`
-  width: 0;
-  height: 0;
-  position: relative;
-  left: ${({ pos }) => (pos / 5) * 100}%;
-  border-left: 0.5em solid transparent;
-  border-right: 0.5em solid transparent;
-  border-top: 1em solid #de4044;
-
-  `
-const UnderText = styled.div`
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.8em;
-  font-family: "Petrona";
-`;
-
-const CharacteristicName = styled.div`
-  font-size: 1.2em;
-  font-weight: bold;
-  font-family: "Petrona";
-`
-
+import {
+  RatingsBarContainer,
+  Bar,
+  Arrow,
+  UnderText,
+  CharacteristicName
+} from '../../style/ReviewAndRatingStyle/CharacteristicBarStyle.js';
 
 const CharacteristicBar= ({data}) => {
   let characteristicArray = Object.keys(data);

@@ -1,28 +1,17 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import styled from 'styled-components';
 import { format, parseISO } from "date-fns";
-
-
-const StyledReview = styled.div`
-  padding 10px;
-  border: 2px solid #212121;
-  border-radius: 8px;
-  background: white;
-  box-shadow: 20px 20px 10px #ededed;
-  box-sizing: border-box;
-`;
-const Header = styled.section`
-  display: flex;
-  justify-content:space-between;
-`;
+import StarRating from '../Reviews/ratingComponents/StarRating.jsx';
+import {
+  StyledReview,
+  Header
+} from '../style/ReviewAndRatingStyle/SingleReviewStyle.js'
 
 const Review = ({review}) => {
   const [fullBody, setFullBody] = useState(null);
   const [defaultBody, setDefaultBody] = useState(null);
   const [hideFullBody, setHideFullBody] = useState(true);
   const [hasPhotos, setHasPhotos] = useState(false);
-
   const {review_id,
         rating,
         summary,
@@ -33,13 +22,6 @@ const Review = ({review}) => {
         reviewer_name,
         helpfulness,
         photos} = review;
-
-    if (rating) {
-      var difference = 5 - rating;
-      let solidStars = ('★').repeat(rating);
-      var clearStars = ('☆').repeat(difference);
-      var starRender = solidStars + clearStars;
-    }
 
     useEffect (() => {
       if(photos.length !== 0) {
@@ -60,7 +42,8 @@ const Review = ({review}) => {
     <StyledReview>
         <div>
           <Header>
-            <section>{starRender}</section>
+            <div>{StarRating(rating)}</div>
+            {/* <section>{starRender}</section> */}
             <section> <b style={{fontFamily:"Patrona"}}>{reviewer_name}</b> {format(parseISO(date), 'PPP')}</section>
           </Header>
         </div>

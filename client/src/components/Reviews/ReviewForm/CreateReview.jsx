@@ -9,12 +9,8 @@ import PhotoUpload from './PhotoUpload.jsx';
 import UsernameEmail from './UsernameEmail.jsx';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import styled from 'styled-components';
 
-const Container = styled.div`
-  margin: 5px;
-`
-export const CreateReview = ({characteristics, product_id, name}) =>
+export const CreateReview = ({characteristics, product_id, name, setShowModal, setUpdate}) =>
 {
   const [characteristicArray, setCharacteristicsArray] = useState( Object.keys(characteristics));
   const [rating, setRating] = useState(null);
@@ -25,17 +21,16 @@ export const CreateReview = ({characteristics, product_id, name}) =>
   let [images, setImages] = useState([]);
   let [username, setUsername] = useState('');
   let [email, setEmail] = useState('');
-  let [imagesToPost, setImagesToPost] = useState([]);
   let [isValidToPost, setIsValidToPost] = useState(false);
   let [invalidReasons, setInvalidReasons] = useState([]);
 
   const handlePostVerification = () => {
-    if(images.length === 0) {
-      setImagesToPost(null);
-    } else {
-      setImagesToPost(images)
-    }
+    let imagesToPost = null;
 
+    if(images.length !== 0) {
+      console.log('here there are images!!')
+      imagesToPost = [...images];
+    }
     const validEmail = (email) => {
       let mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
       if (email.match(mailFormat)) {
@@ -72,7 +67,7 @@ export const CreateReview = ({characteristics, product_id, name}) =>
       }
     }
     checkManditoryfields();
-    console.log(invalidReasons);
+
     if(invalidReasons.length === 0) {
       let params = {
         'product_id': product_id,
@@ -86,35 +81,28 @@ export const CreateReview = ({characteristics, product_id, name}) =>
         'characteristics': choiceObj
       }
       axios.post('/api/reviews', params)
-      .then(() => {
-        alert('posted!')
+        .then((results) => {
+        alert('posted')
+        })
+        .then(() => {
+          setUpdate(true);
+          setShowModal(false);
       })
     } else {
       let reasons = invalidReasons.toString();
-      console.log(reasons);
       alert(`failed to post! missing requirements: ${reasons}`);
     }
   };
   return (
     <div>
       <h2 style={{fontFamily:'Shrikhand'}}>{name}</h2>
-      <Container>
-        <Star rating={rating} setRating={setRating}/>
-      </Container>
-
+      <Star rating={rating} setRating={setRating}/>
       <Recommend setRecommended={setRecommended}/>
-      <Container>
-        <Characteristics characteristics={characteristics} characteristicArray={characteristicArray} choiceObj={choiceObj} setChoiceObj={setChoiceObj}/>
-      </Container>
-
+      <Characteristics characteristics={characteristics} characteristicArray={characteristicArray} choiceObj={choiceObj} setChoiceObj={setChoiceObj}/>
       <Summary setSummary={setSummary}/>
-
       <Body setBody={setBody}/>
-
       <PhotoUpload images={images} setImages={setImages}/>
-
       <UsernameEmail setUsername={setUsername} setEmail={setEmail}/>
-
       <button onClick={handlePostVerification}>submit review</button>
     </div>
   );

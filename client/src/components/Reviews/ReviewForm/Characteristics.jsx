@@ -14,7 +14,6 @@ const Characteristics = ({characteristics, characteristicArray, choiceObj, setCh
     } else {
       setChoiceObj({...choiceObj, [key]: value});
     }
-
   }
 
   useEffect(() => {
