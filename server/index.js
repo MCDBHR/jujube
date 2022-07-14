@@ -5,9 +5,8 @@ const axios = require('axios');
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-// app.use(express.static('client/dist'));
+
 const pathName = path.join(__dirname, "../client/dist");
-console.log(pathName);
 app.use(express.static(path.join(__dirname, "../client/dist")));
 
 const PORT = 3000 || process.env.PORT;
@@ -18,6 +17,7 @@ const apiURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/';
 app.listen(PORT, () => {
   console.log(`Server listening on port: ${PORT}`);
 })
+
 app.get('/products/*', (req, res) => {
   res.sendFile('index.html', {root: path.join(__dirname, '../client/dist')})
 });
@@ -42,11 +42,11 @@ app.get('/api/products/:product_id', async (req, res) => {
 
 app.get('/api/products/:product_id/all', async (req, res) => {
   const id = req.params.product_id;
-  try{
-    const overview = axios.get(`${apiURL}products/${id}`,apiHeaders);
-    const related = axios.get(`${apiURL}products/${id}/related`,apiHeaders);
-    const styles = axios.get(`${apiURL}products/${id}/styles`,apiHeaders);
-    const reviews = axios.get(`${apiURL}reviews/?product_id=${id}`,apiHeaders);
+  try {
+    const overview = axios.get(`${apiURL}products/${id}`, apiHeaders);
+    const related = axios.get(`${apiURL}products/${id}/related`, apiHeaders);
+    const styles = axios.get(`${apiURL}products/${id}/styles`, apiHeaders);
+    const reviews = axios.get(`${apiURL}reviews/?product_id=${id}`, apiHeaders);
     const metaReview = axios.get(`${apiURL}reviews/meta/?product_id=${id}`, apiHeaders);
 
     const [{data: overviewData}, {data: relatedData}, {data: stylesData}, {data: reviewData}, {data: metaReviewData}] = await Promise.all([overview, related, styles, reviews, metaReview])
@@ -72,7 +72,7 @@ app.get('/api/cart', async (req, res) => {
   try {
     const response = await axios.get(`${apiURL}cart`, apiHeaders);
     res.status(201).send(response.data)
-  }catch(err) {
+  } catch(err) {
     res.send(err)
   }
 })
