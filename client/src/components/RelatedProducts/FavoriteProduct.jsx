@@ -13,7 +13,7 @@ const FavoriteProduct = (props) => {
   const cardOffset = useRef(4);
 
   const nextSlider = () => {
-    if(slider < props.favItems.length) {
+    if(slider < props.favItems.length - 1) {
       if(!forwardLast) {
         setSlider(prevState => prevState + cardOffset.current);
         setForwardLast(true);
@@ -42,19 +42,19 @@ const FavoriteProduct = (props) => {
       <CarouselInner>
       <PrevCarouselBtn slider={slider} onClick={prevSlider} href={`#slider-${slider}`}>&#8678;</PrevCarouselBtn>
       <FlexContainer>
+        <FavoriteCardContainer id={`slider-0`}>
+            <AddOutfitContainer>
+              <div>
+                <h1 onClick={props.addFavProduct}>+</h1>
+                <p>Add to Outfit</p>
+              </div>
+            </AddOutfitContainer>
+        </FavoriteCardContainer>
         {
           !!props.favItems.length &&
           props.favItems.map((item, index) =>
           <FavoriteCard key={item.id} slider={index} deleteFavProduct={props.deleteFavProduct} favItem={item}/>)
         }
-        <FavoriteCardContainer id={`slider-${props.favItems.length}`}>
-          <AddOutfitContainer>
-            <div>
-               <h1 onClick={props.addFavProduct}>+</h1>
-               <p>Add to Outfit</p>
-            </div>
-          </AddOutfitContainer>
-        </FavoriteCardContainer>
       </FlexContainer>
         <NextCarouselBtn slider={slider} onClick={nextSlider} length={props.favItems.length}
         href={`#slider-${slider}`}>&#8680;</NextCarouselBtn>
