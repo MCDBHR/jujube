@@ -1,7 +1,7 @@
 # Jujube
 
 ## Description
-Jujube is a ecommerce product page using React.js, Node/Express, Cloudinary. This project was created by a team of 3.
+Jujube is a retail e-commerce applicaiton using React.js, Node/Express, Cloudinary. This project was created by a team of 3.
 
 ## Features
 - Product Overview to view product information and size available
