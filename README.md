@@ -10,6 +10,9 @@ Jujube is a retail e-commerce applicaiton using React.js, Node/Express, Cloudina
 - See all reviews and ratings featured product on page
 - able to add review for product
 
+Overview
+![Overview](https://user-images.githubusercontent.com/39501050/180930047-a326d36b-e1a5-470c-8ff2-66158c6d50df.gif)
+
 Related Products
 ![Related Products Your Outfit 1](https://user-images.githubusercontent.com/39501050/180042904-9916452f-d4db-48f0-af71-137f18097ceb.gif)
 
